@@ -1,0 +1,11 @@
+
+
+
+L'agent modifie les entrées 
+Le bouton "Modifier" renvoie faire le formHandler
+Le formHandler renvoie vers updateClient.php
+
+Si le client existe 
+    updateClient.php ne s'occupe que d'enregistrer les modifications
+Sinon 
+    L'agent voit une alert disant que le client n'existe pas

@@ -1,0 +1,883 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap");
+
+* {
+  font-family: "Open Sans";
+  font-size: 14px;
+  text-overflow: ellipsis;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+
+
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-image: url("../addons/background.jpg");
+}
+
+input:focus {
+
+  outline: none;
+}
+
+input[type="text"] {
+  margin: 2px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 3px;
+  width: 200px;
+  box-shadow: inset 0px -2px 0px -1px rgba(0, 0, 0, 0.3);
+
+  font-size: 12px;
+}
+
+input[type="text"]:focus {
+  box-shadow: inset 0px -2px 0px -1px rgb(219, 96, 96);
+}
+
+input[type="radio"] {
+  outline: none;
+}
+
+input[type="radio"]:checked {
+  background-color: red;
+}
+
+input[type="number"] {
+  margin: 2px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 3px;
+  width: 50px;
+  box-shadow: inset 0px -2px 0px -1px rgba(0, 0, 0, 0.3);
+}
+
+input[type="number"]:focus {
+  box-shadow: inset 0px -2px 0px -1px rgb(219, 96, 96);
+
+}
+
+datalist {
+  display: none;
+}
+
+
+select {
+  margin: 2px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 3px;
+  width: 50px;
+  box-shadow: inset 0px -2px 0px -1px rgba(0, 0, 0, 0.3);
+}
+
+.menu-settings {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 2px;
+}
+
+h1 {
+  font-size: 15px;
+}
+h3 {
+  font-size: 12px;
+  color: rgb(54, 55, 55);
+}
+
+
+a {
+  text-decoration: none;
+}
+
+
+.raise-error {
+  background-color: rgba(245, 245, 220, 0.529);
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.menu-button {
+  border: 1px solid rgba(255, 0, 0, 0);
+  background-color: #f44336;
+  border-radius: 5px;
+  padding: 5px 15px 5px 15px;
+  margin: 5px;
+  font-weight: 600;
+  min-width: 100px;
+
+  color: white;
+  transition: transform 0.1s;
+}
+
+.menu-button:hover {
+  background-color: #b9352c;
+}
+
+.menu-button:active {
+  transform: scale(1.05);
+}
+
+#main-menu > div {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 750px;
+  border-radius: 5px;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+}
+
+#main-menu .menu-button {
+  width: 100%;
+  height: 30px;
+  white-space: normal;
+}
+
+#main-menu .left-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 300px;
+}
+
+#main-menu .box-l {
+  justify-content: space-between;
+}
+#main-menu .right-container {
+  width: 50%;
+  justify-content: space-between;
+}
+
+#main-menu img {
+  position: relative;
+  top: 75px;
+  left: 15px;
+}
+
+#main-menu #main-btn-aide,
+#main-menu #main-btn-quitter {
+  width: 150px;
+  height: 100px;
+  justify-content: baseline;
+}
+
+#menu-location > div {
+  position: relative;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 250px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+}
+
+#menu-location img {
+  position: relative;
+  bottom: 70px;
+  width: 150px;
+  height: 70px;
+  margin: 10px;
+}
+#menu-location .container-main-button {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  bottom: 45px;
+}
+
+#menu-location .container-main-button .menu-button {
+  width: 200px;
+}
+
+#menu-location .container-option-button {
+  position: relative;
+  bottom: 7px;
+  width: 100px;
+  height: 200px;
+}
+
+#menu-location .container-option-button .menu-button {
+  width: 100px;
+  height: 100px;
+}
+
+.client {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 95%;
+}
+
+.passeport {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 95%;
+}
+
+.permis {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 95%;
+}
+
+.station {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 95%;
+}
+
+.autre {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 95%;
+}
+
+.vehicule {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 100%;
+}
+
+.forfait {
+  margin-top: 30px;
+}
+
+.logo {
+  height: 75px;
+  width: 165px;
+  margin-right: 5%;
+}
+
+.box-c {
+  display: block;
+  width: 100%;
+}
+
+.box-l {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.btn-container .menu-button {
+  min-width: 100px;
+}
+
+#contrat-location > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+  padding: 10px;
+}
+
+#contrat-location .head {
+  position: relative;
+  z-index: 2;
+  height: 200px;
+}
+
+#contrat-location .head input {
+  white-space: normal;
+  overflow: hidden;
+  padding: 0;
+  height: 50px;
+  width: 100px;
+}
+
+#contrat-location .head div {
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#contrat-location .head img {
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 32%;
+}
+
+.container-element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  margin-top: 2%;
+
+}
+.container-element label {
+  padding-right: 2px;
+}
+
+.right-container,
+.left-container {
+  display: block;
+  position: relative;
+
+  margin: 10px;
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  max-width: 500px;
+}
+
+.foot,
+.foot input {
+  position: relative;
+  text-overflow: clip;
+  bottom: 0;
+  width: 100%;
+  margin-left: 5%;
+}
+
+.head,
+.head input {
+  position: relative;
+  top: 0;
+  width: 100%;
+  margin-left: 10px;
+  text-overflow: clip;
+}
+
+.radio-lists {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.titled-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-lists .container-element {
+  width: 150px;
+}
+
+.radio-lists h2 {
+  margin-left: 35px;
+}
+
+.radio-lists .type-client,
+.type-facturation,
+.radio-lists li {
+  display: block;
+  width: 200px;
+  list-style: none;
+}
+
+.utilities-btn {
+  display: flex;
+  margin-top: 5%;
+}
+
+.utilities-btn input {
+  width: 125px;
+}
+
+.utilities-btn #contrat-btn-select-vehicule {
+  padding: 0;
+  font-size: 12px;
+  white-space: normal;
+  overflow: hidden;
+  max-width: 100px;
+  width: 100px;
+  height: 100px;
+}
+
+.utilities-btn div {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 150px;
+
+  width: 125px;
+}
+
+.btn-container .menu-button {
+  width: 115px;
+}
+
+.btn-container div {
+  margin: 10px;
+  margin-bottom: 25%;
+  width: 115px;
+}
+
+#fichier-client > div {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+  padding: 15px;
+}
+
+#fichier-client .container {
+  display: flex;
+}
+#fichier-client .left-container {
+  max-width: 900px;
+  width: 70%;
+}
+#fichier-client .right-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+#fichier-client .left-container input[type="text"] {
+  overflow: hidden;
+  width: 65%;
+}
+
+#fichier-client .right-container .autre {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+}
+
+#fichier-client .right-container .client-parametres input[type="number"] {
+  width: 50%;
+}
+
+#fichier-client .radio-lists {
+  margin-top: 20%;
+  margin-bottom: 35%;
+}
+
+#fichier-client .right-container .autre {
+  display: flex;
+  justify-content: space-between;
+}
+
+#selectionner-vehicule > div {
+  display: flex;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+  padding: 15px;
+}
+
+#selectionner-vehicule .left-container {
+  width: 300px;
+}
+#selectionner-vehicule .right-container input[type="text"] {
+  width: 200px;
+}
+
+#selectionner-vehicule .radio-lists {
+  display: block;
+  padding: 0;
+  margin: 0;
+  width: 200px;
+}
+
+#annulation-contrat > div,
+#edition-facture > div,
+#facture > div {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: white;
+  width: 700px;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+  padding: 15px;
+}
+
+#facture > div {
+  width: 95%;
+  max-width: 1000px;
+}
+
+#annulation-contrat input,
+#edition-facture input {
+  width: 75px;
+  margin-right: 5%;
+}
+
+#facture .right-container,
+#facture .left-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 95%;
+}
+
+#annulation-contrat .box,
+#edition-facture .box {
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 400px;
+}
+
+#erreur-page > div {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: white;
+  padding: 5%;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+  padding: 15px;
+}
+
+#erreur-page h1 {
+  color: #f44336;
+  font-weight: 900;
+  font-size: 30px;
+}
+
+#erreur-page p {
+  background-color: beige;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#erreur-page input {
+  display: flex;
+  margin: auto;
+}
+
+#enregistrer-entretien > div {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: white;
+  padding: 2%;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+  width: 850px;
+}
+
+#enregistrer-entretien .head .left-container {
+  width: 450px;
+}
+
+#enregistrer-entretien #enregistrer-entretien-code {
+  width: 75px;
+  margin: 0;
+  margin-right: 10px;
+  text-overflow: ellipsis;
+}
+
+#enregistrer-entretien .foot {
+  position: relative;
+  left: 505px;
+  width: 300px;
+}
+#enregistrer-entretien .foot .box-l {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#enregistrer-entretien .container {width: 100%;}
+
+#autre-entretien > div {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: white;
+  padding: 2%;
+  width: 550px;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+}
+
+
+
+#autre-entretien .right-container .box-l {
+  justify-content: space-between;
+  align-items: center;
+}
+
+#actualiser-fichiers > div {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px;
+  width: 590px;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+}
+
+#actualiser-fichiers .left-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 175px;
+}
+
+#actualiser-fichiers .container {
+  max-width: 550px;
+}
+#actualiser-fichiers input {
+  height: 35px;
+  min-width: 115px;
+  width: 100%;
+  margin: 0;
+}
+#actualiser-fichiers .container-element {
+  width: 100%;
+  margin: 0;
+}
+#actualiser-fichiers .box-l .right-container input {
+  width: 100px;
+  height: 45px;
+}
+#actualiser-fichiers .box-l {
+  display: flex;
+  justify-content: space-between;
+}
+
+#actualiser-fichiers .box-l .right-container,
+#actualiser-fichiers .box-l .left-container {
+  display: flex;
+  justify-content: space-between;
+
+  flex-direction: column;
+  width: 100px;
+  height: 115px;
+  padding: 5px;
+}
+
+#fichier-vehicule > div {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+  padding: 15px;
+  width: 750px;
+  height: 85%;
+
+}
+
+#fichier-vehicule input[type="text"] {
+  width: 72%;
+}
+
+#fichier-vehicule .container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 650px;
+ 
+}
+#fichier-vehicule .container .right-container {
+    position: relative;
+    width: 20%;
+    bottom: 15px;
+
+
+}
+
+#fichier-vehicule .container .middle {
+  position: relative;
+  width: 250px;
+  bottom: 55px;
+
+}
+
+#fichier-vehicule-addons {
+  position: relative;
+  top: -30px;
+
+}
+
+#fichier-vehicule .container .foot {
+  position: relative;
+  bottom: 25px;
+  left: -25px;
+}
+
+
+#fichier-tarifs > div {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+  padding: 15px;
+  min-width: 1000px;
+  width: 53%;
+  height: 87%;
+
+}
+#fichier-tarifs .container { 
+  max-width: 100%;
+  margin-right: 15px;
+  
+}
+
+#fichier-tarifs .container-element {
+  margin-top: 0;
+  align-items: center;
+  margin-left: 15px;
+ 
+}
+
+#fichier-tarifs .left-container {
+    width: 20%;
+  }
+  #fichier-tarifs .right-container {
+    padding-left:  15px;
+    max-width: none;
+    width: 100%;
+  }
+
+  #fichier-tarifs h3, #fichier-tarifs h1 {
+    text-align: center;
+  }
+
+  #fichier-tarifs input[type="number"] {
+    width: 150px;
+  }
+  #fichier-tarifs label {
+    margin-right: 15px;
+  }
+
+
+
+#historique > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    width: 800px;
+    box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+    padding: 10px;
+    
+}
+
+#historique div>img {
+  position: relative;
+  bottom: 130px;
+  height: 55px;
+  width: 120px;
+  margin-left: 10px;
+}
+
+
+#historique .container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+#historique .top {
+  display: flex;
+  flex-direction: row;
+  
+
+
+}
+
+
+#historique .top .right-container {
+  position: relative;
+  left:  -115px;
+  top: 55px;
+  width: 100px;
+
+  
+}
+#historique .top .left-container {
+  width: 350px;
+}
+
+#historique .btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 250px;
+  width: 550px;
+
+}
+
+#historique .btn-container .left-container .menu-button{
+  position: relative;
+  right: 10px;
+  margin-left: 0;
+  width: 350px;
+  height: 38px;
+}
+#historique .btn-container .right-container .menu-button{
+  position: relative;
+  top:9px;
+  width: 150px;
+  height: 100px;
+}
+
+
+#statistiques>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    width: 750px;
+    height: 250px;
+    box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+    padding: 10px;
+    
+}
+
+#statistiques .container {
+  flex-direction: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+
+}
+
+#statistiques .box-c {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+ 
+  height: 100%;
+  
+}
+
+#statistiques .box-l {
+  position: relative;
+  left: 100px;
+  width: 550px;
+  justify-content: space-between;
+  
+}
+
+
+
+
