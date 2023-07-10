@@ -48,14 +48,19 @@ if (!empty($options)) { // Vérification de l'existence des options
         $array = array(); //Réinitialisation du paquet
         //print_r($param);
 
-        foreach ($options as $key => $value) { 
+        foreach ($options as $key => $value) {
             $sql = "SELECT DISTINCT $key FROM VEHICULE WHERE ";
             $params = array();
             $placeholders = array();
 
             foreach ($param as $stg => $val) {
-                $placeholders[] = "$stg=? ";
-                $params[] = $val;
+                if ($stg === "PuisV" || $stg === "NbPlV") {
+                    $placeholders[] = "$stg>=? ";
+                    $params[] = $val;
+                } else {
+                    $placeholders[] = "$stg=? ";
+                    $params[] = $val;
+                }
             }
 
             $sql .= implode(" AND ", $placeholders); /////////// TESTER
