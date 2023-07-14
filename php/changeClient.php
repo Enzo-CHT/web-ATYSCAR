@@ -4,16 +4,6 @@ require "connexion.php";
 
 
 
-/**
- * Recupère tous les numC
- * Trouver celui actuel
- * Recupèrer les suivants
- * Recupère les précédents
- * Defini l'action
- * Definir une nouvelle session
- * Si pas de NumC définit
- *  Premier utilisateur de la liste
- */
 
 $way = isset($_POST['way']) ? $_POST['way']: 0;
 

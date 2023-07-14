@@ -3,14 +3,16 @@
 let path = "../php/";
 
 
-export async function setSession(formId) {
-    const form = document.getElementById(formId);
-    const formData = new FormData(form);
+export async function setSession(data) { ///// CHANGER, SESSION NON MIS A JOUR CORRECTEMENT, DONNER MAL ENVOYER
+
 
     try {
-        const response = await fetch(path+"sessionSetter", {
+        const response = await fetch(path + "sessionSetter", {
             method: 'POST',
-            body: formData,
+            headers: {
+                'Content-Type': 'application/json' // Envoie JSON
+            },
+            body: JSON.stringify(data) ///// ICI
         });
 
         if (response.ok) {
@@ -19,7 +21,7 @@ export async function setSession(formId) {
             console.error("setSession n'a pas été executé :", response.status);
         }
 
-    } catch(error) {
+    } catch (error) {
         console.error("Erreur dans setSession:", error);
     }
 
@@ -30,9 +32,9 @@ export async function updateSession() {
 
 
     try {
-        const response = await fetch(path+"sessionUpdater", {
+        const response = await fetch(path + "sessionUpdater", {
             method: 'GET',
-         
+
         });
 
         if (response.ok) {
@@ -41,17 +43,17 @@ export async function updateSession() {
             console.error("updateSession n'a pas été executé :", response.status);
         }
 
-    } catch(error) {
+    } catch (error) {
         console.error("Erreur dans updateSession:", error);
     }
-    
+
 }
 
 
 
 export async function resetSession() {
     try {
-        const response = await fetch(path+"sessionReset", {
+        const response = await fetch(path + "sessionReset", {
             method: 'GET',
         });
 
@@ -61,7 +63,7 @@ export async function resetSession() {
             console.error("sessionReset n'a pas été executé :", response.status);
         }
 
-    } catch(error) {
+    } catch (error) {
         console.error("Erreur dans sessionReset:", error);
     }
 }

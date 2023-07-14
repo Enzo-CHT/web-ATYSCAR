@@ -1,31 +1,32 @@
 import { resetSession, setSession, updateSession } from "./sessionHandler.js";
-import {redirectTo} from "./actButton.js";
+import { redirectTo } from "./actButton.js";
 
 
 let path = "../php/";
 
 
 
-export async function newClient(formId, page = null) {
-    if (checkRequirement(formId)) {
-        await setSession(formId);
+export async function newClient(data, page = null) {
+
+    if (checkRequirement(data)) {
+        await setSession(data);
         try {
-            const response = await fetch(path+'newClient', {
-                method: 'GET',
+            const response = await fetch(path + 'newClient', {
+                method: 'POST',
             });
 
             if (response.ok) {
                 console.log('new Client a été executé..')
-                await updateSession();
+                //await updateSession();
 
                 if (page != null) {
-                    redirectTo(page);
+                    //redirectTo(page);
                 }
 
             } else {
-                console.error('newClient n\'a pas été executé correctement :',response.status)
+                console.error('newClient n\'a pas été executé correctement :', response.status)
             }
-        } catch(error) {
+        } catch (error) {
             console.error('Erreur dans newClient :', error);
         }
     }
@@ -35,7 +36,7 @@ export async function newClient(formId, page = null) {
 export async function delClient(page = null) {
 
     try {
-        const response = await fetch(path+"delClient", {
+        const response = await fetch(path + "delClient", {
             method: 'GET',
         });
 
@@ -46,7 +47,7 @@ export async function delClient(page = null) {
             console.error("delClient n'a pas été executé :", response.status);
         }
 
-    } catch(error) {
+    } catch (error) {
         console.error("Erreur dans delClient:", error);
     }
 
@@ -54,10 +55,11 @@ export async function delClient(page = null) {
 
 }
 
-export async function updateClient(formId) {
-    await setSession(formId); //Ne récupère que le numéro client
+
+export async function updateClient(data) {
+    await setSession(data); //Ne récupère que le numéro client
     try {
-        const response = await fetch(path+"updateClient", {
+        const response = await fetch(path + "updateClient", {
             method: 'GET',
         });
 
@@ -67,7 +69,7 @@ export async function updateClient(formId) {
             console.error("updateClient n'a pas été executé :", response.status);
         }
 
-    } catch(error) {
+    } catch (error) {
         console.error("Erreur dans updateClient:", error);
     }
 
@@ -79,29 +81,29 @@ export async function updateClient(formId) {
  * @param {int} way (1 : Suivant / -1 : Précédent)
  * @param {str} page chemin vers la page de redirection
  */
-export async function changeClient(way,page=null){
+export async function changeClient(way, page = null) {
 
     var dataForm = new FormData();
     dataForm.append('way', way);
 
-   
-   try {
-       const response = await fetch(path+'changeClient', {
-           method: 'POST',
-           body: dataForm,
-           
+
+    try {
+        const response = await fetch(path + 'changeClient', {
+            method: 'POST',
+            body: dataForm,
+
         });
-        
-        
+
+
         if (response.ok) {
             console.log('changeClient a été exécuté..');
             await updateSession();
-            
+
 
         } else {
-            console.error("changeClient n'a pas été executé : ",response.status);
-        } 
-    }catch(error) {
+            console.error("changeClient n'a pas été executé : ", response.status);
+        }
+    } catch (error) {
         console.error('Erreur dans changeClient:', error)
     }
 
@@ -110,7 +112,7 @@ export async function changeClient(way,page=null){
 }
 
 
-export async function searchClient(page=null) {
+export async function searchClient(page = null) {
 
     const data = document.getElementById('contract-id').value;
     var dataForm = new FormData();
@@ -118,8 +120,8 @@ export async function searchClient(page=null) {
 
 
     try {
-        const response = await fetch(path+"searchClient", {
-            method:  'POST',
+        const response = await fetch(path + "searchClient", {
+            method: 'POST',
             body: dataForm,
         });
 
@@ -129,11 +131,11 @@ export async function searchClient(page=null) {
             console.error("searchClient n'a pas été executé :", response.status);
         }
 
-    } catch(error) {
+    } catch (error) {
         console.error("Erreur dans searchClient :", error);
     }
 
-    if (page!=null){
+    if (page != null) {
         redirectTo(page);
     } else {
         console.error("Erreur de redirection dans searchClient")
@@ -144,24 +146,25 @@ export async function searchClient(page=null) {
 
 
 
-function checkRequirement(formId) {
+function checkRequirement(data) {
     /// Vérifie que certaine condition ont été remplie avant de continuer 
     console.log("Vérification des prérequis ... ");
-    if (formId == 'clientForm') {
-     
-        if (document.getElementById('fichier-client-nom').value == "" ||
-            document.getElementById('fichier-client-prenom').value == "" ||
-            document.getElementById('fichier-client-date-naissance').value == "") {
 
-            document.getElementById('raise-error').innerHTML = "<p class='raise-error'>Veuillez remplir les champs obligatoires<p>";
-            console.error("Erreur de prérequis");
-            return false;
+    if (data) {
+        for (const element in data) {
+            const currentElement = data[element];
 
+            if (element === 'client') {
 
-        } else {
-            return true;
+                if (currentElement['NomC'] && currentElement['PrenomC'] && currentElement['DatNaisC']) {
+                    return true;
+                }
+
+            }
         }
     }
+
+
 
 }
 

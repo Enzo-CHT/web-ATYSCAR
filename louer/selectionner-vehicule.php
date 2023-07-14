@@ -21,6 +21,7 @@
                 dataArray[element.getAttribute('name')] = element.value;
             });
 
+            
 
             /*
                 dataArray :  {CarV: '2', NbPlV: '2500', PuisV: '4', MarV: 'Ferrari', ModV: 'S78', CoulV: "Rouge"}

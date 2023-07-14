@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../php/connexion.php";
-//print_r($_SESSION);
+print_r($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -12,20 +12,49 @@ require "../php/connexion.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <script type="module">
-        import { newClient, updateClient, delClient, changeClient } from "../js/clientHandler.js";
-        import { resetSession} from "../js/sessionHandler.js";
-        
-        var formId="clientForm";
+        import {
+            newClient,
+            updateClient,
+            delClient,
+            changeClient
+        } from "../js/clientHandler.js";
+        import {
+            resetSession
+        } from "../js/sessionHandler.js";
+
+        var formId = "clientForm";
         var thisPage = window.location.pathname;
-        document.getElementById('btn-enregistrer').onclick =function() {newClient(formId,'../louer/contrat'); }
-        document.getElementById('btn-annuler').onclick =function() {resetSession();}
-        document.getElementById('btn-modifier').onclick = function() {updateClient(formId);}
-        document.getElementById('btn-supprimer').onclick = function() {delClient(thisPage);}
-        document.getElementById('btn-suiv').onclick =function() {changeClient(1,thisPage);}
-        document.getElementById('btn-pre').onclick =function() {changeClient(-1,thisPage);}
-        
+        document.getElementById('btn-enregistrer').onclick = function() {
+            const form = document.getElementById(formId);
+            const formData = new FormData(form);
 
 
+            // Encapsulation des données du client
+            var ENCAPS = {client: {}};
+            formData.forEach(function(value, key) {
+                ENCAPS['client'][key] = value;
+            });
+
+
+
+
+            newClient(ENCAPS,'../louer/contrat'); 
+        }
+        document.getElementById('btn-annuler').onclick = function() {
+            resetSession();
+        }
+        document.getElementById('btn-modifier').onclick = function() {
+            updateClient(formId);
+        }
+        document.getElementById('btn-supprimer').onclick = function() {
+            delClient(thisPage);
+        }
+        document.getElementById('btn-suiv').onclick = function() {
+            changeClient(1, thisPage);
+        }
+        document.getElementById('btn-pre').onclick = function() {
+            changeClient(-1, thisPage);
+        }
     </script>
 
 
@@ -34,16 +63,16 @@ require "../php/connexion.php";
 
 <body>
 
-    <main  id="fichier-client">
-        
+    <main id="fichier-client">
+
         <div>
-        <form method="POST" action='#' id="clientForm">
-            
-            <div>
-                <img class="logo" src="../addons/Atys Car.jpg" alt="logo-atyscar.jpg">
-            </div>
+            <form method="POST" action='#' id="clientForm">
+
+                <div>
+                    <img class="logo" src="../addons/Atys Car.jpg" alt="logo-atyscar.jpg">
+                </div>
                 <div class="container">
-               
+
                     <div class="left-container">
                         <span id="raise-error"></span>
                         <div class="client">
@@ -174,7 +203,7 @@ require "../php/connexion.php";
 
                                 <div>
                                     <input class="menu-button" type="button" value="Enregistrer" id="btn-enregistrer">
-                                    <a href="../louer/contrat.php"><input  id="btn-annuler" class="menu-button" type="button" value="Annuler" onclick="resetSession();"></a>
+                                    <a href="../louer/contrat.php"><input id="btn-annuler" class="menu-button" type="button" value="Annuler" onclick="resetSession();"></a>
                                 </div>
 
                             </div>
@@ -215,12 +244,12 @@ require "../php/connexion.php";
 
                     </div>
                 </div>
-                
+
             </form>
         </div>
 
     </main>
-   
+
 </body>
 
 </html>
