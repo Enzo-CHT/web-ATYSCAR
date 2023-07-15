@@ -40,7 +40,7 @@ session_start();
                     <img class="logo" src="../addons/Atys Car.jpg" alt="atyscar-logo.jpg">
                     <br>
                     <div>
-                        <a href="rechercher_client.php">
+                        <a href="rechercher_client.html">
                             <input class="menu-button" onclick="" type="button" value="RECHERCHER CLIENT">
                         </a>
                         <input id="btn-nouveauClient" class="menu-button" type="button" value="NOUVEAU CLIENT">
