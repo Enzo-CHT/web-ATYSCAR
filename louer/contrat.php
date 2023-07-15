@@ -221,6 +221,7 @@ session_start();
                     </div>
                 </div>
                 <div class="permis">
+                <h1>Permis</h1>
                     <div class="container-element">
                         <label for="contrat-num-permis">Numéro</label>
                         <input type="text" name="NumPermisC" id="contrat-num-permis" value="<?php echo isset($_SESSION['NumPermisC']) ? $_SESSION['NumPermisC'] : ''; ?>" />

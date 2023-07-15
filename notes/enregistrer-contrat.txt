@@ -1,0 +1,6 @@
+
+
+- Récupérer le matricule du véhicule correspondant
+- Générer numéro de contrat
+- Récupérer les données de contrat
+- Enregistrer les données de contrat

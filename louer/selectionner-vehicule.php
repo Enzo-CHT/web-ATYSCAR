@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php session_start();
+print_r($_SESSION) ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -11,8 +12,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="module">
         import {
-            getVehicule
-        } from "../js/vehiculeHandler.js";
+            setSession
+        } from "../js/sessionHandler.js";
+        import {
+            redirectTo
+        } from "../js/actButton.js";
+
         document.getElementById('btn-ok').onclick = function() {
             var dataArray = {};
             var inputElements = document.querySelectorAll('input:not(.menu-button)'); //Récupère tous les inputs
@@ -20,12 +25,11 @@
             inputElements.forEach(function(element) {
                 dataArray[element.getAttribute('name')] = element.value;
             });
+            setSession({
+                car: dataArray
+            });
+            redirectTo("../louer/contrat")
 
-            
-
-            /*
-                dataArray :  {CarV: '2', NbPlV: '2500', PuisV: '4', MarV: 'Ferrari', ModV: 'S78', CoulV: "Rouge"}
-            */
         }
     </script>
 </head>
@@ -39,16 +43,18 @@
             <div class="left-container">
                 <div class="radio-lists">
                     <h2>Carburant</h2>
+
+                    <?php $CarbRadio =  isset($_SESSION['car']['CarV']) ? $_SESSION['car']['CarV'] : '' ?>
                     <ul>
                         <li>
 
-                            <input id="selectionner-vehicule-diesel" type="radio" name="CarV" value="1">
+                            <input id="selectionner-vehicule-diesel" type="radio" name="CarV" value="1" <?php echo ($CarbRadio == 1) ? 'checked' : ''; ?>>
                             <label for="selectionner-vehicule-type-diesel">Diesel</label>
 
                         </li>
                         <li>
 
-                            <input id="selectionner-vehicule-type-essence" type="radio" name="CarV" value="2">
+                            <input id="selectionner-vehicule-type-essence" type="radio" name="CarV" value="2" <?php echo ($CarbRadio == 2) ? 'checked' : ''; ?>>
                             <label for="selectionner-vehicule-type-essence">Essence</label>
 
                         </li>
@@ -63,16 +69,16 @@
             <div class="right-container">
                 <div class="container-element">
                     <label for="selectionner-vehicule-nombre-place">Nombre de places</label>
-                    <input type="number" name="NbPlV" id="selectionner-vehicule-nombre-place" min='1' value="1" />
+                    <input type="number" name="NbPlV" id="selectionner-vehicule-nombre-place" min='1' value="<?php echo isset($_SESSION['car']['NbPlV']) ? $_SESSION['car']['NbPlV'] : '1' ?>" />
                 </div>
                 <div class="container-element">
                     <label for="selectionner-vehicule-puissance">Puissance</label>
-                    <input type="number" name="PuisV" id="selectionner-vehicule-puissance" min="0" value="0" />
+                    <input type="number" name="PuisV" id="selectionner-vehicule-puissance" min="0" value="<?php echo isset($_SESSION['car']['PuisV']) ? $_SESSION['car']['PuisV'] : '0' ?>" />
 
                 </div>
                 <div class="container-element">
                     <label for="selectionner-vehicule-marque">Marque </label>
-                    <input type="text" name="MarV" id="selectionner-vehicule-marque" list="marque-list" />
+                    <input type="text" name="MarV" id="selectionner-vehicule-marque" list="marque-list" value="<?php echo isset($_SESSION['car']['MarV']) ? $_SESSION['car']['MarV'] : '' ?>" />
                     <datalist id="marque-list">
                         <option value=""></option>
                         <!-- Remplissage dynamique par script -->
@@ -81,7 +87,7 @@
                 </div>
                 <div class="container-element">
                     <label for="selectionner-vehicule-modele">Modèle</label>
-                    <input type="text" name="ModV" id="selectionner-vehicule-modele" list="modele-list" />
+                    <input type="text" name="ModV" id="selectionner-vehicule-modele" list="modele-list" value="<?php echo isset($_SESSION['car']['ModV']) ? $_SESSION['car']['ModV'] : '' ?>" />
                     <datalist id="modele-list">
                         <option value=""></option>
                         <!-- Remplissage dynamique par script -->
@@ -90,7 +96,7 @@
                 </div>
                 <div class="container-element">
                     <label for="selectionner-vehicule-couleur">Couleur</label>
-                    <input type="text" name="CoulV" id="selectionner-vehicule-couleur" list="couleur-list" />
+                    <input type="text" name="CoulV" id="selectionner-vehicule-couleur" list="couleur-list" value="<?php echo isset($_SESSION['car']['CoulV']) ? $_SESSION['car']['CoulV'] : '' ?>" />
                     <datalist id="couleur-list">
                         <option value=""></option>
                         <!-- Remplissage dynamique par script -->

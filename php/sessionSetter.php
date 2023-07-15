@@ -1,8 +1,6 @@
 <?php
     session_start();
-    $_SESSION = array();
 
-    print_r($_POST['data']);
     $data = json_decode($_POST['data'],true);
 
     
@@ -11,7 +9,7 @@
     foreach ($data as $type => $array) {
         foreach ($array as $key => $value) {
             // Recupère les valeurs dans un $_SESSION
-
+            echo "$type : $key => $value \n";
             $_SESSION[$type][$key] = $value;
         }
         

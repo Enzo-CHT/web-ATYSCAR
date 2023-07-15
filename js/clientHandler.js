@@ -15,6 +15,7 @@ export async function newClient(dataArray, page = null) {
 
 
     if (checkRequirement(dataArray)) {
+        await resetSession();
         await setSession(dataArray);
         try {
             await $.ajax({
