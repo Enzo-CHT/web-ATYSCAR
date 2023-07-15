@@ -14,17 +14,22 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <script type="module">
-        import { resetSession } from "../js/sessionHandler.js";
-        import { redirectTo } from "../js/actButton.js";
-        document.getElementById('btn-nouveauClient').onclick = async function() {
-                await resetSession();
-                redirectTo('../fichiers/fichier-clients');
-        }
-
-        
-    </script>
     <title>CONTRAT DE LOCATION</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module">
+        import {
+            resetSession
+        } from "../js/sessionHandler.js";
+        import {
+            redirectTo
+        } from "../js/actButton.js";
+
+
+        document.getElementById('btn-nouveauClient').onclick = async function() {
+            await resetSession();
+            redirectTo('../fichiers/fichier-clients');
+        }
+    </script>
 </head>
 
 <body>
@@ -39,7 +44,7 @@ session_start();
                             <input class="menu-button" onclick="" type="button" value="RECHERCHER CLIENT">
                         </a>
                         <input id="btn-nouveauClient" class="menu-button" type="button" value="NOUVEAU CLIENT">
-                     
+
                     </div>
 
                 </div>
@@ -50,64 +55,64 @@ session_start();
 
 
 
-            <form action="#" method="POST" id="formContrat"></form>
+                <form action="#" method="POST" id="formContrat"></form>
                 <div class="client">
                     <h1>Client</h1>
                     <div class="container-element">
                         <label for="contrat-nom">Nom</label>
-                        <input type="text" name="NomC" id="contrat-nom" value="<?php echo isset($_SESSION['NomC']) ? $_SESSION['NomC'] : ''; ?>" />
+                        <input type="text" name="NomC" id="contrat-nom" value="<?php echo isset($_SESSION['client']['NomC']) ? $_SESSION['client']['NomC'] : ''; ?>" />
                     </div>
 
                     <div class="container-element">
                         <label for="contrat-prenom">Prénom</label>
-                        <input type="text" name="PrenomC" id="contrat-prenom" value="<?php echo isset($_SESSION['PrenomC']) ? $_SESSION['PrenomC'] : ''; ?>" />
+                        <input type="text" name="PrenomC" id="contrat-prenom" value="<?php echo isset($_SESSION['client']['PrenomC']) ? $_SESSION['client']['PrenomC'] : ''; ?>" />
                     </div>
                     <div class="container-element">
                         <label for="contrat-date-naissance">Date de naissance</label>
-                        <input type="date" name="DatNaisC" id="contrat-date-naissance" value="<?php echo isset($_SESSION['DatNaisC']) ? $_SESSION['DatNaisC'] : ''; ?>" />
+                        <input type="date" name="DatNaisC" id="contrat-date-naissance" value="<?php echo isset($_SESSION['client']['DatNaisC']) ? $_SESSION['client']['DatNaisC'] : ''; ?>" />
                     </div>
                     <div class="container-element">
                         <label for="contrat-lieu-naissance">Lieu de naissance</label>
-                        <input type="text" name="LieuNaisCe" id="contrat-lieu-naissance" value="<?php echo isset($_SESSION['LieuNaisC']) ? $_SESSION['LieuNaisC'] : ''; ?>" />
+                        <input type="text" name="LieuNaisCe" id="contrat-lieu-naissance" value="<?php echo isset($_SESSION['client']['LieuNaisC']) ? $_SESSION['client']['LieuNaisC'] : ''; ?>" />
                     </div>
                     <div class="container-element">
                         <label for="contrat-nationalite">Nationalité</label>
-                        <input type="text" name="NationaliteC" id="contrat-nationalite" value="<?php echo isset($_SESSION['NationaliteC']) ? $_SESSION['NationaliteC'] : ''; ?>" />
+                        <input type="text" name="NationaliteC" id="contrat-nationalite" value="<?php echo isset($_SESSION['client']['NationaliteC']) ? $_SESSION['client']['NationaliteC'] : ''; ?>" />
                     </div>
                     <div class="container-element">
                         <label for="contrat-adresse"> Adresse </label>
-                        <input type="text" name="AdrRueC" id="contrat-adresse" value="<?php echo isset($_SESSION['AdrRueC']) ? $_SESSION['AdrRueC'] : ''; ?>" />
+                        <input type="text" name="AdrRueC" id="contrat-adresse" value="<?php echo isset($_SESSION['client']['AdrRueC']) ? $_SESSION['client']['AdrRueC'] : ''; ?>" />
                     </div>
                     <div class="container-element">
                         <label for="contrat-ville">Ville</label>
-                        <input type="text" name="AdrVilC" id="contrat-ville" value="<?php echo isset($_SESSION['AdrVilC']) ? $_SESSION['AdrVilC'] : ''; ?>" />
+                        <input type="text" name="AdrVilC" id="contrat-ville" value="<?php echo isset($_SESSION['client']['AdrVilC']) ? $_SESSION['client']['AdrVilC'] : ''; ?>" />
                     </div>
                     <div class="container-element">
                         <label for="contrat-code-postal">Code Postal</label>
-                        <input type="text" name="CodPosCl" id="contrat-code-postal" value="<?php echo isset($_SESSION['CodPosC']) ? $_SESSION['CodPosC'] : ''; ?>" />
+                        <input type="text" name="CodPosCl" id="contrat-code-postal" value="<?php echo isset($_SESSION['client']['CodPosC']) ? $_SESSION['client']['CodPosC'] : ''; ?>" />
                     </div>
                     <div class="container-element">
                         <label for="contrat-telephone">Téléphone</label>
-                        <input type="text" name="TelC" id="contrat-telephone" value="<?php echo isset($_SESSION['TelC']) ? $_SESSION['TelC'] : ''; ?>" />
+                        <input type="text" name="TelC" id="contrat-telephone" value="<?php echo isset($_SESSION['client']['TelC']) ? $_SESSION['client']['TelC'] : ''; ?>" />
                     </div>
                 </div>
                 <div class="passeport">
                     <h1>Passport</h1>
                     <div class="container-element">
                         <label for="contrat-num-passeport">Numéro</label>
-                        <input type="text" name="NumPasC" id="contrat-num-passeport" value="<?php echo isset($_SESSION['NumPasC']) ? $_SESSION['NumPasC'] : ''; ?>" />
+                        <input type="text" name="NumPasC" id="contrat-num-passeport" value="<?php echo isset($_SESSION['client']['NumPasC']) ? $_SESSION['client']['NumPasC'] : ''; ?>" />
                     </div>
                     <div class="container-element">
                         <label for="contrat-passeport-delivrer-date">Délivré le </label>
-                        <input type="date" name="DatDelPasC" id="contrat-passeport-delivrer-date" value="<?php echo isset($_SESSION['DatDelPasC']) ? $_SESSION['DatDelPasC'] : ''; ?>" />
+                        <input type="date" name="DatDelPasC" id="contrat-passeport-delivrer-date" value="<?php echo isset($_SESSION['client']['DatDelPasC']) ? $_SESSION['client']['DatDelPasC'] : ''; ?>" />
                     </div>
                     <div class="container-element">
                         <label for="contrat-passeport-delivrer-lieu">à </label>
-                        <input type="text" name="LieuDelPasC" id="contrat-passeport-delivrer-lieu" value="<?php echo isset($_SESSION['LieuDelPasC']) ? $_SESSION['LieuDelPasC'] : ''; ?>" />
+                        <input type="text" name="LieuDelPasC" id="contrat-passeport-delivrer-lieu" value="<?php echo isset($_SESSION['client']['LieuDelPasC']) ? $_SESSION['client']['LieuDelPasC'] : ''; ?>" />
                     </div>
                     <div class="container-element">
                         <label for="contrat-passeport-delivrer-pays">Pays </label>
-                        <input type="text" name="PaysDelPasC" id="contrat-passeport-delivrer-pays" value="<?php echo isset($_SESSION['PaysDelPasC']) ? $_SESSION['PaysDelPasC'] : ''; ?>" />
+                        <input type="text" name="PaysDelPasC" id="contrat-passeport-delivrer-pays" value="<?php echo isset($_SESSION['client']['PaysDelPasC']) ? $_SESSION['client']['PaysDelPasC'] : ''; ?>" />
                     </div>
                 </div>
             </div>
@@ -159,7 +164,7 @@ session_start();
                     <div class="radio-lists">
                         <div class="type-client">
                             <?php
-                            $CodTypeC = isset($_SESSION['CodTypC']) ? $_SESSION['CodTypC'] : 1;
+                            $CodTypeC = isset($_SESSION['client']['CodTypC']) ? $_SESSION['client']['CodTypC'] : 1;
                             ?>
                             <h2>Type de client</h2>
                             <ul class="list-type-client">
@@ -234,5 +239,6 @@ session_start();
         </div>
     </main>
 </body>
+
 
 </html>

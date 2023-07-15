@@ -5,9 +5,11 @@ require "connexion.php";
 
 
 $ASSOC = [];
-print_r($_SESSION);
-foreach ($_SESSION as $key=>$value) {
-    if (!empty($_SESSION[$key]) or $value != "") {
+$CLIENT = $_SESSION['client'];
+
+
+foreach ($CLIENT as $key=>$value) {
+    if (!empty($CLIENT) or $value != "") {
         $ASSOC[$key] = $value;
     } else {
         $ASSOC[$key] = "N/A";
@@ -17,9 +19,6 @@ foreach ($_SESSION as $key=>$value) {
 
 //print_r($ASSOC);
 
-
-
-print_r($ASSOC);
 
 if (!empty($ASSOC)) {
 

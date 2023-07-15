@@ -19,6 +19,7 @@ $stmt->execute();
 
 $result = $stmt->get_result();
 $NUMC = []; //COntient les resultats de la requete
+$CLIENT = $_SESSION['client']; // Contient les infos du client dans la session
 $count = 0;
 while ($row = $result->fetch_assoc()) {
     foreach ($row as $key=>$value) {
@@ -30,10 +31,10 @@ while ($row = $result->fetch_assoc()) {
 
 
 
-$condition = (isset($_SESSION['NumC']) && !empty($_SESSION['NumC'])); 
+$condition = (isset($CLIENT['NumC']) && !empty($CLIENT['NumC'])); 
 if ($condition) {
     foreach ($NUMC as $i=>$value) {
-        if ($value == $_SESSION['NumC']) {
+        if ($value == $CLIENT['NumC']) {
 
             // Optimisation nécessaire
             $nextIndex = $i+$way;
@@ -49,7 +50,7 @@ if ($condition) {
     $next=$NUMC[0]; 
 }
 
-$_SESSION['NumC'] = $next;
+$_SESSION['client']['NumC'] = $next;
 
 
 

@@ -1,6 +1,7 @@
 <?php
     session_start();
-    
+    // Modification possible à terme
+    // Mise à jour session en fonction des contrats client + infos clients + entretien véhicule ??? 
     
     require 'connexion.php';
    
@@ -8,8 +9,8 @@
     $sql = "SELECT * FROM CLIENT WHERE NumC=?";
     $stmt = $connexion->prepare($sql);
     
-    if (isset($_SESSION['NumC']) && !empty($_SESSION['NumC'])) {
-        $stmt->bind_param('s', $_SESSION['NumC']);
+    if (isset($_SESSION['client']['NumC']) && !empty($_SESSION['client']['NumC'])) {
+        $stmt->bind_param('s', $_SESSION['client']['NumC']);
         if (!$stmt->execute()) {
             die("Erreur lors de l'exécution de la requête : " . $stmt->error);
         }
@@ -19,7 +20,7 @@
             
             while ($row = $result->fetch_assoc()) {
                 foreach ($row as $key => $value) {
-                    $_SESSION[$key] = $value;
+                    $_SESSION['client'][$key] = $value;
                 }
             }
         }
@@ -28,23 +29,7 @@
     }
     
     
-    
-
-
-    
-    
-    
+ 
     $stmt->close();
 
     mysqli_close($connexion);
-
-
-
-
-
-
-
-    
- 
-
-?>

@@ -2,68 +2,55 @@
 
 let path = "../php/";
 
-
-export async function setSession(data) { ///// CHANGER, SESSION NON MIS A JOUR CORRECTEMENT, DONNER MAL ENVOYER
-
-
+/**
+ * 
+ * @param {Array} dataArray Données contenant les informatiosn à définir en session
+ */
+export async function setSession(dataArray) {
     try {
-        const response = await fetch(path + "sessionSetter", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json' // Envoie JSON
-            },
-            body: JSON.stringify(data) ///// ICI
+        await $.ajax({
+            url: path + 'sessionSetter.php',
+            type: 'POST',
+            data: {
+                data: JSON.stringify(dataArray),
+            }
         });
 
-        if (response.ok) {
-            console.log("setSession a été executé..");
-        } else {
-            console.error("setSession n'a pas été executé :", response.status);
-        }
-
+        console.log('setSession has been executed.');
     } catch (error) {
-        console.error("Erreur dans setSession:", error);
+        console.error('Session error (setSession):', error);
     }
-
 }
 
-
+/**
+ * Met à jour la session en liant le numéro client à ses informations intra base de données
+ */
 export async function updateSession() {
-
-
     try {
-        const response = await fetch(path + "sessionUpdater", {
-            method: 'GET',
-
+        await $.ajax({
+            url: path + 'sessionUpdater.php',
+            type: 'GET',
         });
 
-        if (response.ok) {
-            console.log("updateSession a été executé..");
-        } else {
-            console.error("updateSession n'a pas été executé :", response.status);
-        }
-
+        console.log('updateSession has been executed.');
     } catch (error) {
-        console.error("Erreur dans updateSession:", error);
+        console.error('Session error (updateSession):', error);
     }
-
 }
 
 
-
+/**
+ * Réinitialise la session en cour
+ */
 export async function resetSession() {
     try {
-        const response = await fetch(path + "sessionReset", {
-            method: 'GET',
+        await $.ajax({
+            url: path + 'sessionReset.php',
+            type: 'GET',
         });
 
-        if (response.ok) {
-            console.log("session réinitiliser..");
-        } else {
-            console.error("sessionReset n'a pas été executé :", response.status);
-        }
-
+        console.log('resetSession has been executed.');
     } catch (error) {
-        console.error("Erreur dans sessionReset:", error);
+        console.error('Session error (resetSession):', error);
     }
 }
