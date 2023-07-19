@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+print_r($_SESSION['car']);
 ?>
 
 
@@ -23,6 +24,25 @@ session_start();
         import {
             redirectTo
         } from "../js/actButton.js";
+
+
+        var condition1 = <?php echo json_encode(isset($_SESSION['client'])); ?>;
+        var condition2 = <?php echo json_encode(isset($_SESSION['car'])); ?>;
+
+
+        if (condition2) {
+            $.ajax({
+                url: '../php/carGet.php',
+                type: 'GET',
+                success: function(response) {
+                    console.log('carGet has been executed!');
+                    console.log(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error, status);
+                }
+            })
+        }
 
 
         document.getElementById('btn-nouveauClient').onclick = async function() {
@@ -221,7 +241,7 @@ session_start();
                     </div>
                 </div>
                 <div class="permis">
-                <h1>Permis</h1>
+                    <h1>Permis</h1>
                     <div class="container-element">
                         <label for="contrat-num-permis">Numéro</label>
                         <input type="text" name="NumPermisC" id="contrat-num-permis" value="<?php echo isset($_SESSION['NumPermisC']) ? $_SESSION['NumPermisC'] : ''; ?>" />

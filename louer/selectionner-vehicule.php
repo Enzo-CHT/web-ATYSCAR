@@ -1,5 +1,4 @@
-<?php session_start();
-print_r($_SESSION) ?>
+<?php session_start();?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,9 +17,11 @@ print_r($_SESSION) ?>
             redirectTo
         } from "../js/actButton.js";
 
+
         document.getElementById('btn-ok').onclick = function() {
             var dataArray = {};
             var inputElements = document.querySelectorAll('input:not(.menu-button)'); //Récupère tous les inputs
+
             // Récupère les radio
             inputElements.forEach(function(element) {
                 dataArray[element.getAttribute('name')] = element.value;
