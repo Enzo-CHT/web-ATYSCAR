@@ -1,6 +1,8 @@
 
 
-- Récupérer le matricule du véhicule correspondant
+O Récupérer le matricule du véhicule correspondant
 - Générer numéro de contrat
 - Récupérer les données de contrat
 - Enregistrer les données de contrat
+- Ajouter une pastille pour s'assurer qu'un matricule à été choisie
+- Vérifier qu'un element existe

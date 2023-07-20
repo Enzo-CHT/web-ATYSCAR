@@ -1,7 +1,17 @@
 <?php
 session_start();
 
-print_r($_SESSION['car']);
+
+// Si Client et vehicule définis 
+if (isset($_SESSION['client']) &&  isset($_SESSION['car']['MatV'])) {
+    $_SESSION['contrat'] = array();
+    $date = date('ymdhis', time());
+    //creation du contrat  à partir de la date
+    $_SESSION['contrat']['NumCont'] = "CTR" . $date;
+}
+
+
+
 ?>
 
 
@@ -27,26 +37,9 @@ print_r($_SESSION['car']);
 
 
         var condition1 = <?php echo json_encode(isset($_SESSION['client'])); ?>;
-        var condition2 = <?php echo json_encode(isset($_SESSION['car'])); ?>;
-
-
-        if (condition2) {
-            $.ajax({
-                url: '../php/carGet.php',
-                type: 'GET',
-                success: function(response) {
-                    console.log('carGet has been executed!');
-                    console.log(response);
-                },
-                error: function(xhr, status, error) {
-                    console.error(error, status);
-                }
-            })
-        }
-
 
         document.getElementById('btn-nouveauClient').onclick = async function() {
-            await resetSession();
+            await resetSession("client");
             redirectTo('../fichiers/fichier-clients');
         }
     </script>
@@ -142,7 +135,7 @@ print_r($_SESSION['car']);
                     <h1>Contrat</h1>
                     <div class="container-element">
                         <label for="contrat-contrat-id">Numéro contrat :</label>
-                        <input type="text" name="NumCont" id="contrat-num-id" />
+                        <input type="text" name="NumCont" id="contrat-num-id" value="<?php echo isset($_SESSION['contrat']['NumCont']) ? $_SESSION['contrat']['NumCont'] : ''; ?>" />
                     </div>
                     <div class="container-element">
                         <label for="contrat-contrat-depart-date">Date départ :</label>

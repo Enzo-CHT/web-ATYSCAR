@@ -42,14 +42,21 @@ export async function updateSession() {
 /**
  * Réinitialise la session en cour
  */
-export async function resetSession() {
+export async function resetSession(session = "all") {
+
     try {
         await $.ajax({
             url: path + 'sessionReset.php',
             type: 'GET',
+            data: {
+                session: JSON.stringify(session),
+            },
+            success: function () {
+                console.log('resetSession has been executed.');
+
+            }
         });
 
-        console.log('resetSession has been executed.');
     } catch (error) {
         console.error('Session error (resetSession):', error);
     }

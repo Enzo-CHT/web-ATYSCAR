@@ -1,4 +1,7 @@
-<?php session_start();?>
+<?php session_start();
+
+unset($_SESSION['car']);
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -9,7 +12,7 @@
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <title>SELECTIONNER VEHICULE</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="module">
+    <script type="module" type="text/javascript">
         import {
             setSession
         } from "../js/sessionHandler.js";
@@ -18,18 +21,50 @@
         } from "../js/actButton.js";
 
 
-        document.getElementById('btn-ok').onclick = function() {
+        document.getElementById('btn-ok').onclick = async function() {
             var dataArray = {};
             var inputElements = document.querySelectorAll('input:not(.menu-button)'); //Récupère tous les inputs
 
             // Récupère les radio
             inputElements.forEach(function(element) {
-                dataArray[element.getAttribute('name')] = element.value;
+                var elementName = element.getAttribute('name');
+                if (elementName == "CarbV" && element.checked) {
+                    var typeCarbV = [
+                        "Diesel",
+                        "Essence",
+                    ]
+
+                    dataArray[elementName] = typeCarbV[element.value - 1];
+
+                } else {
+                    dataArray[elementName] = element.value;
+                }
             });
-            setSession({
+
+
+            await setSession({
                 car: dataArray
             });
+
+
+            await $.ajax({
+                url: '../php/carGet.php',
+                type: 'GET',
+                success: function(response) {
+                    console.log('carGet has been executed!');
+
+                },
+                error: function(xhr, status, error) {
+                    console.error(error, status);
+                }
+            });
+
+
+            /// Add condition to raise error if element is not found
             redirectTo("../louer/contrat")
+
+
+
 
         }
     </script>
@@ -37,10 +72,10 @@
 
 <body>
     <main id="selectionner-vehicule">
+        <span id="raise-error"></span>
         <div>
 
             <img class="logo" src="../addons/Atys Car.jpg" alt="atyscar-logo">
-
             <div class="left-container">
                 <div class="radio-lists">
                     <h2>Carburant</h2>
@@ -49,13 +84,13 @@
                     <ul>
                         <li>
 
-                            <input id="selectionner-vehicule-diesel" type="radio" name="CarV" value="1" <?php echo ($CarbRadio == 1) ? 'checked' : ''; ?>>
+                            <input id="selectionner-vehicule-diesel" type="radio" name="CarbV" value="1" <?php echo ($CarbRadio == 1) ? 'checked' : ''; ?>>
                             <label for="selectionner-vehicule-type-diesel">Diesel</label>
 
                         </li>
                         <li>
 
-                            <input id="selectionner-vehicule-type-essence" type="radio" name="CarV" value="2" <?php echo ($CarbRadio == 2) ? 'checked' : ''; ?>>
+                            <input id="selectionner-vehicule-type-essence" type="radio" name="CarbV" value="2" <?php echo ($CarbRadio == 2) ? 'checked' : ''; ?>>
                             <label for="selectionner-vehicule-type-essence">Essence</label>
 
                         </li>
@@ -130,8 +165,8 @@
                 MarV: 'selectionner-vehicule-marque',
                 ModV: 'selectionner-vehicule-modele',
                 CoulV: 'selectionner-vehicule-couleur',
-                PuisV: 'selectionner-vehicule-nombre-place',
-                NbPlV: 'selectionner-vehicule-puissance',
+                PuisV: 'selectionner-vehicule-puissance',
+                NbPlV: 'selectionner-vehicule-nombre-place',
 
             };
 
@@ -165,10 +200,10 @@
                         var dataDecaps = response;
                         //console.log(dataDecaps);
                         for (var key in dataDecaps) {
-                            console.log(key);
+
                             if (dataDecaps.hasOwnProperty(key)) { // Si key appartient au array
                                 var innerArray = dataDecaps[key]; //Seclection du array interne
-                                console.log(innerArray);
+
                                 if (innerArray.length > 1) {
                                     //Définition des options pour chaque champs
 
@@ -206,17 +241,6 @@
 
 
             }
-
-
-
-
-
-
-
-
-
-
-
 
         });
     </script>
