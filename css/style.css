@@ -875,9 +875,17 @@ a {
   left: 100px;
   width: 550px;
   justify-content: space-between;
-  
+    
 }
 
+
+#span-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border: 1 solid blue;
+}
 
 
 

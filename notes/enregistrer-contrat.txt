@@ -1,8 +1,12 @@
 
 
-O Récupérer le matricule du véhicule correspondant
-- Générer numéro de contrat
-- Récupérer les données de contrat
-- Enregistrer les données de contrat
+Ok Récupérer le matricule du véhicule correspondant
+Ok Générer numéro de contrat
+Ok Récupérer les données de contrat
+Ok Enregistrer les données de contrat
+- Centrer le texte de vérification
+- Corriger le bug dans newContrat
+- Changement automatique du status (si spam)
+
 - Ajouter une pastille pour s'assurer qu'un matricule à été choisie
 - Vérifier qu'un element existe

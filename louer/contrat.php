@@ -3,7 +3,7 @@ session_start();
 
 
 // Si Client et vehicule définis 
-if (isset($_SESSION['client']) &&  isset($_SESSION['car']['MatV'])) {
+if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
     $_SESSION['contrat'] = array();
     $date = date('ymdhis', time());
     //creation du contrat  à partir de la date
@@ -47,20 +47,24 @@ if (isset($_SESSION['client']) &&  isset($_SESSION['car']['MatV'])) {
 
 <body>
     <main id="contrat-location">
+        
         <div>
             <div class="left-container">
-                <div class="head">
-                    <img class="logo" src="../addons/Atys Car.jpg" alt="atyscar-logo.jpg">
-                    <br>
-                    <div>
-                        <a href="rechercher_client.html">
-                            <input class="menu-button" onclick="" type="button" value="RECHERCHER CLIENT">
-                        </a>
-                        <input id="btn-nouveauClient" class="menu-button" type="button" value="NOUVEAU CLIENT">
+                <form action="#" method="POST" id="formContrat">
+                    <div class="head">
+                        <img class="logo" src="../addons/Atys Car.jpg" alt="atyscar-logo.jpg">
+                        <br>
+                        <div>
+                            <a href="rechercher_client.html">
+                                <input class="menu-button" onclick="" type="button" value="RECHERCHER CLIENT">
+                            </a>
+                            <input id="btn-nouveauClient" class="menu-button" type="button" value="NOUVEAU CLIENT">
+                            
+                        </div>
+                        <b><span id="span-stats"></span></b>
 
                     </div>
 
-                </div>
 
 
 
@@ -68,66 +72,65 @@ if (isset($_SESSION['client']) &&  isset($_SESSION['car']['MatV'])) {
 
 
 
-                <form action="#" method="POST" id="formContrat"></form>
-                <div class="client">
-                    <h1>Client</h1>
-                    <div class="container-element">
-                        <label for="contrat-nom">Nom</label>
-                        <input type="text" name="NomC" id="contrat-nom" value="<?php echo isset($_SESSION['client']['NomC']) ? $_SESSION['client']['NomC'] : ''; ?>" />
-                    </div>
+                    <div class="client">
+                        <h1>Client</h1>
+                        <div class="container-element">
+                            <label for="contrat-nom">Nom</label>
+                            <input type="text" name="NomC" id="contrat-nom" value="<?php echo isset($_SESSION['client']['NomC']) ? $_SESSION['client']['NomC'] : ''; ?>" />
+                        </div>
 
-                    <div class="container-element">
-                        <label for="contrat-prenom">Prénom</label>
-                        <input type="text" name="PrenomC" id="contrat-prenom" value="<?php echo isset($_SESSION['client']['PrenomC']) ? $_SESSION['client']['PrenomC'] : ''; ?>" />
+                        <div class="container-element">
+                            <label for="contrat-prenom">Prénom</label>
+                            <input type="text" name="PrenomC" id="contrat-prenom" value="<?php echo isset($_SESSION['client']['PrenomC']) ? $_SESSION['client']['PrenomC'] : ''; ?>" />
+                        </div>
+                        <div class="container-element">
+                            <label for="contrat-date-naissance">Date de naissance</label>
+                            <input type="date" name="DatNaisC" id="contrat-date-naissance" value="<?php echo isset($_SESSION['client']['DatNaisC']) ? $_SESSION['client']['DatNaisC'] : ''; ?>" />
+                        </div>
+                        <div class="container-element">
+                            <label for="contrat-lieu-naissance">Lieu de naissance</label>
+                            <input type="text" name="LieuNaisCe" id="contrat-lieu-naissance" value="<?php echo isset($_SESSION['client']['LieuNaisC']) ? $_SESSION['client']['LieuNaisC'] : ''; ?>" />
+                        </div>
+                        <div class="container-element">
+                            <label for="contrat-nationalite">Nationalité</label>
+                            <input type="text" name="NationaliteC" id="contrat-nationalite" value="<?php echo isset($_SESSION['client']['NationaliteC']) ? $_SESSION['client']['NationaliteC'] : ''; ?>" />
+                        </div>
+                        <div class="container-element">
+                            <label for="contrat-adresse"> Adresse </label>
+                            <input type="text" name="AdrRueC" id="contrat-adresse" value="<?php echo isset($_SESSION['client']['AdrRueC']) ? $_SESSION['client']['AdrRueC'] : ''; ?>" />
+                        </div>
+                        <div class="container-element">
+                            <label for="contrat-ville">Ville</label>
+                            <input type="text" name="AdrVilC" id="contrat-ville" value="<?php echo isset($_SESSION['client']['AdrVilC']) ? $_SESSION['client']['AdrVilC'] : ''; ?>" />
+                        </div>
+                        <div class="container-element">
+                            <label for="contrat-code-postal">Code Postal</label>
+                            <input type="text" name="CodPosCl" id="contrat-code-postal" value="<?php echo isset($_SESSION['client']['CodPosC']) ? $_SESSION['client']['CodPosC'] : ''; ?>" />
+                        </div>
+                        <div class="container-element">
+                            <label for="contrat-telephone">Téléphone</label>
+                            <input type="text" name="TelC" id="contrat-telephone" value="<?php echo isset($_SESSION['client']['TelC']) ? $_SESSION['client']['TelC'] : ''; ?>" />
+                        </div>
                     </div>
-                    <div class="container-element">
-                        <label for="contrat-date-naissance">Date de naissance</label>
-                        <input type="date" name="DatNaisC" id="contrat-date-naissance" value="<?php echo isset($_SESSION['client']['DatNaisC']) ? $_SESSION['client']['DatNaisC'] : ''; ?>" />
+                    <div class="passeport">
+                        <h1>Passport</h1>
+                        <div class="container-element">
+                            <label for="contrat-num-passeport">Numéro</label>
+                            <input type="text" name="NumPasC" id="contrat-num-passeport" value="<?php echo isset($_SESSION['client']['NumPasC']) ? $_SESSION['client']['NumPasC'] : ''; ?>" />
+                        </div>
+                        <div class="container-element">
+                            <label for="contrat-passeport-delivrer-date">Délivré le </label>
+                            <input type="date" name="DatDelPasC" id="contrat-passeport-delivrer-date" value="<?php echo isset($_SESSION['client']['DatDelPasC']) ? $_SESSION['client']['DatDelPasC'] : ''; ?>" />
+                        </div>
+                        <div class="container-element">
+                            <label for="contrat-passeport-delivrer-lieu">à </label>
+                            <input type="text" name="LieuDelPasC" id="contrat-passeport-delivrer-lieu" value="<?php echo isset($_SESSION['client']['LieuDelPasC']) ? $_SESSION['client']['LieuDelPasC'] : ''; ?>" />
+                        </div>
+                        <div class="container-element">
+                            <label for="contrat-passeport-delivrer-pays">Pays </label>
+                            <input type="text" name="PaysDelPasC" id="contrat-passeport-delivrer-pays" value="<?php echo isset($_SESSION['client']['PaysDelPasC']) ? $_SESSION['client']['PaysDelPasC'] : ''; ?>" />
+                        </div>
                     </div>
-                    <div class="container-element">
-                        <label for="contrat-lieu-naissance">Lieu de naissance</label>
-                        <input type="text" name="LieuNaisCe" id="contrat-lieu-naissance" value="<?php echo isset($_SESSION['client']['LieuNaisC']) ? $_SESSION['client']['LieuNaisC'] : ''; ?>" />
-                    </div>
-                    <div class="container-element">
-                        <label for="contrat-nationalite">Nationalité</label>
-                        <input type="text" name="NationaliteC" id="contrat-nationalite" value="<?php echo isset($_SESSION['client']['NationaliteC']) ? $_SESSION['client']['NationaliteC'] : ''; ?>" />
-                    </div>
-                    <div class="container-element">
-                        <label for="contrat-adresse"> Adresse </label>
-                        <input type="text" name="AdrRueC" id="contrat-adresse" value="<?php echo isset($_SESSION['client']['AdrRueC']) ? $_SESSION['client']['AdrRueC'] : ''; ?>" />
-                    </div>
-                    <div class="container-element">
-                        <label for="contrat-ville">Ville</label>
-                        <input type="text" name="AdrVilC" id="contrat-ville" value="<?php echo isset($_SESSION['client']['AdrVilC']) ? $_SESSION['client']['AdrVilC'] : ''; ?>" />
-                    </div>
-                    <div class="container-element">
-                        <label for="contrat-code-postal">Code Postal</label>
-                        <input type="text" name="CodPosCl" id="contrat-code-postal" value="<?php echo isset($_SESSION['client']['CodPosC']) ? $_SESSION['client']['CodPosC'] : ''; ?>" />
-                    </div>
-                    <div class="container-element">
-                        <label for="contrat-telephone">Téléphone</label>
-                        <input type="text" name="TelC" id="contrat-telephone" value="<?php echo isset($_SESSION['client']['TelC']) ? $_SESSION['client']['TelC'] : ''; ?>" />
-                    </div>
-                </div>
-                <div class="passeport">
-                    <h1>Passport</h1>
-                    <div class="container-element">
-                        <label for="contrat-num-passeport">Numéro</label>
-                        <input type="text" name="NumPasC" id="contrat-num-passeport" value="<?php echo isset($_SESSION['client']['NumPasC']) ? $_SESSION['client']['NumPasC'] : ''; ?>" />
-                    </div>
-                    <div class="container-element">
-                        <label for="contrat-passeport-delivrer-date">Délivré le </label>
-                        <input type="date" name="DatDelPasC" id="contrat-passeport-delivrer-date" value="<?php echo isset($_SESSION['client']['DatDelPasC']) ? $_SESSION['client']['DatDelPasC'] : ''; ?>" />
-                    </div>
-                    <div class="container-element">
-                        <label for="contrat-passeport-delivrer-lieu">à </label>
-                        <input type="text" name="LieuDelPasC" id="contrat-passeport-delivrer-lieu" value="<?php echo isset($_SESSION['client']['LieuDelPasC']) ? $_SESSION['client']['LieuDelPasC'] : ''; ?>" />
-                    </div>
-                    <div class="container-element">
-                        <label for="contrat-passeport-delivrer-pays">Pays </label>
-                        <input type="text" name="PaysDelPasC" id="contrat-passeport-delivrer-pays" value="<?php echo isset($_SESSION['client']['PaysDelPasC']) ? $_SESSION['client']['PaysDelPasC'] : ''; ?>" />
-                    </div>
-                </div>
             </div>
             <div class="right-container">
                 <div class="contrat">
@@ -211,21 +214,21 @@ if (isset($_SESSION['client']) &&  isset($_SESSION['car']['MatV'])) {
                                 <li>
                                     <div class="container-element">
                                         <label for="contrat-forfait">Forfait</label>
-                                        <input type="radio" name="CodTypTarif" id="contrat-forfait" value="for" />
+                                        <input type="radio" name="CodTypTarif" id="contrat-forfait" value="1" />
                                     </div>
                                 </li>
 
                                 <li>
                                     <div class="container-element">
                                         <label for="contrat-durée">Durée</label>
-                                        <input type="radio" name="CodTypTarif" id="contrat-durée" value="dur" />
+                                        <input type="radio" name="CodTypTarif" id="contrat-durée" value="2" />
                                     </div>
                                 </li>
 
                                 <li>
                                     <div class="container-element">
                                         <label for="contrat-kilmetrage">Privilégié</label>
-                                        <input type="radio" name="CodTypTarif" id="contrat-kilmetrage" value="kil" />
+                                        <input type="radio" name="CodTypTarif" id="contrat-kilmetrage" value="3" />
                                     </div>
                                 </li>
                             </ul>
@@ -249,10 +252,74 @@ if (isset($_SESSION['client']) &&  isset($_SESSION['car']['MatV'])) {
                     </div>
 
                 </div>
+                </form>
+                
             </div>
+            
+
         </div>
     </main>
 </body>
+<script type="module">
+    import {
+        setSession
+    } from "../js/sessionHandler.js";
 
+    var formId = "formContrat";
+    let enregistrer = document.getElementById('contrat-btn-enregistrer');
+    let imprimer = document.getElementById('contrat-btn-imprimer');
+
+    let newItemSession = function(formId) {
+        const form = document.getElementById(formId);
+        const formData = new FormData(form);
+
+        // Encapsulation des données
+        var ENCAPS = {
+            contrat: {}
+        };
+        formData.forEach(function(value, key) {
+            console.log(key, value);
+            ENCAPS['contrat'][key] = value;
+        });
+
+        setSession(ENCAPS);
+    }
+
+    $(enregistrer).click(async function() {
+        await newItemSession(formId);
+        $.ajax({
+            url: '../php/newContract.php',
+            type: 'POST',
+            success:function() {
+                console.log('newContract has been executed.');
+
+                let stats = document.getElementById('span-stats');
+                stats.textContent = "<?php echo isset($_SESSION['contrat-stats']) ?  $_SESSION['contrat-stats']: '' ?>";
+
+
+                switch (stats.textContent) {
+                    case "CONTRAT EXISTANT":
+                        stats.style = "color : red;";
+                        break;
+                    case "CONTRAT ENREGISTRER AVEC SUCCES !":
+                        stats.style = "color : green;";
+                        break;
+                }
+
+
+            },
+            error:function(xhr, error, status){
+                console.error('Error page (newContract) ', error, status);
+            },
+        });
+
+    });
+    $(imprimer).click(function() {
+        newItemSession(formId);
+
+    });
+
+
+</script>
 
 </html>
