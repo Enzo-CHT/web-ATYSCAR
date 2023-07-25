@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap");
 
+
 * {
   font-family: "Open Sans";
   font-size: 14px;
@@ -12,20 +13,16 @@ body {
   height: 100%;
 }
 
-
-
-
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-image: url("../addons/background.jpg");
+  background-image: url("../addons/bg.jpg");
 }
 
 input:focus {
-
   outline: none;
 }
 
@@ -86,6 +83,7 @@ select {
 h1 {
   font-size: 15px;
 }
+
 h3 {
   font-size: 12px;
   color: rgb(54, 55, 55);
@@ -126,7 +124,7 @@ a {
   transform: scale(1.05);
 }
 
-#main-menu > div {
+#main-menu>div {
   background-color: white;
   display: flex;
   justify-content: space-between;
@@ -153,6 +151,7 @@ a {
 #main-menu .box-l {
   justify-content: space-between;
 }
+
 #main-menu .right-container {
   width: 50%;
   justify-content: space-between;
@@ -171,7 +170,7 @@ a {
   justify-content: baseline;
 }
 
-#menu-location > div {
+#menu-location>div {
   position: relative;
   border-radius: 5px;
   display: flex;
@@ -191,6 +190,7 @@ a {
   height: 70px;
   margin: 10px;
 }
+
 #menu-location .container-main-button {
   display: inline-flex;
   flex-direction: column;
@@ -287,7 +287,7 @@ a {
   min-width: 100px;
 }
 
-#contrat-location > div {
+#contrat-location>div {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -332,6 +332,7 @@ a {
   margin-top: 2%;
 
 }
+
 .container-element label {
   padding-right: 2px;
 }
@@ -434,7 +435,7 @@ a {
   width: 115px;
 }
 
-#fichier-client > div {
+#fichier-client>div {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -445,10 +446,12 @@ a {
 #fichier-client .container {
   display: flex;
 }
+
 #fichier-client .left-container {
   max-width: 900px;
   width: 70%;
 }
+
 #fichier-client .right-container {
   display: flex;
   flex-direction: column;
@@ -480,7 +483,7 @@ a {
   justify-content: space-between;
 }
 
-#selectionner-vehicule > div {
+#selectionner-vehicule>div {
   display: flex;
   border-radius: 5px;
   background-color: white;
@@ -491,6 +494,7 @@ a {
 #selectionner-vehicule .left-container {
   width: 300px;
 }
+
 #selectionner-vehicule .right-container input[type="text"] {
   width: 200px;
 }
@@ -502,9 +506,9 @@ a {
   width: 200px;
 }
 
-#annulation-contrat > div,
-#edition-facture > div,
-#facture > div {
+#annulation-contrat>div,
+#edition-facture>div,
+#facture>div {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -514,7 +518,7 @@ a {
   padding: 15px;
 }
 
-#facture > div {
+#facture>div {
   width: 95%;
   max-width: 1000px;
 }
@@ -540,7 +544,7 @@ a {
   width: 400px;
 }
 
-#erreur-page > div {
+#erreur-page>div {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -569,7 +573,7 @@ a {
   margin: auto;
 }
 
-#enregistrer-entretien > div {
+#enregistrer-entretien>div {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -595,15 +599,18 @@ a {
   left: 505px;
   width: 300px;
 }
+
 #enregistrer-entretien .foot .box-l {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-#enregistrer-entretien .container {width: 100%;}
+#enregistrer-entretien .container {
+  width: 100%;
+}
 
-#autre-entretien > div {
+#autre-entretien>div {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -620,7 +627,7 @@ a {
   align-items: center;
 }
 
-#actualiser-fichiers > div {
+#actualiser-fichiers>div {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -641,20 +648,24 @@ a {
 #actualiser-fichiers .container {
   max-width: 550px;
 }
+
 #actualiser-fichiers input {
   height: 35px;
   min-width: 115px;
   width: 100%;
   margin: 0;
 }
+
 #actualiser-fichiers .container-element {
   width: 100%;
   margin: 0;
 }
+
 #actualiser-fichiers .box-l .right-container input {
   width: 100px;
   height: 45px;
 }
+
 #actualiser-fichiers .box-l {
   display: flex;
   justify-content: space-between;
@@ -671,7 +682,7 @@ a {
   padding: 5px;
 }
 
-#fichier-vehicule > div {
+#fichier-vehicule>div {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -692,12 +703,13 @@ a {
   margin-left: 5%;
   margin-right: 5%;
   width: 650px;
- 
+
 }
+
 #fichier-vehicule .container .right-container {
-    position: relative;
-    width: 20%;
-    bottom: 15px;
+  position: relative;
+  width: 20%;
+  bottom: 15px;
 
 
 }
@@ -722,7 +734,7 @@ a {
 }
 
 
-#fichier-tarifs > div {
+#fichier-tarifs>div {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -733,50 +745,54 @@ a {
   height: 87%;
 
 }
-#fichier-tarifs .container { 
+
+#fichier-tarifs .container {
   max-width: 100%;
   margin-right: 15px;
-  
+
 }
 
 #fichier-tarifs .container-element {
   margin-top: 0;
   align-items: center;
   margin-left: 15px;
- 
+
 }
 
 #fichier-tarifs .left-container {
-    width: 20%;
-  }
-  #fichier-tarifs .right-container {
-    padding-left:  15px;
-    max-width: none;
-    width: 100%;
-  }
+  width: 20%;
+}
 
-  #fichier-tarifs h3, #fichier-tarifs h1 {
-    text-align: center;
-  }
+#fichier-tarifs .right-container {
+  padding-left: 15px;
+  max-width: none;
+  width: 100%;
+}
 
-  #fichier-tarifs input[type="number"] {
-    width: 150px;
-  }
-  #fichier-tarifs label {
-    margin-right: 15px;
-  }
+#fichier-tarifs h3,
+#fichier-tarifs h1 {
+  text-align: center;
+}
+
+#fichier-tarifs input[type="number"] {
+  width: 150px;
+}
+
+#fichier-tarifs label {
+  margin-right: 15px;
+}
 
 
 
-#historique > div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    width: 800px;
-    box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
-    padding: 10px;
-    
+#historique>div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  width: 800px;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+  padding: 10px;
+
 }
 
 #historique div>img {
@@ -798,7 +814,7 @@ a {
 #historique .top {
   display: flex;
   flex-direction: row;
-  
+
 
 
 }
@@ -806,12 +822,13 @@ a {
 
 #historique .top .right-container {
   position: relative;
-  left:  -115px;
+  left: -115px;
   top: 55px;
   width: 100px;
 
-  
+
 }
+
 #historique .top .left-container {
   width: 350px;
 }
@@ -825,32 +842,33 @@ a {
 
 }
 
-#historique .btn-container .left-container .menu-button{
+#historique .btn-container .left-container .menu-button {
   position: relative;
   right: 10px;
   margin-left: 0;
   width: 350px;
   height: 38px;
 }
-#historique .btn-container .right-container .menu-button{
+
+#historique .btn-container .right-container .menu-button {
   position: relative;
-  top:9px;
+  top: 9px;
   width: 150px;
   height: 100px;
 }
 
 
 #statistiques>div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    width: 750px;
-    height: 250px;
-    box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
-    padding: 10px;
-    
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  width: 750px;
+  height: 250px;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+  padding: 10px;
+
 }
 
 #statistiques .container {
@@ -865,9 +883,8 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
- 
   height: 100%;
-  
+
 }
 
 #statistiques .box-l {
@@ -875,17 +892,13 @@ a {
   left: 100px;
   width: 550px;
   justify-content: space-between;
-    
+
 }
 
 
 #span-stats {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-
-  border: 1 solid blue;
+  margin-top : 2%;
 }
-
-
-

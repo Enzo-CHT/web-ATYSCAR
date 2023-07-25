@@ -24,7 +24,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <title>CONTRAT DE LOCATION</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="module">
@@ -41,13 +41,13 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
         document.getElementById('btn-nouveauClient').onclick = async function() {
             await resetSession("client");
             redirectTo('../fichiers/fichier-clients');
-        }
+        };
     </script>
 </head>
 
 <body>
     <main id="contrat-location">
-        
+
         <div>
             <div class="left-container">
                 <form action="#" method="POST" id="formContrat">
@@ -59,7 +59,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
                                 <input class="menu-button" onclick="" type="button" value="RECHERCHER CLIENT">
                             </a>
                             <input id="btn-nouveauClient" class="menu-button" type="button" value="NOUVEAU CLIENT">
-                            
+
                         </div>
                         <b><span id="span-stats"></span></b>
 
@@ -253,13 +253,14 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
 
                 </div>
                 </form>
-                
+
             </div>
-            
+
 
         </div>
     </main>
 </body>
+
 <script type="module">
     import {
         setSession
@@ -278,7 +279,6 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
             contrat: {}
         };
         formData.forEach(function(value, key) {
-            console.log(key, value);
             ENCAPS['contrat'][key] = value;
         });
 
@@ -290,11 +290,11 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
         $.ajax({
             url: '../php/newContract.php',
             type: 'POST',
-            success:function() {
+            success: function() {
                 console.log('newContract has been executed.');
 
                 let stats = document.getElementById('span-stats');
-                stats.textContent = "<?php echo isset($_SESSION['contrat-stats']) ?  $_SESSION['contrat-stats']: '' ?>";
+                stats.textContent = "<?php echo isset($_SESSION['contrat-stats']) ?  $_SESSION['contrat-stats'] : '' ?>";
 
 
                 switch (stats.textContent) {
@@ -308,7 +308,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
 
 
             },
-            error:function(xhr, error, status){
+            error: function(xhr, error, status) {
                 console.error('Error page (newContract) ', error, status);
             },
         });
@@ -318,8 +318,6 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
         newItemSession(formId);
 
     });
-
-
 </script>
 
 </html>
