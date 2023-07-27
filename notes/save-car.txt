@@ -1,0 +1,18 @@
+
+
+
+
+
+Add carHandler.js
+
+- Add enregistrer car
+    - Complete newCar
+    - Modifier fichier-vehicule
+- Add Supprimer car
+    - complete delCar
+    - Modifier fichier-vehicule
+- Add Modifier car
+    - Modifier fichier-vehicule
+- Add Suivant-Precedent 
+    - Complete changeCar
+    - Modifier fichier-vehicule

@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -30,7 +32,7 @@
                     type="text"
                     name="type"
                     id="fichier-vehicule-type"
-                    value="<?php echo isset($_SESSION['NomC']) ? $_SESSION['NomC'] : ''; ?>" />
+                    value="<?php echo isset($_SESSION['car']['NomC']) ? $_SESSION['car']['NomC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
                   <label for="fichier-vehicule-categorie">Catégorie</label>
@@ -38,7 +40,7 @@
                     type="text"
                     name="categorie"
                     id="fichier-vehicule-categorie"
-                    value="<?php echo isset($_SESSION['PrenomC']) ? $_SESSION['PrenomC'] : ''; ?>" />
+                    value="<?php echo isset($_SESSION['car']['PrenomC']) ? $_SESSION['car']['PrenomC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
                   <label for="fichier-vehicule-matricule">Matricule</label>
@@ -46,7 +48,7 @@
                     type="text"
                     name="matricule"
                     id="fichier-vehicule-matricule"
-                    value="<?php echo isset($_SESSION['DatNaisC']) ? $_SESSION['DatNaisC'] : ''; ?>" />
+                    value="<?php echo isset($_SESSION['car']['DatNaisC']) ? $_SESSION['car']['DatNaisC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
                   <label for="fichier-vehicule-immatriculation">Immatriculation</label>
@@ -54,7 +56,7 @@
                     type="text"
                     name="immatriculation"
                     id="fichier-vehicule-immatriculation"
-                    value="<?php echo isset($_SESSION['LieuNaisC']) ? $_SESSION['LieuNaisC'] : ''; ?>" />
+                    value="<?php echo isset($_SESSION['car']['LieuNaisC']) ? $_SESSION['car']['LieuNaisC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
                   <label for="fichier-vehicule-annee">Année</label>
@@ -62,7 +64,7 @@
                     type="text"
                     name="annee"
                     id="fichier-vehicule-annee"
-                    value="<?php echo isset($_SESSION['NationaliteC']) ? $_SESSION['NationaliteC'] : ''; ?>" />
+                    value="<?php echo isset($_SESSION['car']['NationaliteC']) ? $_SESSION['car']['NationaliteC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
                   <label for="fichier-vehicule-marque"> Marque </label>
@@ -70,7 +72,7 @@
                     type="text"
                     name="marque"
                     id="fichier-vehicule-marque"
-                    value="<?php echo isset($_SESSION['AdrRueC']) ? $_SESSION['AdrRueC'] : ''; ?>" />
+                    value="<?php echo isset($_SESSION['car']['AdrRueC']) ? $_SESSION['car']['AdrRueC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
                   <label for="fichier-vehicule-modele">Modèle</label>
@@ -78,7 +80,7 @@
                     type="text"
                     name="modele"
                     id="fichier-vehicule-modele"
-                    value="<?php echo isset($_SESSION['AdrVilC']) ? $_SESSION['AdrVilC'] :  ''; ?>" />
+                    value="<?php echo isset($_SESSION['car']['AdrVilC']) ? $_SESSION['car']['AdrVilC'] :  ''; ?>" />
                 </div>
                 <div class="container-element">
                   <label for="fichier-vehicule-couleur">Couleur</label>
@@ -86,7 +88,7 @@
                     type="text"
                     name="couleur"
                     id="fichier-vehicule-couleur"
-                    value="<?php echo isset($_SESSION['CodPosC']) ? $_SESSION['CodPosC'] : ''; ?>" />
+                    value="<?php echo isset($_SESSION['car']['CodPosC']) ? $_SESSION['car']['CodPosC'] : ''; ?>" />
                 </div>
               </div>
             </div>
@@ -198,7 +200,7 @@
                   type="text"
                   name="entretien-pre-kilometrage"
                   id="fichier-vehicule-entretien-pre-kilometrage"
-                  value="<?php echo isset($_SESSION['AutreAdr']) ? $_SESSION['AutreAdr'] : ''; ?>" />
+                  value="<?php echo isset($_SESSION['car']['AutreAdr']) ? $_SESSION['car']['AutreAdr'] : ''; ?>" />
               </div>
               <div class="container-element">
                 <label for="fichier-vehicule-entretien-pre-date">Date dernier
@@ -208,7 +210,7 @@
                   type="text"
                   name="entretien-pre-date"
                   id="fichier-vehicule-entretien-pre-date"
-                  value="<?php echo isset($_SESSION['Remarques']) ? $_SESSION['Remarques'] : ''; ?>" />
+                  value="<?php echo isset($_SESSION['car']['Remarques']) ? $_SESSION['car']['Remarques'] : ''; ?>" />
               </div>
               <div class="container-element">
                 <label for="fichier-vehicule-entretien-pro-kilometrage">Kilométrage
@@ -218,7 +220,7 @@
                   type="text"
                   name="entretien-pro-kilometrage"
                   id="fichier-vehicule-entretien-pro-kilometrage"
-                  value="<?php echo isset($_SESSION['Remarques']) ? $_SESSION['Remarques'] : ''; ?>" />
+                  value="<?php echo isset($_SESSION['car']['Remarques']) ? $_SESSION['car']['Remarques'] : ''; ?>" />
               </div>
             </div>
           </div>
