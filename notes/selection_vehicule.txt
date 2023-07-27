@@ -19,6 +19,6 @@ L'agent appuis sur OK
 
 OK Récuperation dynamique bugger
 OK L'affichage des Datalist ne sont pas correcte 
-- Récupération des données en fonctions de (CarV, NBPLACE, PUISV)
-- Récupération des données spécifique pour (NB PLACE, PUISV)
-- QuerySelector pour permettre Récupération carburant ??? 
+OK Récupération des données en fonctions de (CarV, NBPLACE, PUISV)
+OK Récupération des données spécifique pour (NB PLACE, PUISV)
+OK QuerySelector pour permettre Récupération carburant ??? 

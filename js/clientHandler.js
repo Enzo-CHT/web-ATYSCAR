@@ -1,73 +1,86 @@
 import { resetSession, setSession, updateSession } from "./sessionHandler.js";
-import {redirectTo} from "./actButton.js";
+import { redirectTo } from "./actButton.js";
 
 
 let path = "../php/";
 
 
+/**
+ * Permet d'ajouter un nouveau client s'il n'en existe pas encore
+ * Sinon met à jour la session avec le numéro client
+ * @param {array} dataArray Données du formulaire
+ * @param {*} page Page de redirection
+ */
+export async function newClient(dataArray, page = null) {
 
-export async function newClient(formId, page = null) {
-    if (checkRequirement(formId)) {
-        await setSession(formId);
+
+    if (checkRequirement(dataArray)) {
+        await resetSession();
+        await setSession(dataArray);
         try {
-            const response = await fetch(path+'newClient', {
-                method: 'GET',
-            });
-
-            if (response.ok) {
-                console.log('new Client a été executé..')
-                await updateSession();
-
-                if (page != null) {
+            await $.ajax({
+                url: path + 'newClient',
+                type: 'GET',
+                success: async function () {
+                    console.log('newClient has been executed.');
+                    await updateSession();
                     redirectTo(page);
                 }
+            })
 
-            } else {
-                console.error('newClient n\'a pas été executé correctement :',response.status)
-            }
-        } catch(error) {
-            console.error('Erreur dans newClient :', error);
+        } catch (error) {
+            console.error('Page error (newClient) :', error);
         }
     }
+
 }
 
-
+/**
+ * Permet de supprimer un client dans la base de données
+ * @param {str} page chemin de redirection après la suppression
+ */
 export async function delClient(page = null) {
 
     try {
-        const response = await fetch(path+"delClient", {
-            method: 'GET',
-        });
 
-        if (response.ok) {
-            console.log("delClient a été executé..");
-            await resetSession();
-        } else {
-            console.error("delClient n'a pas été executé :", response.status);
-        }
+        await $.ajax({
+            url: path + 'delClient',
+            type: 'GET',
+            success: async function () {
+                console.log("delClient has been executed.");
+                await resetSession();
 
-    } catch(error) {
-        console.error("Erreur dans delClient:", error);
+            },
+            error: function (xhr, status, error) {
+                console.error('Page error (delClient) : ', error, status)
+            }
+        })
+
+    } catch (error) {
+        console.error("clientHandler error : ", error);
     }
 
     window.location.href = page;
 
 }
 
-export async function updateClient(formId) {
-    await setSession(formId); //Ne récupère que le numéro client
+/**
+ * Met à jour les informations du client avec les données du formulaire
+ * Les données du formulaire doivent être nommée de la même manière que les attributs de la base de données
+ * @param {array} dataArray Contient les données du formulaire 
+ */
+export async function updateClient(dataArray) {
+    await setSession(dataArray) //Ne récupère que le numéro client
     try {
-        const response = await fetch(path+"updateClient", {
-            method: 'GET',
-        });
+        await $.ajax({
+            url: path + 'updateClient',
+            type: 'GET',
+            success: async function () {
+                console.log('updateClient has been executed.');
+            }
+        })
 
-        if (response.ok) {
-            console.log("updateClient a été executé..");
-        } else {
-            console.error("updateClient n'a pas été executé :", response.status);
-        }
-
-    } catch(error) {
+    } catch (error) {
         console.error("Erreur dans updateClient:", error);
     }
 
@@ -79,89 +92,61 @@ export async function updateClient(formId) {
  * @param {int} way (1 : Suivant / -1 : Précédent)
  * @param {str} page chemin vers la page de redirection
  */
-export async function changeClient(way,page=null){
-
-    var dataForm = new FormData();
-    dataForm.append('way', way);
-
-   
-   try {
-       const response = await fetch(path+'changeClient', {
-           method: 'POST',
-           body: dataForm,
-           
-        });
-        
-        
-        if (response.ok) {
-            console.log('changeClient a été exécuté..');
-            await updateSession();
-            
-
-        } else {
-            console.error("changeClient n'a pas été executé : ",response.status);
-        } 
-    }catch(error) {
-        console.error('Erreur dans changeClient:', error)
-    }
-
-
-    window.location.href = page;
-}
-
-
-export async function searchClient(page=null) {
-
-    const data = document.getElementById('contract-id').value;
-    var dataForm = new FormData();
-    dataForm.append('contractId', data);
-
+export async function changeClient(way, page = null) {
 
     try {
-        const response = await fetch(path+"searchClient", {
-            method:  'POST',
-            body: dataForm,
-        });
 
-        if (response.ok) {
-            console.log("searchClient a été executé..");
-        } else {
-            console.error("searchClient n'a pas été executé :", response.status);
-        }
+        await $.ajax({
+            url: path + 'changeClient',
+            type: 'POST',
+            data: {
+                way: way
+            },
+            success: async function () {
+                console.log('changeClient has been executed.');
+                await updateSession();
+            },
+            error: function (xhr, status, error) {
+                console.error('Page error (newClient)', error, status)
+            }
+        })
 
-    } catch(error) {
-        console.error("Erreur dans searchClient :", error);
+
+    } catch (error) {
+        console.error('changeClient error : ', error)
     }
 
-    if (page!=null){
-        redirectTo(page);
-    } else {
-        console.error("Erreur de redirection dans searchClient")
-    }
 
-
+    window.location.href = page; // Refresh
 }
 
 
 
-function checkRequirement(formId) {
+
+/**
+ * Permet de vérifier si des champs de données répondent à des conditions définis
+ * @param {array} data Contient les toutes les données contenu dans la page
+ * @returns True | False
+ */
+function checkRequirement(data) {
     /// Vérifie que certaine condition ont été remplie avant de continuer 
     console.log("Vérification des prérequis ... ");
-    if (formId == 'clientForm') {
-     
-        if (document.getElementById('fichier-client-nom').value == "" ||
-            document.getElementById('fichier-client-prenom').value == "" ||
-            document.getElementById('fichier-client-date-naissance').value == "") {
 
-            document.getElementById('raise-error').innerHTML = "<p class='raise-error'>Veuillez remplir les champs obligatoires<p>";
-            console.error("Erreur de prérequis");
-            return false;
+    if (data) {
+        for (const element in data) {
+            const currentElement = data[element];
 
+            if (element === 'client') {
 
-        } else {
-            return true;
+                if (currentElement['NomC'] && currentElement['PrenomC'] && currentElement['DatNaisC']) {
+                    return true;
+                }
+
+            }
         }
     }
+
+
 
 }
 

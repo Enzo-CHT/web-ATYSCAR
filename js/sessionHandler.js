@@ -2,66 +2,62 @@
 
 let path = "../php/";
 
-
-export async function setSession(formId) {
-    const form = document.getElementById(formId);
-    const formData = new FormData(form);
-
+/**
+ * 
+ * @param {Array} dataArray Données contenant les informatiosn à définir en session
+ */
+export async function setSession(dataArray) {
     try {
-        const response = await fetch(path+"sessionSetter", {
-            method: 'POST',
-            body: formData,
+        await $.ajax({
+            url: path + 'sessionSetter.php',
+            type: 'POST',
+            data: {
+                data: JSON.stringify(dataArray),
+            }
         });
 
-        if (response.ok) {
-            console.log("setSession a été executé..");
-        } else {
-            console.error("setSession n'a pas été executé :", response.status);
-        }
-
-    } catch(error) {
-        console.error("Erreur dans setSession:", error);
+        console.log('setSession has been executed.');
+    } catch (error) {
+        console.error('Session error (setSession):', error);
     }
-
 }
 
-
+/**
+ * Met à jour la session en liant le numéro client à ses informations intra base de données
+ */
 export async function updateSession() {
-
-
     try {
-        const response = await fetch(path+"sessionUpdater", {
-            method: 'GET',
-         
+        await $.ajax({
+            url: path + 'sessionUpdater.php',
+            type: 'GET',
         });
 
-        if (response.ok) {
-            console.log("updateSession a été executé..");
-        } else {
-            console.error("updateSession n'a pas été executé :", response.status);
-        }
-
-    } catch(error) {
-        console.error("Erreur dans updateSession:", error);
+        console.log('updateSession has been executed.');
+    } catch (error) {
+        console.error('Session error (updateSession):', error);
     }
-    
 }
 
 
+/**
+ * Réinitialise la session en cour
+ */
+export async function resetSession(session = "all") {
 
-export async function resetSession() {
     try {
-        const response = await fetch(path+"sessionReset", {
-            method: 'GET',
+        await $.ajax({
+            url: path + 'sessionReset.php',
+            type: 'GET',
+            data: {
+                session: JSON.stringify(session),
+            },
+            success: function () {
+                console.log('resetSession has been executed.');
+
+            }
         });
 
-        if (response.ok) {
-            console.log("session réinitiliser..");
-        } else {
-            console.error("sessionReset n'a pas été executé :", response.status);
-        }
-
-    } catch(error) {
-        console.error("Erreur dans sessionReset:", error);
+    } catch (error) {
+        console.error('Session error (resetSession):', error);
     }
 }

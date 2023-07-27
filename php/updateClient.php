@@ -7,9 +7,9 @@ require "connexion.php";
 
 
 $ASSOC = [];
-
-foreach ($_SESSION as $key=>$value) {
-    if (!empty($_SESSION[$key]) or $value != "") {
+$CLIENT = $_SESSION['client'];
+foreach ($CLIENT as $key=>$value) {
+    if (!empty($CLIENT[$key]) or $value != "") {
         $ASSOC[$key] = $value;
     } else {
         $ASSOC[$key] = "N/A";
@@ -17,7 +17,7 @@ foreach ($_SESSION as $key=>$value) {
 }
 
 
-print_r($ASSOC);
+//print_r($ASSOC);
 
     
 
@@ -71,7 +71,6 @@ if (!$stmt->execute()) {
     die("Erreur lors de l'exécution de la requête : " . $stmt->error);
 }
 $stmt->close();
-
 
 
 mysqli_close($connexion);

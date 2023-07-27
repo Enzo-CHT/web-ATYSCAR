@@ -4,40 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/style.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <title>ANNULATION CONTRAT</title>
   </head>
   <body>
     <main id="annulation-contrat">
       <div>
-        
+
         <div class="container">
           <img class="logo" src="../addons/Atys Car.jpg" alt="atyscar-logo" />
           <div class="box">
+            <b><span id="span-stats" style="color: green;"></span></b>
             <div class="container-element">
               <label for="annulation-contrat-id">Numéro du contrat à annuler</label>
               <input
-                type="number"
+                type="text"
                 name="num-contrat"
                 id="annulation-contrat-id" />
             </div>
-  
+
             <div class="container-element">
-              <a href="index.html">
-  
+              <a href="index.php">
+
                 <input
                   class="menu-button"
                   type="button"
-                  value="annuler"
+                  value="Annuler"
                   id="btn-annuler" />
               </a>
               <input class="menu-button" type="button" value="Ok" id="btn-ok" />
-  
+
             </div>
           </div>
-          </div>
-          
+        </div>
+
       </div>
     </main>
   </body>
+  <script type="module">
+    
+    document.getElementById("btn-ok").onclick = async function() {
+      
+
+      let NumCont = document.getElementById("annulation-contrat-id").value;
+      $.ajax({
+        url : '../php/delContract.php',
+        type : 'GET',
+        data : {
+          'data' : JSON.stringify(NumCont),
+        },
+        success : function() {
+          console.log("delContrat has been executed.");
+          document.getElementById("span-stats").textContent = "SUPPRESSION REUSSIE"
+
+        },
+        error: function(xhr, status, error){
+          console.error("Error page (delContrat.php)", error, status);
+        }
+
+      })
+      
+
+
+
+    }
+  </script>
 </html>

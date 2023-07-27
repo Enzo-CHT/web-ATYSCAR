@@ -1,22 +1,22 @@
 <?php
-    session_start();
-    $_SESSION = array();
+session_start();
 
-    //Faire un check des valeurs d'entré pour éviter les injections
+$data = json_decode($_POST['data'], true);
 
-    foreach ($_POST as $key => $value) {
+
+
+//Faire un check des valeurs d'entré pour éviter les injections
+foreach ($data as $type => $array) {
+    foreach ($array as $key => $value) {
         // Recupère les valeurs dans un $_SESSION
-        $_SESSION[$key] = $value;
+        echo "$type : $key => $value \n";
+        $_SESSION[$type][$key] = $value;
     }
-
-    $_SESSION['NomC'] = strtoupper($_SESSION['NomC']);
-    $_SESSION['PrenomC'] = strtoupper(substr($_SESSION['PrenomC'],0,1)).strtolower(substr($_SESSION['PrenomC'],1));
-    
-    $identifier = (substr($_SESSION['NomC'], 0, 3)).strtoupper(substr($_SESSION['PrenomC'], 0, 3))."-".str_replace("-","",$_SESSION['DatNaisC']);
-    $_SESSION['NumC'] = $identifier;
+}
 
 
-    
-    
+$_SESSION['client']['NomC'] = strtoupper($_SESSION['client']['NomC']);
+$_SESSION['client']['PrenomC'] = strtoupper(substr($_SESSION['client']['PrenomC'], 0, 1)) . strtolower(substr($_SESSION['client']['PrenomC'], 1));
 
-?>
+$identifier = (substr($_SESSION['client']['NomC'], 0, 3)) . strtoupper(substr($_SESSION['client']['PrenomC'], 0, 3)) . "-" . str_replace("-", "", $_SESSION['client']['DatNaisC']);
+$_SESSION['client']['NumC'] = $identifier;

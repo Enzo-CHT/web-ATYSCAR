@@ -11,13 +11,12 @@
   <body>
     <main id="fichier-vehicule">
       <div>
-        <form action="" method="POST">
+        <form action method="POST">
           <div>
             <img
               class="logo"
               src="../addons/Atys Car.jpg"
-              alt="logo-atyscar.jpg"
-            />
+              alt="logo-atyscar.jpg" />
           </div>
 
           <div class="container">
@@ -31,8 +30,7 @@
                     type="text"
                     name="type"
                     id="fichier-vehicule-type"
-                    value="<?php echo isset($_SESSION['NomC']) ? $_SESSION['NomC'] : ''; ?>"
-                  />
+                    value="<?php echo isset($_SESSION['NomC']) ? $_SESSION['NomC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
                   <label for="fichier-vehicule-categorie">Catégorie</label>
@@ -40,8 +38,7 @@
                     type="text"
                     name="categorie"
                     id="fichier-vehicule-categorie"
-                    value="<?php echo isset($_SESSION['PrenomC']) ? $_SESSION['PrenomC'] : ''; ?>"
-                  />
+                    value="<?php echo isset($_SESSION['PrenomC']) ? $_SESSION['PrenomC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
                   <label for="fichier-vehicule-matricule">Matricule</label>
@@ -49,19 +46,15 @@
                     type="text"
                     name="matricule"
                     id="fichier-vehicule-matricule"
-                    value="<?php echo isset($_SESSION['DatNaisC']) ? $_SESSION['DatNaisC'] : ''; ?>"
-                  />
+                    value="<?php echo isset($_SESSION['DatNaisC']) ? $_SESSION['DatNaisC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
-                  <label for="fichier-vehicule-immatriculation"
-                    >Immatriculation</label
-                  >
+                  <label for="fichier-vehicule-immatriculation">Immatriculation</label>
                   <input
                     type="text"
                     name="immatriculation"
                     id="fichier-vehicule-immatriculation"
-                    value="<?php echo isset($_SESSION['LieuNaisC']) ? $_SESSION['LieuNaisC'] : ''; ?>"
-                  />
+                    value="<?php echo isset($_SESSION['LieuNaisC']) ? $_SESSION['LieuNaisC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
                   <label for="fichier-vehicule-annee">Année</label>
@@ -69,8 +62,7 @@
                     type="text"
                     name="annee"
                     id="fichier-vehicule-annee"
-                    value="<?php echo isset($_SESSION['NationaliteC']) ? $_SESSION['NationaliteC'] : ''; ?>"
-                  />
+                    value="<?php echo isset($_SESSION['NationaliteC']) ? $_SESSION['NationaliteC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
                   <label for="fichier-vehicule-marque"> Marque </label>
@@ -78,8 +70,7 @@
                     type="text"
                     name="marque"
                     id="fichier-vehicule-marque"
-                    value="<?php echo isset($_SESSION['AdrRueC']) ? $_SESSION['AdrRueC'] : ''; ?>"
-                  />
+                    value="<?php echo isset($_SESSION['AdrRueC']) ? $_SESSION['AdrRueC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
                   <label for="fichier-vehicule-modele">Modèle</label>
@@ -87,8 +78,7 @@
                     type="text"
                     name="modele"
                     id="fichier-vehicule-modele"
-                    value="<?php echo isset($_SESSION['AdrVilC']) ? $_SESSION['AdrVilC'] :  ''; ?>"
-                  />
+                    value="<?php echo isset($_SESSION['AdrVilC']) ? $_SESSION['AdrVilC'] :  ''; ?>" />
                 </div>
                 <div class="container-element">
                   <label for="fichier-vehicule-couleur">Couleur</label>
@@ -96,8 +86,7 @@
                     type="text"
                     name="couleur"
                     id="fichier-vehicule-couleur"
-                    value="<?php echo isset($_SESSION['CodPosC']) ? $_SESSION['CodPosC'] : ''; ?>"
-                  />
+                    value="<?php echo isset($_SESSION['CodPosC']) ? $_SESSION['CodPosC'] : ''; ?>" />
                 </div>
               </div>
             </div>
@@ -105,24 +94,21 @@
             <div class="right-container top">
               <div class="btn-container">
                 <div>
-                    <input
+                  <input
                     class="menu-button"
                     type="button"
                     value="Ajouter"
-                    onclick=""
-                  />
+                    onclick />
                   <input
                     class="menu-button"
                     type="button"
                     value="Modifier"
-                    onclick=""
-                  />
+                    onclick />
                   <input
                     class="menu-button"
                     type="button"
                     value="Supprimer"
-                    onclick=""
-                  />
+                    onclick />
                 </div>
 
                 <div>
@@ -130,14 +116,12 @@
                     class="menu-button"
                     type="button"
                     value="Précèdent"
-                    onclick=""
-                  />
+                    onclick />
                   <input
                     class="menu-button"
                     type="button"
                     value="Suivant"
-                    onclick=""
-                  />
+                    onclick />
                 </div>
 
                 <div>
@@ -145,11 +129,9 @@
                     class="menu-button"
                     type="button"
                     value="Enregistrer"
-                    onclick=""
-                  />
-                  <a href="../actualiser/index.html"
-                    ><input class="menu-button" type="button" value="Annuler"
-                  /></a>
+                    onclick />
+                  <a href="../actualiser/index.html"><input class="menu-button"
+                      type="button" value="Annuler" /></a>
                 </div>
               </div>
             </div>
@@ -162,16 +144,14 @@
                 <input
                   type="number"
                   name="nombre-places"
-                  id="fichier-vehicule-nombre-places"
-                />
+                  id="fichier-vehicule-nombre-places" />
               </div>
               <div class="container-element">
                 <label for="fichier-vehicule-puissance">Puissance :</label>
                 <input
                   type="number"
                   name="puissance"
-                  id="fichier-vehicule-puissance"
-                />
+                  id="fichier-vehicule-puissance" />
               </div>
             </div>
 
@@ -180,33 +160,27 @@
                 <ul>
                   <li>
                     <b>Carburant</b>
-                    
+
                   </li>
                   <li>
                     <div class="container-element">
-                      <label for="fichier-vehicule-diesel"
-                        >Diesel</label
-                      >
+                      <label for="fichier-vehicule-diesel">Diesel</label>
                       <input
                         type="radio"
                         name="type-carburant"
                         id="fichier-vehicule-diesel"
-                        value="diesel"
-                      />
+                        value="diesel" />
                     </div>
                   </li>
 
                   <li>
                     <div class="container-element">
-                      <label for="fichier-vehicule-essence"
-                        >Essence</label
-                      >
+                      <label for="fichier-vehicule-essence">Essence</label>
                       <input
                         type="radio"
                         name="type-carburant"
                         id="fichier-vehicule-essence"
-                        value="essence"
-                      />
+                        value="essence" />
                     </div>
                   </li>
                 </ul>
@@ -217,40 +191,34 @@
           <div class="container">
             <div class="vehicule foot">
               <div class="container-element">
-                <label for="fichier-vehicule-entretien-pre-kilometrage"
-                  >Kilométrage dernier entretien</label
-                >
+                <label for="fichier-vehicule-entretien-pre-kilometrage">Kilométrage
+                  dernier entretien</label>
                 <input
                   style="width: 55%"
                   type="text"
                   name="entretien-pre-kilometrage"
                   id="fichier-vehicule-entretien-pre-kilometrage"
-                  value="<?php echo isset($_SESSION['AutreAdr']) ? $_SESSION['AutreAdr'] : ''; ?>"
-                />
+                  value="<?php echo isset($_SESSION['AutreAdr']) ? $_SESSION['AutreAdr'] : ''; ?>" />
               </div>
               <div class="container-element">
-                <label for="fichier-vehicule-entretien-pre-date"
-                  >Date dernier entretien</label
-                >
+                <label for="fichier-vehicule-entretien-pre-date">Date dernier
+                  entretien</label>
                 <input
                   style="width: 55%"
                   type="text"
                   name="entretien-pre-date"
                   id="fichier-vehicule-entretien-pre-date"
-                  value="<?php echo isset($_SESSION['Remarques']) ? $_SESSION['Remarques'] : ''; ?>"
-                />
+                  value="<?php echo isset($_SESSION['Remarques']) ? $_SESSION['Remarques'] : ''; ?>" />
               </div>
               <div class="container-element">
-                <label for="fichier-vehicule-entretien-pro-kilometrage"
-                  >Kilométrage prochain entretien</label
-                >
+                <label for="fichier-vehicule-entretien-pro-kilometrage">Kilométrage
+                  prochain entretien</label>
                 <input
                   style="width: 55%"
                   type="text"
                   name="entretien-pro-kilometrage"
                   id="fichier-vehicule-entretien-pro-kilometrage"
-                  value="<?php echo isset($_SESSION['Remarques']) ? $_SESSION['Remarques'] : ''; ?>"
-                />
+                  value="<?php echo isset($_SESSION['Remarques']) ? $_SESSION['Remarques'] : ''; ?>" />
               </div>
             </div>
           </div>
