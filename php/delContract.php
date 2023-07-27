@@ -6,27 +6,26 @@ session_start();
 require "connexion.php";
 
 
-$ASSOC = [];
 
-foreach ($_SESSION['client'] as $key=>$value) {
-    $ASSOC[$key] = $value;
-    
-}
+$NumCont = json_decode($_GET['data']);
 
-
-$sql = "DELETE FROM CLIENT WHERE NumC=?" ;
-
+echo $NumCont;
+$sql = "DELETE FROM CONTRAT WHERE NumCont=?" ;
 $stmt = $connexion->prepare($sql);
-
-$stmt->bind_param('s',$ASSOC['NumC']);
-$stmt->execute();
+if (!$stmt){
+    die ("Query Error " . $connexion->error);
+}
+$stmt->bind_param('s', $NumCont);
 if (!$stmt->execute()) {
     die("Erreur lors de l'exécution de la requête : " . $stmt->error);
 }
+
+echo "success!";
 $stmt->close();
 
 
 
 mysqli_close($connexion);
+
 
 ?>
