@@ -12,6 +12,8 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
 
 
 
+
+
 ?>
 
 
@@ -268,9 +270,10 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
 
     var formId = "formContrat";
     let enregistrer = document.getElementById('contrat-btn-enregistrer');
+   
     let imprimer = document.getElementById('contrat-btn-imprimer');
 
-    let newItemSession = function(formId) {
+    let newItemSession = async function(formId) {
         const form = document.getElementById(formId);
         const formData = new FormData(form);
 
@@ -282,26 +285,27 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
             ENCAPS['contrat'][key] = value;
         });
 
-        setSession(ENCAPS);
+        await setSession(ENCAPS);
     }
 
-    $(enregistrer).click(async function() {
+    enregistrer.onclick = async function() {
         await newItemSession(formId);
+
         $.ajax({
             url: '../php/newContract.php',
             type: 'POST',
             success: function() {
                 console.log('newContract has been executed.');
-
-                let stats = document.getElementById('span-stats');
+                console.log("<?php echo isset($_SESSION['contrat-stats']) ?  $_SESSION['contrat-stats'] : '' ?>");
+                
+                var stats = document.getElementById('span-stats');
                 stats.textContent = "<?php echo isset($_SESSION['contrat-stats']) ?  $_SESSION['contrat-stats'] : '' ?>";
-
 
                 switch (stats.textContent) {
                     case "CONTRAT EXISTANT":
                         stats.style = "color : red;";
                         break;
-                    case "CONTRAT ENREGISTRER AVEC SUCCES !":
+                    case "CONTRAT ENREGISTRE AVEC SUCCES !":
                         stats.style = "color : green;";
                         break;
                 }
@@ -313,7 +317,8 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
             },
         });
 
-    });
+    }
+
     $(imprimer).click(function() {
         newItemSession(formId);
 

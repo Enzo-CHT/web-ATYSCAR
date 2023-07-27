@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "connexion.php";
-
+$_SESSION['contrat-stats'] = "";
 /*
 NumCont	
 DatDebCont	
@@ -44,7 +44,6 @@ if (!empty($ASSOC)) {
     $stmt = $connexion->prepare($ask);
 
     $stmt->bind_param('s', $ASSOC['contrat']['NumCont']);
-    $stmt->execute();
     if (!$stmt->execute()) {
         die("Erreur lors de l'exécution de la requête : " . $stmt->error);
     }
@@ -94,18 +93,19 @@ if (!empty($ASSOC)) {
 
         if (!$stmt->execute()) {
             die("Erreur lors de l'exécution de la requête : " . $stmt->error);
-        } else {
-            echo "success!";
-            $_SESSION['contrat-stats'] = "CONTRAT ENREGISTRER AVEC SUCCES !";
-        }
+        } 
+
+        
+        $_SESSION['contrat-stats'] = "CONTRAT ENREGISTRE AVEC SUCCES !";
+        echo "success!";
         $stmt->close();
 
 
 
         mysqli_close($connexion);
     } else {
-        echo "Existing element";
         $_SESSION['contrat-stats'] = "CONTRAT EXISTANT";
+        echo "Existing element";
     }
 } else {
 
