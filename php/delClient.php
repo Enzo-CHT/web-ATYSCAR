@@ -9,8 +9,13 @@ require "connexion.php";
 $ASSOC = [];
 
 foreach ($_SESSION['client'] as $key=>$value) {
-    $ASSOC[$key] = $value;
-    
+
+    if (!empty($_SESSION['client'][$key]) or $value != "") {
+        $ASSOC[$key] = $value;
+    } else {
+        $ASSOC[$key] = "N/A";
+    }
+
 }
 
 
