@@ -9,15 +9,17 @@ require "connexion.php";
 $ASSOC = [];
 
 foreach ($_SESSION['client'] as $key=>$value) {
+
     if (!empty($_SESSION['client'][$key]) or $value != "") {
         $ASSOC[$key] = $value;
     } else {
         $ASSOC[$key] = "N/A";
     }
+
 }
 
 
-$sql = " DELETE FROM CLIENT WHERE NumC=?" ;
+$sql = "DELETE FROM CLIENT WHERE NumC=?" ;
 
 $stmt = $connexion->prepare($sql);
 
