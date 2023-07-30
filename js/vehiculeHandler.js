@@ -1,5 +1,7 @@
 import { setSession, resetSession, updateSession } from "./sessionHandler";
 
+let processFile = "../php/processVehicule.php";
+
 
 export class Vehicule {
 
@@ -18,14 +20,14 @@ export class Vehicule {
 
     saveVehicule() {
         $.ajax({
-            url: "../php/processVehicule.php",
+            url: processFile,
             type: "GET",
             data: {
                 function: "saveVehicule",
                 data: JSON.stringify(this.dataArray),
             },
             success: function () {
-                console.log("saveCar has been executed.");
+                console.log("saveVehicule has been executed.");
 
             },
             error: function (xhr, status, error) {
@@ -37,15 +39,15 @@ export class Vehicule {
     updateVehicule() {
 
         $.ajax({
-            url: "",
+            url: processFile,
             type: "GET",
             data: {
                 data: JSON.stringify(this.dataArray),
             },
             success: function () {
-                console.log("updateCar has been executed.");
+                console.log("updateVehicule has been executed.");
                 updateSession();
-                document.location.href = "./";
+                document.location.href = "";
             },
             error: function (xhr, status, error) {
                 console.error("Error page () : ", error, status);
@@ -54,15 +56,15 @@ export class Vehicule {
     }
     delVehicule() {
         $.ajax({
-            url: "",
+            url: processFile,
             type: "GET",
             data: {
                 data: JSON.stringify(this.dataArray['MatV']),
             },
             success: function () {
-                console.log(" has been executed.");
-                resetSession('car');
-                document.location.href = "./";
+                console.log("delVehicule has been executed.");
+                resetSession('vehicule');
+                document.location.href = "";
             },
             error: function (xhr, status, error) {
                 console.error("Error page () : ", error, status);
@@ -70,21 +72,25 @@ export class Vehicule {
         });
     }
 
-    changeVehicule(identifier, way) {
+    switchVehicule(way) {
         $.ajax({
-            url: "",
+            url: processFile,
             type: "GET",
             data: {
-                data: JSON.stringify((identifier, way)),
+                function : "switchVehicule",
+                data: JSON.stringify(way),
             },
-            success: function () {
-                console.log(" has been executed.");
-                updateSession();
+            success: async function () {
+                console.log("switchVehicule has been executed.");
+                await updateSession();
+                
             },
             error: function (xhr, status, error) {
                 console.error("Error page () : ", error, status);
             },
         })
+
+        document.location.href = "";
     }
 
   

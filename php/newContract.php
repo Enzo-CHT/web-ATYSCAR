@@ -85,7 +85,7 @@ if (!empty($ASSOC)) {
             $ASSOC['contrat']['VilDepCont'],
             $ASSOC['contrat']['VilRetCont'],
             $ASSOC['client']['NumC'],
-            $ASSOC['car']['MatV'],
+            $ASSOC['vehicule']['MatV'],
             $ASSOC['contrat']['CodTypTarif'],
 
         );

@@ -35,7 +35,7 @@ switch ($function) {
         deleteVehicule($data);
         break;
     case "switchVehicule":
-        switchVehicule($data[0], $data[1]);
+        switchVehicule($data);
         break;
 }
 
@@ -72,7 +72,7 @@ function saveVehicule($data)
             CarbV,	
             CoulV,	
             NbPlV,	
-            AnnSV,	
+            AnnV,	
             KilDernE,	
             KilProE	
             ) VALUES ( ?,?,?,?,?,?,?,?,?,?,?,?,? )";
@@ -92,7 +92,7 @@ function saveVehicule($data)
                 $data['vehicule']['ModV'],
                 $data['vehicule']['CatV'],
                 $data['vehicule']['PuisV'],
-                $data['vehicule']['CarbV'],
+                strtolower($data['vehicule']['CarbV']),
                 $data['vehicule']['CoulV'],
                 $data['vehicule']['NbPlV'],
                 $data['vehicule']['AnnV'],
@@ -215,7 +215,7 @@ function deleteVehicule($identifier)
     mysqli_close($connexion);
 }
 
-function switchVehicule($identifier, $way)
+function switchVehicule($way)
 {
     include "connexion.php";
     if (!in_array($way, [1, -1, 0])) {
@@ -230,7 +230,7 @@ function switchVehicule($identifier, $way)
 
     $result = $stmt->get_result();
     $MATV = []; //COntient les resultats de la requete
-    $VEHICULE = isset($_SESSION['car']['MatV']) ? $_SESSION['car']['MatV'] : ""; // Contient les infos du vehicule dans la session
+    $VEHICULE = isset($_SESSION['vehicule']['MatV']) ? $_SESSION['vehicule']['MatV'] : ""; // Contient les infos du vehicule dans la session
     $count = 0;
     while ($row = $result->fetch_assoc()) {
         foreach ($row as $key => $value) {
@@ -238,9 +238,8 @@ function switchVehicule($identifier, $way)
             $count++;
         }
     }
-
-
-
+    
+  
 
     $condition = (!empty($VEHICULE));
     if ($condition) {
@@ -260,5 +259,7 @@ function switchVehicule($identifier, $way)
         $next = $MATV[0];
     }
 
-    $_SESSION['car']['MatV'] = $next;
+    echo $next;
+    $_SESSION['vehicule']['MatV'] = $next;
+   
 }
