@@ -8,10 +8,10 @@ Add carHandler.js
 Ok Add enregistrer car
     Ok Complete newCar
     Ok Modifier fichier-vehicule
-- Add Supprimer car
+> Add Supprimer car
     - complete delCar
     - Modifier fichier-vehicule
-- Add Modifier car
+> Add Modifier car
     - Modifier fichier-vehicule
 - Add Suivant-Precedent 
     Ok Complete changeCar

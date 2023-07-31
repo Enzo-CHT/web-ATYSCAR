@@ -60,7 +60,7 @@ function saveVehicule($data)
 
         if (!$count) {
 
-            echo "1";
+         
             $sql = "INSERT INTO VEHICULE (
             MatV,	
             ImmatV,
@@ -223,6 +223,7 @@ function switchVehicule($way)
     }
 
 
+    
 
     $sql = "SELECT MatV FROM VEHICULE";
     $stmt = $connexion->prepare($sql);
@@ -239,7 +240,11 @@ function switchVehicule($way)
         }
     }
     
-  
+
+    //print_r($MATV);
+    if (empty($VEHICULE)) {
+        $VEHICULE = $MATV[0];
+    }
 
     $condition = (!empty($VEHICULE));
     if ($condition) {
@@ -251,7 +256,7 @@ function switchVehicule($way)
                 $nextIndex = ($nextIndex) < 0 ? $count - 1 : $nextIndex; // Nouvelle index du suivant ou précédent
                 $nextIndex = ($nextIndex) >= $count ? 0 : $nextIndex; // Nouvelle index du suivant ou précédent
 
-                echo $nextIndex;
+                
                 $next = $MATV[$nextIndex];
             }
         }
@@ -259,7 +264,8 @@ function switchVehicule($way)
         $next = $MATV[0];
     }
 
-    echo $next;
+    echo "success!";
+    echo "New : ". $next;
     $_SESSION['vehicule']['MatV'] = $next;
    
 }

@@ -33,6 +33,7 @@ if (!empty($_SESSION['client']['NumC'])) {
 
 
 
+    print_r($_SESSION['client']);
     $stmt->close();
 } 
 
@@ -64,7 +65,7 @@ if (!empty($_SESSION['vehicule']['MatV'])) {
     }
 
 
-
+    print_r($_SESSION['vehicule']);
     $stmt->close();
 }
 mysqli_close($connexion);
