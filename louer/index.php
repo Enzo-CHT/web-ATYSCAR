@@ -29,7 +29,7 @@ session_start();
             </a>
         </div>
         <div class="container-option-button">
-            <a href="">
+            <a href="../build.html">
                 <input id="button-aide" class="menu-button" type="button" value="AIDE">
             </a>
             <a href="../index.html" > 
