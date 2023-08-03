@@ -10,16 +10,15 @@ $session = filter_input(INPUT_GET, 'session');
 echo $session;
 echo "test";
 switch ($session) {
-
     case "client":
         echo "client updated";
         updateClient();
         break;
-    case "vehicule";
+    case "vehicule":
         echo "vehicule updated";
         updateVehicule();
         break;
-    case "all";
+    case "all":
         echo "all session updated";
         updateClient();
         updateVehicule();
@@ -52,6 +51,7 @@ function updateClient()
         } else {
             die("No SESSION set");
         }
+    print_r($_SESSION['client']);
         $stmt->close();
     }
 }
@@ -86,7 +86,6 @@ function updateVehicule()
         } else {
             die("No SESSION set");
         }
-
 
 
         $stmt->close();

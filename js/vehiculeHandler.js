@@ -13,8 +13,9 @@ export class Vehicule {
         formData.forEach((value, key) => {
             this.dataArray['vehicule'][key] = value;
         });
-       
+
         setSession(this.dataArray);
+        
 
     }
 
@@ -55,6 +56,7 @@ export class Vehicule {
             },
         });
     }
+    
     delVehicule() {
         $.ajax({
             url: processFile,
@@ -74,7 +76,7 @@ export class Vehicule {
         });
     }
 
-    switchVehicule(way) {
+    async switchVehicule(way) {
         $.ajax({
             url: processFile,
             type: "GET",
@@ -83,6 +85,7 @@ export class Vehicule {
                 data: JSON.stringify(way),
             },
             success: async function () {
+                
                 console.log("switchVehicule has been executed.");
                 await updateSession('vehicule');
                 $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
@@ -92,7 +95,7 @@ export class Vehicule {
             },
         })
 
-        
+       
     }
 
   
