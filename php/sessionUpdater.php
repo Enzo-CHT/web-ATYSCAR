@@ -5,10 +5,14 @@ session_start();
 
 
 
+
+
 $session = filter_input(INPUT_GET, 'session');
 
 echo $session;
 echo "test";
+
+
 switch ($session) {
     case "client":
         echo "client updated";
