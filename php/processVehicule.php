@@ -21,7 +21,7 @@ $_SESSION['stats'] = "";
 
 
 $function = isset($_GET['function']) ? $_GET['function'] : "No function";
-$data = json_decode($_GET['data'], true);
+$data = isset($_GET['data']) ? json_decode($_GET['data'],true) : '';
 
 
 switch ($function) {
@@ -32,7 +32,7 @@ switch ($function) {
         updateVehicule($data);
         break;
     case "deleteVehicule":
-        deleteVehicule($data);
+        deleteVehicule();
         break;
     case "switchVehicule":
         switchVehicule($data);
@@ -42,7 +42,7 @@ switch ($function) {
 function saveVehicule($data)
 {
     include "connexion.php";
-
+    
     if (!empty($data)) {
 
 
@@ -196,21 +196,23 @@ function updateVehicule($newData)
     }
 }
 
-function deleteVehicule($identifier)
+function deleteVehicule()
 {
     require "connexion.php";
-
-
-
+    $identifier = $_SESSION['vehicule']['MatV'];
     $sql = " DELETE FROM VEHICULE WHERE MatV=?";
 
     $stmt = $connexion->prepare($sql);
+    if (!$stmt) {
+        die("Erreur lors de la connexion" . $connexion->error);
+    }
 
     $stmt->bind_param('s', $identifier);
     $stmt->execute();
     if (!$stmt->execute()) {
         die("Erreur lors de l'exécution de la requête : " . $stmt->error);
     }
+    echo "Success!";
     $stmt->close();
     mysqli_close($connexion);
 }

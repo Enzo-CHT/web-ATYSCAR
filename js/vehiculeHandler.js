@@ -28,7 +28,7 @@ export class Vehicule {
             },
             success: function () {
                 console.log("saveVehicule has been executed.");
-
+                
             },
             error: function (xhr, status, error) {
                 console.error("Error page () : ", error, status);
@@ -46,8 +46,9 @@ export class Vehicule {
             },
             success: function () {
                 console.log("updateVehicule has been executed.");
-                updateSession();
-                document.location.href = "";
+                updateSession('vehicule');
+                $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
+
             },
             error: function (xhr, status, error) {
                 console.error("Error page () : ", error, status);
@@ -58,13 +59,14 @@ export class Vehicule {
         $.ajax({
             url: processFile,
             type: "GET",
-            data: {
-                data: JSON.stringify(this.dataArray['MatV']),
+            data : {
+                function : "deleteVehicule",
             },
             success: function () {
                 console.log("delVehicule has been executed.");
                 resetSession('vehicule');
-                document.location.href = "";
+                $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
+
             },
             error: function (xhr, status, error) {
                 console.error("Error page () : ", error, status);
@@ -82,15 +84,15 @@ export class Vehicule {
             },
             success: async function () {
                 console.log("switchVehicule has been executed.");
-                await updateSession();
-                
+                await updateSession('vehicule');
+                $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
             },
             error: function (xhr, status, error) {
                 console.error("Error page () : ", error, status);
             },
         })
 
-        document.location.href = "";
+        
     }
 
   

@@ -1,6 +1,5 @@
-<?php session_start(); 
+<?php session_start();
 
-print_r($_SESSION['vehicule']);
 ?>
 
 <!DOCTYPE html>
@@ -67,18 +66,18 @@ print_r($_SESSION['vehicule']);
           <div class="right-container top">
             <div class="btn-container">
               <div>
-                <input id="btn-add" class="menu-button" type="button" value="Ajouter"  />
-                <input id="btn-update" class="menu-button" type="button" value="Modifier"  />
-                <input id="btn-del" class="menu-button" type="button" value="Supprimer"  />
+                <input id="btn-add" class="menu-button" type="button" value="Ajouter" />
+                <input id="btn-update" class="menu-button" type="button" value="Modifier" />
+                <input id="btn-del" class="menu-button" type="button" value="Supprimer" />
               </div>
 
               <div>
                 <input id="btn-pre" class="menu-button" type="button" value="Précèdent" />
-                <input id="btn-suiv" class="menu-button" type="button" value="Suivant"  />
+                <input id="btn-suiv" class="menu-button" type="button" value="Suivant" />
               </div>
 
               <div>
-                <input id="btn-save" class="menu-button" type="button" value="Enregistrer"  />
+                <input id="btn-save" class="menu-button" type="button" value="Enregistrer" />
                 <a href="../actualiser/index.html"><input class="menu-button" type="button" value="Annuler" /></a>
               </div>
             </div>
@@ -89,11 +88,11 @@ print_r($_SESSION['vehicule']);
           <div id="fichier-vehicule-addons" class="left-container middle">
             <div class="container-element">
               <label for="fichier-vehicule-nombre-places">Nombre de places :<b style="color:red">*</b></label>
-              <input type="number" name="NbPlV" id="fichier-vehicule-nombre-places" value="<?php echo isset($_SESSION['vehicule']['NbPlV']) ? $_SESSION['vehicule']['NbPlV'] : ''; ?>"/>
+              <input type="number" name="NbPlV" id="fichier-vehicule-nombre-places" value="<?php echo isset($_SESSION['vehicule']['NbPlV']) ? $_SESSION['vehicule']['NbPlV'] : ''; ?>" />
             </div>
             <div class="container-element">
               <label for="fichier-vehicule-puissance">Puissance :<b style="color:red">*</b></label>
-              <input type="number" name="PuisV" id="fichier-vehicule-puissance" value="<?php echo isset($_SESSION['vehicule']['PuisV']) ? $_SESSION['vehicule']['PuisV'] : ''; ?>"/>
+              <input type="number" name="PuisV" id="fichier-vehicule-puissance" value="<?php echo isset($_SESSION['vehicule']['PuisV']) ? $_SESSION['vehicule']['PuisV'] : ''; ?>" />
             </div>
           </div>
 
@@ -148,7 +147,7 @@ print_r($_SESSION['vehicule']);
         </div>
       </form>
     </div>
-  
+
   </main>
 </body>
 <script type="module">
@@ -158,12 +157,17 @@ print_r($_SESSION['vehicule']);
 
 
   let formId = "vehiculeForm";
+
   document.getElementById('btn-save').onclick = function() {
     let element = new Vehicule(formId);
-    console.log("saveVehicule");
     element.saveVehicule();
-    
+
   };
+  document.getElementById('btn-del').onclick = function() {
+    let element = new Vehicule(formId);
+    element.delVehicule();
+  }
+
   document.getElementById("btn-pre").onclick = function() {
     cSwitchVehicule(-1);
   };
@@ -175,7 +179,6 @@ print_r($_SESSION['vehicule']);
     let element = new Vehicule(formId);
     element.switchVehicule(way)
   };
-
 </script>
 
 </html>
