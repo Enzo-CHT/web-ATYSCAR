@@ -908,3 +908,32 @@ a {
   background-color: blanchedalmond;
   border-radius: 10px;
 }
+
+
+#construction>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(209, 33, 33);
+  min-width: 350;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#construction p {
+  display: flex;
+  position: relative;
+  justify-content: space-around;
+  width: 200px;
+  color : rgb(234, 231, 231);
+  
+}
+
+#construction img {
+  margin: 50px;
+  border-radius: 10px;
+  width: 250px;
+  height: 250px;
+}
