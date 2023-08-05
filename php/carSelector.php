@@ -63,10 +63,10 @@ if (!empty($options)) { // Vérification de l'existence des options
                 }
             }
 
-            $sql .= implode(" AND ", $placeholders); 
+            $sql .= implode(" AND ", $placeholders); /////////// TESTER
 
             $stmt = $connexion->prepare($sql);
-            $stmt->bind_param(str_repeat("s", count($params)), ...$params); 
+            $stmt->bind_param(str_repeat("s", count($params)), ...$params); /////////// TESTER
 
             if ($stmt->execute()) {
                 $result = $stmt->get_result();

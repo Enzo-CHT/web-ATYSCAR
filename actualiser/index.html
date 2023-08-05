@@ -5,13 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <title>ACTUALISER FICHIERS</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="module">
-        import {resetSession} from "../js/sessionHandler.js";
-        document.getElementById('actualiser-fichiers-btn-vehicules').onclick = function() {
-            resetSession('vehicule');
-        }
-    </script>
 </head>
 <body>
     <main id="actualiser-fichiers">
@@ -25,7 +18,7 @@
                         
                         <div class="left-container">
                             <div class="container-element">
-                                <a href="../fichiers/fichier-vehicule.php"><input class="menu-button" type="button"  id="actualiser-fichiers-btn-vehicules" value="VEHICULES" ></a>
+                                <a href="../fichiers/fichier-vehicule.php"><input class="menu-button" type="button"  id="actualiser-fichiers-btn-vehicules" value="VEHICULES"></a>
                             </div>
                             <div class="container-element">
                                 <a href="../fichiers/fichier-clients.php"><input class="menu-button" type="button"  id="actualiser-fichiers-btn-clients" value="CLIENTS"></a>

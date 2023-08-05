@@ -3,7 +3,7 @@ session_start();
 include "../php/connexion.php";
 
 
-$options = isset($_SESSION['vehicule']) ? $_SESSION['vehicule'] : 0;
+$options = isset($_SESSION['car']) ? $_SESSION['car'] : 0;
 
 
 
@@ -36,7 +36,7 @@ if ($options) {
         if ($result->num_rows > 0) {
 
             while ($row = $result->fetch_assoc()) {
-                $_SESSION['vehicule']['MatV'] = ($row['MatV']);
+                $_SESSION['car']['MatV'] = ($row['MatV']);
             }
         } else {
             die("No results found");
@@ -46,5 +46,5 @@ if ($options) {
     }
 } else {
     echo $options;
-    die('Error vehiculeGet.php : no options loaded ');
+    die('Error carGet.php : no options loaded ');
 }

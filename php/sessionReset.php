@@ -11,9 +11,9 @@ switch (json_decode($_GET['session'])) {
         unset($_SESSION['contrat']);
         echo "contrat reseted.";
         break;
-    case "vehicule":
-        unset($_SESSION['vehicule']);
-        echo "vehicule reseted.";
+    case "car":
+        unset($_SESSION['car']);
+        echo "car reseted.";
         break;
     case "entretien":
         unset($_SESSION['entretien']);

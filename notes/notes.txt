@@ -7,7 +7,7 @@ O Définir le bouton supprimer
 O Définir les boutons précédents et suivants
 
 O Definir selection de véhicule
-Ok Definir Enregistrer contrat
+- Definir Enregistrer contrat
 - Definir les imprimessions
 
 

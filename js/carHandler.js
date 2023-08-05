@@ -1,7 +1,5 @@
 import { setSession, resetSession, updateSession } from "./sessionHandler";
 
-let processFile = "../php/processVehicule.php";
-
 
 export class Vehicule {
 
@@ -13,25 +11,22 @@ export class Vehicule {
         formData.forEach((value, key) => {
             this.dataArray['vehicule'][key] = value;
         });
-
-    
+       
+        setSession(this.dataArray);
 
     }
 
     saveVehicule() {
-        setSession(this.dataArray);
         $.ajax({
-            url: processFile,
+            url: "../php/processVehicule.php",
             type: "GET",
             data: {
                 function: "saveVehicule",
                 data: JSON.stringify(this.dataArray),
             },
             success: function () {
-                console.log("saveVehicule has been executed.");
-                $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
-                
-                
+                console.log("saveCar has been executed.");
+
             },
             error: function (xhr, status, error) {
                 console.error("Error page () : ", error, status);
@@ -40,66 +35,56 @@ export class Vehicule {
     }
 
     updateVehicule() {
+
         $.ajax({
-            url: processFile,
+            url: "",
             type: "GET",
             data: {
                 data: JSON.stringify(this.dataArray),
-                function : "updateVehicule",
             },
-            success: async function () {
-                console.log("updateVehicule has been executed.");
-                await updateSession('vehicule');
-                $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
-
+            success: function () {
+                console.log("updateCar has been executed.");
+                updateSession();
+                document.location.href = "./";
             },
             error: function (xhr, status, error) {
                 console.error("Error page () : ", error, status);
             },
         });
     }
-    
     delVehicule() {
-        setSession(this.dataArray);
         $.ajax({
-            url: processFile,
-            type: "GET",
-            data : {
-                function : "deleteVehicule",
-            },
-            success: async function () {
-                console.log("delVehicule has been executed.");
-                await resetSession('vehicule');
-                $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
-
-            },
-            error: function (xhr, status, error) {
-                console.error("Error page () : ", error, status);
-            },
-        });
-    }
-
-    async switchVehicule(way) {
-        
-        $.ajax({
-            url: processFile,
+            url: "",
             type: "GET",
             data: {
-                function : "switchVehicule",
-                data: JSON.stringify(way),
+                data: JSON.stringify(this.dataArray['MatV']),
             },
-            success: async function () {
-                
-                console.log("switchVehicule has been executed.");
-                await updateSession('vehicule');
-                $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
+            success: function () {
+                console.log(" has been executed.");
+                resetSession('car');
+                document.location.href = "./";
             },
             error: function (xhr, status, error) {
-                console.error("Error page (switchVehicule) : ", error, status);
+                console.error("Error page () : ", error, status);
+            },
+        });
+    }
+
+    changeVehicule(identifier, way) {
+        $.ajax({
+            url: "",
+            type: "GET",
+            data: {
+                data: JSON.stringify((identifier, way)),
+            },
+            success: function () {
+                console.log(" has been executed.");
+                updateSession();
+            },
+            error: function (xhr, status, error) {
+                console.error("Error page () : ", error, status);
             },
         })
-
-       
     }
 
   
