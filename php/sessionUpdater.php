@@ -6,11 +6,9 @@ session_start();
 
 
 
+// BUG
+$session = isset($_GET['session']) ? $_GET['session'] : '';
 
-$session = filter_input(INPUT_GET, 'session');
-
-echo $session;
-echo "test";
 
 
 switch ($session) {
@@ -26,36 +24,36 @@ switch ($session) {
         echo "all session updated";
         updateClient();
         updateVehicule();
+        break;
 }
 
 
 function updateClient()
 {
     require 'connexion.php';
-    if (isset($_SESSION['client']['NumC']) && !empty($_SESSION['client']['NumC'])) {
+    $client = isset($_SESSION['client']['NumC']) ? $_SESSION['client']['NumC'] : 'NONE';
+    if (!empty($client) && $client != 'NONE') {
         $sql = "SELECT * FROM CLIENT WHERE NumC=?";
         $stmt = $connexion->prepare($sql);
 
-        if (isset($_SESSION['client']['NumC']) && !empty($_SESSION['client']['NumC'])) {
-            $stmt->bind_param('s', $_SESSION['client']['NumC']);
-            if (!$stmt->execute()) {
-                die("Erreur lors de l'exécution de la requête : " . $stmt->error);
-            }
-            $result = $stmt->get_result();
 
-            if (!empty($result)) {
+        $stmt->bind_param('s', $client);
+        if (!$stmt->execute()) {
+            die("Erreur lors de l'exécution de la requête : " . $stmt->error);
+        }
+        $result = $stmt->get_result();
 
-                while ($row = $result->fetch_assoc()) {
-                    foreach ($row as $key => $value) {
-                        $_SESSION['client'][$key] = $value;
-                    }
+        if (!empty($result)) {
+
+            while ($row = $result->fetch_assoc()) {
+                foreach ($row as $key => $value) {
+                    $_SESSION['client'][$key] = $value;
                 }
             }
-            echo "success!";
-        } else {
-            die("No SESSION set");
         }
-    print_r($_SESSION['client']);
+        echo "Success!";
+
+
         $stmt->close();
     }
 }
@@ -64,13 +62,14 @@ function updateClient()
 function updateVehicule()
 {
     require 'connexion.php';
-    if (!empty($_SESSION['vehicule']['MatV'])) {
+    $matv = isset($_SESSION['vehicule']['MatV']) ? $_SESSION['vehicule']['MatV'] : 'NONE';
 
+    if (!empty($matv) && $matv != 'NONE') {
         $sql = "SELECT * FROM VEHICULE WHERE MatV=?";
         $stmt = $connexion->prepare($sql);
 
-        if (isset($_SESSION['vehicule']['MatV']) && !empty($_SESSION['vehicule']['MatV'])) {
-            $stmt->bind_param('s', $_SESSION['vehicule']['MatV']);
+        if (isset($matv) && !empty($matv)) {
+            $stmt->bind_param('s', $matv);
             if (!$stmt->execute()) {
                 die("Erreur lors de l'exécution de la requête : " . $stmt->error);
             }
@@ -86,7 +85,7 @@ function updateVehicule()
             }
 
 
-            echo "success!";
+            echo "Success!";
         } else {
             die("No SESSION set");
         }

@@ -1,5 +1,7 @@
 <?php session_start();
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +17,7 @@
 </head>
 
 <body>
+ 
   <main id="fichier-vehicule">
     <div>
       <div>
@@ -24,7 +27,6 @@
       <form id="vehiculeForm">
         <div class="container">
           <div class="left-container">
-
             <div class="vehicule">
               <h3>VEHICULE</h3>
 
@@ -131,7 +133,7 @@
             <div class="container-element">
               <label for="fichier-vehicule-entretien-pre-kilometrage">Kilométrage
                 dernier entretien</label>
-              <input style="width: 55%" type="text" name="KilDernE" id="fichier-vehicule-entretien-pre-kilometrage" value="<?php echo isset($_SESSION['vehicule']['KilDernE']) ? $_SESSION['vehicule']['KilDernE'] : ''; ?>" />
+              <input style="width: 55%" type="number" name="KilDernE" id="fichier-vehicule-entretien-pre-kilometrage" value="<?php echo isset($_SESSION['vehicule']['KilDernE']) ? $_SESSION['vehicule']['KilDernE'] : ''; ?>" />
             </div>
             <div class="container-element">
               <label for="fichier-vehicule-entretien-pre-date">Date dernier
@@ -141,8 +143,10 @@
             <div class="container-element">
               <label for="fichier-vehicule-entretien-pro-kilometrage">Kilométrage
                 prochain entretien</label>
-              <input style="width: 55%" type="text" name="KilProE" id="fichier-vehicule-entretien-pro-kilometrage" value="<?php echo isset($_SESSION['vehicule']['KilProE']) ? $_SESSION['vehicule']['KilProE'] : ''; ?>" />
+              <input style="width: 55%" type="number" name="KilProE" id="fichier-vehicule-entretien-pro-kilometrage" value="<?php echo isset($_SESSION['vehicule']['KilProE']) ? $_SESSION['vehicule']['KilProE'] : ''; ?>" />
             </div>
+            <span id='span-stats'><?php echo isset($_SESSION['stats']) ? $_SESSION['stats'] : ''; ?></span>
+
           </div>
         </div>
       </form>
@@ -161,24 +165,42 @@
   document.getElementById('btn-save').onclick = function() {
     let element = new Vehicule(formId);
     element.saveVehicule();
-
+    
+    
   };
   document.getElementById('btn-del').onclick = function() {
     let element = new Vehicule(formId);
     element.delVehicule();
-  }
+    
 
+  }
+  document.getElementById('btn-update').onclick = function() {
+    let element = new Vehicule(formId);
+    element.updateVehicule();
+
+  }
+  
   document.getElementById("btn-pre").onclick = function() {
     cSwitchVehicule(-1);
   };
   document.getElementById("btn-suiv").onclick = function() {
     cSwitchVehicule(1);
   };
-
+  
   function cSwitchVehicule(way) {
     let element = new Vehicule(formId);
     element.switchVehicule(way)
   };
+
+  let spanStats = document.getElementById("span-stats");
+  if (spanStats.innerHTML != '') {
+    setTimeout(function() {
+      spanStats.innerHTML = "" ;
+      <?php unset($_SESSION['stats']);?>
+    }, 5000); 
+  }
+
+
 </script>
 
 </html>

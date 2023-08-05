@@ -14,12 +14,12 @@ export class Vehicule {
             this.dataArray['vehicule'][key] = value;
         });
 
-        setSession(this.dataArray);
-        
+    
 
     }
 
     saveVehicule() {
+        setSession(this.dataArray);
         $.ajax({
             url: processFile,
             type: "GET",
@@ -29,6 +29,8 @@ export class Vehicule {
             },
             success: function () {
                 console.log("saveVehicule has been executed.");
+                $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
+                
                 
             },
             error: function (xhr, status, error) {
@@ -38,16 +40,16 @@ export class Vehicule {
     }
 
     updateVehicule() {
-
         $.ajax({
             url: processFile,
             type: "GET",
             data: {
                 data: JSON.stringify(this.dataArray),
+                function : "updateVehicule",
             },
-            success: function () {
+            success: async function () {
                 console.log("updateVehicule has been executed.");
-                updateSession('vehicule');
+                await updateSession('vehicule');
                 $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
 
             },
@@ -58,15 +60,16 @@ export class Vehicule {
     }
     
     delVehicule() {
+        setSession(this.dataArray);
         $.ajax({
             url: processFile,
             type: "GET",
             data : {
                 function : "deleteVehicule",
             },
-            success: function () {
+            success: async function () {
                 console.log("delVehicule has been executed.");
-                resetSession('vehicule');
+                await resetSession('vehicule');
                 $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
 
             },
@@ -77,6 +80,7 @@ export class Vehicule {
     }
 
     async switchVehicule(way) {
+        
         $.ajax({
             url: processFile,
             type: "GET",
@@ -91,7 +95,7 @@ export class Vehicule {
                 $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
             },
             error: function (xhr, status, error) {
-                console.error("Error page () : ", error, status);
+                console.error("Error page (switchVehicule) : ", error, status);
             },
         })
 
