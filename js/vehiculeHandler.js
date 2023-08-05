@@ -1,5 +1,7 @@
 import { setSession, resetSession, updateSession } from "./sessionHandler";
 
+let processFile = "../php/processVehicule.php";
+
 
 export class Vehicule {
 
@@ -11,22 +13,25 @@ export class Vehicule {
         formData.forEach((value, key) => {
             this.dataArray['vehicule'][key] = value;
         });
-       
-        setSession(this.dataArray);
+
+    
 
     }
 
     saveVehicule() {
+        setSession(this.dataArray);
         $.ajax({
-            url: "../php/processVehicule.php",
+            url: processFile,
             type: "GET",
             data: {
                 function: "saveVehicule",
                 data: JSON.stringify(this.dataArray),
             },
             success: function () {
-                console.log("saveCar has been executed.");
-
+                console.log("saveVehicule has been executed.");
+                $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
+                
+                
             },
             error: function (xhr, status, error) {
                 console.error("Error page () : ", error, status);
@@ -35,34 +40,38 @@ export class Vehicule {
     }
 
     updateVehicule() {
-
         $.ajax({
-            url: "",
+            url: processFile,
             type: "GET",
             data: {
                 data: JSON.stringify(this.dataArray),
+                function : "updateVehicule",
             },
-            success: function () {
-                console.log("updateCar has been executed.");
-                updateSession();
-                document.location.href = "./";
+            success: async function () {
+                console.log("updateVehicule has been executed.");
+                await updateSession('vehicule');
+                $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
+
             },
             error: function (xhr, status, error) {
                 console.error("Error page () : ", error, status);
             },
         });
     }
+    
     delVehicule() {
+        setSession(this.dataArray);
         $.ajax({
-            url: "",
+            url: processFile,
             type: "GET",
-            data: {
-                data: JSON.stringify(this.dataArray['MatV']),
+            data : {
+                function : "deleteVehicule",
             },
-            success: function () {
-                console.log(" has been executed.");
-                resetSession('car');
-                document.location.href = "./";
+            success: async function () {
+                console.log("delVehicule has been executed.");
+                await resetSession('vehicule');
+                $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
+
             },
             error: function (xhr, status, error) {
                 console.error("Error page () : ", error, status);
@@ -70,21 +79,27 @@ export class Vehicule {
         });
     }
 
-    changeVehicule(identifier, way) {
+    async switchVehicule(way) {
+        
         $.ajax({
-            url: "",
+            url: processFile,
             type: "GET",
             data: {
-                data: JSON.stringify((identifier, way)),
+                function : "switchVehicule",
+                data: JSON.stringify(way),
             },
-            success: function () {
-                console.log(" has been executed.");
-                updateSession();
+            success: async function () {
+                
+                console.log("switchVehicule has been executed.");
+                await updateSession('vehicule');
+                $("#fichier-vehicule").load(document.URL + '#fichier-vehicule');  
             },
             error: function (xhr, status, error) {
-                console.error("Error page () : ", error, status);
+                console.error("Error page (switchVehicule) : ", error, status);
             },
         })
+
+       
     }
 
   

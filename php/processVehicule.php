@@ -21,7 +21,7 @@ $_SESSION['stats'] = "";
 
 
 $function = isset($_GET['function']) ? $_GET['function'] : "No function";
-$data = json_decode($_GET['data'], true);
+$data = isset($_GET['data']) ? json_decode($_GET['data'], true) : '';
 
 
 switch ($function) {
@@ -32,10 +32,10 @@ switch ($function) {
         updateVehicule($data);
         break;
     case "deleteVehicule":
-        deleteVehicule($data);
+        deleteVehicule();
         break;
     case "switchVehicule":
-        switchVehicule($data[0], $data[1]);
+        switchVehicule($data);
         break;
 }
 
@@ -49,7 +49,7 @@ function saveVehicule($data)
         $ask = "SELECT count(*) FROM VEHICULE WHERE MatV = ?";
         $stmt = $connexion->prepare($ask);
 
-        $stmt->bind_param('s', $data['MatV']);
+        $stmt->bind_param('s', $data['vehicule']['MatV']);
         if (!$stmt->execute()) {
             die("Erreur lors de l'exécution de la requête : " . $stmt->error);
         }
@@ -58,9 +58,10 @@ function saveVehicule($data)
         $stmt->fetch();
         $stmt->close();
 
+        echo $count;
         if (!$count) {
 
-            echo "1";
+
             $sql = "INSERT INTO VEHICULE (
             MatV,	
             ImmatV,
@@ -72,7 +73,7 @@ function saveVehicule($data)
             CarbV,	
             CoulV,	
             NbPlV,	
-            AnnSV,	
+            AnnV,	
             KilDernE,	
             KilProE	
             ) VALUES ( ?,?,?,?,?,?,?,?,?,?,?,?,? )";
@@ -92,7 +93,7 @@ function saveVehicule($data)
                 $data['vehicule']['ModV'],
                 $data['vehicule']['CatV'],
                 $data['vehicule']['PuisV'],
-                $data['vehicule']['CarbV'],
+                strtolower($data['vehicule']['CarbV']),
                 $data['vehicule']['CoulV'],
                 $data['vehicule']['NbPlV'],
                 $data['vehicule']['AnnV'],
@@ -108,7 +109,7 @@ function saveVehicule($data)
 
 
             $_SESSION['stats'] = "VEHICULE ENREGISTRE";
-            echo "success!";
+            echo "Save : Success!";
             $stmt->close();
 
 
@@ -141,7 +142,7 @@ function updateVehicule($newData)
         $stmt->fetch();
         $stmt->close();
 
-        if (!$count) {
+        if ($count) {
             $sql = "UPDATE VEHICULE SET
             ImmatV = ?,
             TypeV = ?,	
@@ -154,7 +155,8 @@ function updateVehicule($newData)
             NbPlV = ?,	
             AnnV = ?,	
             KilDernE = ?,	
-            KilProE = ?,	
+            KilProE = ?
+
             WHERE MatV = ?";
 
 
@@ -188,7 +190,7 @@ function updateVehicule($newData)
 
 
             $_SESSION['stats'] = "VEHICULE MIS A JOUR";
-            echo "success!";
+            echo "Update : Success!";
             $stmt->close();
 
             mysqli_close($connexion);
@@ -196,31 +198,35 @@ function updateVehicule($newData)
     }
 }
 
-function deleteVehicule($identifier)
+function deleteVehicule()
 {
     require "connexion.php";
-
-
-
+    $identifier = $_SESSION['vehicule']['MatV'];
     $sql = " DELETE FROM VEHICULE WHERE MatV=?";
 
     $stmt = $connexion->prepare($sql);
+    if (!$stmt) {
+        die("Erreur lors de la connexion" . $connexion->error);
+    }
 
     $stmt->bind_param('s', $identifier);
     $stmt->execute();
     if (!$stmt->execute()) {
         die("Erreur lors de l'exécution de la requête : " . $stmt->error);
     }
+    $_SESSION['stats'] = "VEHICULE SUPPRIMER";
+    echo "Delete : Success!";
     $stmt->close();
     mysqli_close($connexion);
 }
 
-function switchVehicule($identifier, $way)
+function switchVehicule($way)
 {
     include "connexion.php";
     if (!in_array($way, [1, -1, 0])) {
         $way = 0;
     }
+
 
 
 
@@ -230,7 +236,8 @@ function switchVehicule($identifier, $way)
 
     $result = $stmt->get_result();
     $MATV = []; //COntient les resultats de la requete
-    $VEHICULE = isset($_SESSION['car']['MatV']) ? $_SESSION['car']['MatV'] : ""; // Contient les infos du vehicule dans la session
+    $VEHICULE = isset($_SESSION['vehicule']['MatV']) ? $_SESSION['vehicule']['MatV'] : ""; // Contient les infos du vehicule dans la session
+
     $count = 0;
     while ($row = $result->fetch_assoc()) {
         foreach ($row as $key => $value) {
@@ -240,7 +247,10 @@ function switchVehicule($identifier, $way)
     }
 
 
-
+    //print_r($MATV);
+    if (empty($VEHICULE)) {
+        $VEHICULE = $MATV[0];
+    }
 
     $condition = (!empty($VEHICULE));
     if ($condition) {
@@ -252,7 +262,7 @@ function switchVehicule($identifier, $way)
                 $nextIndex = ($nextIndex) < 0 ? $count - 1 : $nextIndex; // Nouvelle index du suivant ou précédent
                 $nextIndex = ($nextIndex) >= $count ? 0 : $nextIndex; // Nouvelle index du suivant ou précédent
 
-                echo $nextIndex;
+
                 $next = $MATV[$nextIndex];
             }
         }
@@ -260,5 +270,11 @@ function switchVehicule($identifier, $way)
         $next = $MATV[0];
     }
 
-    $_SESSION['car']['MatV'] = $next;
+   
+    echo "Next : Success!";
+
+    $_SESSION['vehicule']['MatV'] = $next;
+
+
+    return 0;
 }

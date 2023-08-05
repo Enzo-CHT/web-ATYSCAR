@@ -901,7 +901,16 @@ a {
   justify-content: center;
   align-items: center;
   margin-top : 2%;
+  font-weight: 800 ;
 }
+
+
+#fichier-vehicule #span-stats {
+  background-color: blanchedalmond;
+  border-radius: 10px;
+}
+
+
 
 #construction>div {
   display: flex;
@@ -929,4 +938,6 @@ a {
   border-radius: 10px;
   width: 250px;
   height: 250px;
+
 }
+

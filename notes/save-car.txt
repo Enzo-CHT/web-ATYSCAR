@@ -5,14 +5,15 @@
 
 Add carHandler.js
 
-- Add enregistrer car
-    - Complete newCar
+Ok Add enregistrer car
+    Ok Complete newCar
+    Ok Modifier fichier-vehicule
+Ok Add Supprimer car
+    Ok complete delCar
+    Ok Modifier fichier-vehicule
+Ok Add Modifier car
     - Modifier fichier-vehicule
-- Add Supprimer car
-    - complete delCar
-    - Modifier fichier-vehicule
-- Add Modifier car
-    - Modifier fichier-vehicule
-- Add Suivant-Precedent 
-    - Complete changeCar
-    - Modifier fichier-vehicule
+Ok Add Suivant-Precedent 
+    Ok Complete changeCar
+    Ok Modifier fichier-vehicule
+    Ok Bug de Changement de Vehicule.
