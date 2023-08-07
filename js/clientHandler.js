@@ -92,7 +92,7 @@ export async function updateClient(dataArray) {
  * @param {int} way (1 : Suivant / -1 : Précédent)
  * @param {str} page chemin vers la page de redirection
  */
-export async function changeClient(way, page = null) {
+export async function changeClient(way) {
 
     try {
 
@@ -105,6 +105,7 @@ export async function changeClient(way, page = null) {
             success: async function () {
                 console.log('changeClient has been executed.');
                 await updateSession();
+                $("#fichier-client").load(document.URL + '#fichier-client'); 
             },
             error: function (xhr, status, error) {
                 console.error('Page error (newClient)', error, status)
@@ -117,7 +118,6 @@ export async function changeClient(way, page = null) {
     }
 
 
-    window.location.href = page; // Refresh
 }
 
 
