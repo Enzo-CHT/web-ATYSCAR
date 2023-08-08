@@ -5,8 +5,9 @@ Ok Générer numéro de contrat
 Ok Récupérer les données de contrat
 Ok Enregistrer les données de contrat
 Ok Centrer le texte de vérification
-- Corriger le bug dans newContrat, CONTRAT EXISTANT bien que non
-- Changement automatique du status (si spam)
-
-- Ajouter une pastille pour s'assurer qu'un matricule à été choisie
+Ok Corriger le bug dans newContrat, CONTRAT EXISTANT bien que non
+Ok Changement automatique du status (si spam)
 Ok Vérifier qu'un element existe
+- Enlever les testes
+- Non reinitilisation de la fenetre en cas d'erreur
+- Ajouter une pastille pour s'assurer qu'un matricule à été choisie

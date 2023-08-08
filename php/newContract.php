@@ -34,24 +34,26 @@ $requirement = [
     'VilRetCont',
     'NumC',
     'MatV',
-    'CodTypTarif'];
+    'CodTypTarif'
+];
 
 
-foreach($ASSOC as $key=>$val) {
-    
-    if (in_array($key, $requirement) && !isset($requirement[$key])) {
+
+
+
+foreach ($ASSOC as $key => $val) {
+    if (in_array($key, $requirement) && $val == null || $val == '') {
         $_SESSION['stats'] = 'CHAMP(S) OBLIGATOIRE(S) MANQUANT(S)';
-        echo 'Fail!';
-        die("$key est manquant");
+        die("Fail : $key est manquant");
     }
 }
 
 
 
-
 if ($ASSOC != 'NONE') {
 
-    $q = "SELECT count(*) FROM CONTRAT WHERE NumCont = ?";
+
+    $q = "SELECT count(*) AS row_count FROM CONTRAT WHERE NumCont = ?";
     $stmt = $connexion->prepare($q);
 
     $stmt->bind_param('s', $ASSOC['NumCont']);
@@ -59,14 +61,17 @@ if ($ASSOC != 'NONE') {
         die("Erreur lors de l'exécution de la requête : " . $stmt->error);
     }
 
-    $stmt->bind_result($count);
-    $stmt->fetch();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $count = $row['row_count'];
+
     $stmt->close();
 
 
 
+    echo $count;
     if (!$count) {
-        
+
         $sql = "INSERT INTO CONTRAT (
         NumCont,
         DatDebCont,	
@@ -87,7 +92,7 @@ if ($ASSOC != 'NONE') {
         }
 
 
-        
+
         $NumCont = $ASSOC['NumCont'];
         $DatDebCont = $ASSOC['DatDebCont'];
         $HeurDepCont = $ASSOC['HeurDepCont'];
