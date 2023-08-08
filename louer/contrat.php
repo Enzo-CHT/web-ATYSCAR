@@ -229,7 +229,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
 
                                 <li>
                                     <div class="container-element">
-                                        <label for="contrat-kilmetrage">Privilégié</label>
+                                        <label for="contrat-kilmetrage">Kilometrage</label>
                                         <input type="radio" name="CodTypTarif" id="contrat-kilmetrage" value="3" />
                                     </div>
                                 </li>
