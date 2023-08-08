@@ -1,18 +1,14 @@
 <?php
 session_start();
 
-
+print_r($_SESSION['vehicule']);
 // Si Client et vehicule définis 
-if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
+if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
     $_SESSION['contrat'] = array();
     $date = date('ymdhis', time());
     //creation du contrat  à partir de la date
     $_SESSION['contrat']['NumCont'] = "CTR" . $date;
 }
-
-
-
-
 
 ?>
 
@@ -54,7 +50,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
             <div class="left-container">
                 <form action="#" method="POST" id="formContrat">
                     <div class="head">
-                        <img class="logo" src="../addons/Atys Car.jpg" alt="atyscar-logo.jpg">
+                        <img class="logo" src="../addons/Atys car.jpg" alt="atyscar-logo.jpg">
                         <br>
                         <div>
                             <a href="rechercher_client.html">
@@ -63,7 +59,8 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
                             <input id="btn-nouveauClient" class="menu-button" type="button" value="NOUVEAU CLIENT">
 
                         </div>
-                        <b><span id="span-stats"></span></b>
+                        <b><span id="span-stats"><?php echo isset($_SESSION['stats']) ?  $_SESSION['stats'] : '' ?></span></b>
+
 
                     </div>
 
@@ -139,31 +136,31 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
 
                     <h1>Contrat</h1>
                     <div class="container-element">
-                        <label for="contrat-contrat-id">Numéro contrat :</label>
+                        <label for="contrat-contrat-id">Numéro contrat<span style="color:red">*</span> :</label>
                         <input type="text" name="NumCont" id="contrat-num-id" value="<?php echo isset($_SESSION['contrat']['NumCont']) ? $_SESSION['contrat']['NumCont'] : ''; ?>" />
                     </div>
                     <div class="container-element">
-                        <label for="contrat-contrat-depart-date">Date départ :</label>
+                        <label for="contrat-contrat-depart-date">Date départ<span style="color:red">*</span> :</label>
                         <input type="date" name="DatDebCont" id="contrat-contrat-depart-date" />
                     </div>
                     <div class="container-element">
-                        <label for="contrat-contrat-depart-heure">Heure départ :</label>
+                        <label for="contrat-contrat-depart-heure">Heure départ<span style="color:red">*</span> :</label>
                         <input type="time" name="HeurDepCont" id="contrat-contrat-depart-heure" />
                     </div>
                     <div class="container-element">
-                        <label for="contrat-contrat-retour-date">Date retour prévue :</label>
+                        <label for="contrat-contrat-retour-date">Date retour prévue<span style="color:red">*</span> :</label>
                         <input type="date" name="DatRetCont" id="contrat-contrat-retour-date" />
                     </div>
                     <div class="container-element">
-                        <label for="contrat-contrat-retour-heure">Heure retour prévue :</label>
+                        <label for="contrat-contrat-retour-heure">Heure retour prévue<span style="color:red">*</span> :</label>
                         <input type="time" name="HeurRetCont" id="contrat-contrat-retour-heure" />
                     </div>
                     <div class="container-element">
-                        <label for="contrat-contrat-depart-ville">Ville départ :</label>
+                        <label for="contrat-contrat-depart-ville">Ville départ<span style="color:red">*</span> :</label>
                         <input type="text" name="VilDepCont" id="contrat-contrat-depart-ville" />
                     </div>
                     <div class="container-element">
-                        <label for="contrat-contrat-retour-ville">Ville retour prévue :</label>
+                        <label for="contrat-contrat-retour-ville">Ville retour prévue<span style="color:red">*</span> :</label>
                         <input type="text" name="VilRetCont" id="contrat-contrat-retour-ville" />
                     </div>
 
@@ -211,7 +208,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
                         </div>
 
                         <div class="type-facturation">
-                            <h2>Type facturation</h2>
+                            <h2>Type facturation<span style="color:red">*</span></h2>
                             <ul class="list-type-facturation">
                                 <li>
                                     <div class="container-element">
@@ -269,48 +266,44 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
     } from "../js/sessionHandler.js";
 
     var formId = "formContrat";
-    let enregistrer = document.getElementById('contrat-btn-enregistrer');
-   
-    let imprimer = document.getElementById('contrat-btn-imprimer');
 
-    let newItemSession = async function(formId) {
+    function encapsulateData(formId) {
         const form = document.getElementById(formId);
         const formData = new FormData(form);
 
-        // Encapsulation des données
-        var ENCAPS = {
-            contrat: {}
-        };
-        formData.forEach(function(value, key) {
-            ENCAPS['contrat'][key] = value;
+        var dataArray = {};
+        formData.forEach((value, key) => {
+            dataArray[key] = value;
         });
+        dataArray['MatV'] = "<?php echo isset($_SESSION['vehicule']['MatV']) ? $_SESSION['vehicule']['MatV'] : '' ?>";
+        dataArray['NumC'] = "<?php echo isset($_SESSION['client']['NumC']) ? $_SESSION['client']['NumC'] : '' ?>";
+        dataArray['NumCont'] = "<?php echo isset($_SESSION['contrat']['NumCont']) ? $_SESSION['contrat']['NumCont'] : '' ?>";
 
-        await setSession(ENCAPS);
+        return dataArray
     }
 
-    enregistrer.onclick = async function() {
-        await newItemSession(formId);
+
+
+    document.getElementById('contrat-btn-enregistrer').onclick = async function() {
+
+        console.log(JSON.stringify(encapsulateData(formId)));
 
         $.ajax({
             url: '../php/newContract.php',
             type: 'POST',
-            success: function() {
-                console.log('newContract has been executed.');
-                console.log("<?php echo isset($_SESSION['contrat-stats']) ?  $_SESSION['contrat-stats'] : '' ?>");
+            data: {
+                'data': JSON.stringify(encapsulateData(formId)),
+            },
+            success: function(response) {
                 
-                var stats = document.getElementById('span-stats');
-                stats.textContent = "<?php echo isset($_SESSION['contrat-stats']) ?  $_SESSION['contrat-stats'] : '' ?>";
-
-                switch (stats.textContent) {
-                    case "CONTRAT EXISTANT":
-                        stats.style = "color : red;";
-                        break;
-                    case "CONTRAT ENREGISTRE AVEC SUCCES !":
-                        stats.style = "color : green;";
-                        break;
+                if (response.trim() == 'Fail!') {
+                    $('#contrat-location').load(document.URL + '#contrat-location');
+                } else {
+                    console.log('newContract has been executed.');
+                    $('#contrat-location').load(document.URL + '#contrat-location');
                 }
-
-
+                
+                console.log("<?php echo (isset($_SESSION['stats']) ?  $_SESSION['stats'] : '') ?>");
             },
             error: function(xhr, error, status) {
                 console.error('Error page (newContract) ', error, status);
@@ -319,10 +312,31 @@ if (isset($_SESSION['client']) && isset($_SESSION['car']['MatV'])) {
 
     }
 
-    $(imprimer).click(function() {
-        newItemSession(formId);
+    document.getElementById('contrat-btn-imprimer').onclick = function() {
 
-    });
+
+    };
+
+    let spanStats = document.getElementById("span-stats");
+    if (spanStats.innerHTML != '') {
+        setTimeout(function() {
+            spanStats.innerHTML = "";
+            <?php unset($_SESSION['stats']); ?>
+        }, 5000);
+    }
+
+
+    var stats = document.getElementById('span-stats');
+
+
+    switch (stats.textContent) {
+        case "CONTRAT EXISTANT":
+            stats.style = "color : red;";
+            break;
+        case "CONTRAT ENREGISTRE AVEC SUCCES !":
+            stats.style = "color : green;";
+            break;
+    }
 </script>
 
 </html>

@@ -8,7 +8,7 @@ require 'connexion.php';
 $data = isset($_POST['tarifs']) ? $_POST['tarifs'] : 'NONE';
 
 
-if ($data['value'] < 0 ) {
+if ($data['value'] < 0) {
     $data['value'] = 0;
 }
 
@@ -17,9 +17,9 @@ if ($data != 'NONE') {
     $OCCURENCE = array();
     $OCCURENCE['tarif'] = $data['value'];
     $OCCURENCE += categorizeInput($data['name']);
-    
 
-   
+
+
     $query = "UPDATE TARIFER SET
             tarif = ? 
             WHERE 
@@ -32,20 +32,22 @@ if ($data != 'NONE') {
     if (!$stmt) {
         die("DB Connecion error : " . $connexion->error);
     }
-    $stmt->bind_param('iisi', 
-            $OCCURENCE['tarif'],
-            $OCCURENCE['CodTypC'],
-            $OCCURENCE['CodPerT'],
-            $OCCURENCE['CodTypTarif'] );
+    $stmt->bind_param(
+        'iisi',
+        $OCCURENCE['tarif'],
+        $OCCURENCE['CodTypC'],
+        $OCCURENCE['CodPerT'],
+        $OCCURENCE['CodTypTarif']
+    );
     if (!$stmt->execute()) {
-        die('Query error :'.  $stmt->error);
+        die('Query error :' .  $stmt->error);
     }
 
     echo "Success!";
     $_SESSION['stats'] = 'DONNEES SAUVEGARDER';
 
-
-
+    $stmt->close();
+    mysqli_close($connexion);
 } else {
     die('Aucun données récupérés');
 }
