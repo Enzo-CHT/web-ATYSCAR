@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -31,46 +30,46 @@
                             <h3>Vacances scolaires</h3>
                             <div class="box-l">
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-particulier-vacances-forfait">Forfait</label>
-                                    <input id="fichier-tarifs-particulier-vacances-forfait" type="number" name="particulier-vacances-forfait">
+                                    <label for="particulier-vacances-forfait">Forfait</label>
+                                    <input id="particulier-vacances-forfait" type="number" name="particulier-vacances-forfait" value=''>
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-particulier-vacances-duree">Duree</label>
-                                    <input id="fichier-tarifs-particulier-vacances-duree" type="number" name="particulier-vacances-duree">
+                                    <label for="particulier-vacances-duree">Duree</label>
+                                    <input id="particulier-vacances-duree" type="number" name="particulier-vacances-duree">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-particulier-vacances-kilometrage">Kilometrage</label>
-                                    <input id="fichier-tarifs-particulier-vacances-kilometrage" type="number" name="particulier-vacances-kilometrage">
+                                    <label for="particulier-vacances-kilometrage">Kilometrage</label>
+                                    <input id="particulier-vacances-kilometrage" type="number" name="particulier-vacances-kilometrage">
                                 </div>
                             </div>
                             <h3>Eté</h3>
                             <div class="box-l">
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-particulier-ete-forfait">Forfait</label>
-                                    <input id="fichier-tarifs-particulier-ete-forfait" type="number" name="particulier-ete-forfait">
+                                    <label for="particulier-ete-forfait">Forfait</label>
+                                    <input id="particulier-ete-forfait" type="number" name="particulier-ete-forfait">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-particulier-ete-duree">Duree</label>
-                                    <input id="fichier-tarifs-particulier-ete-duree" type="number" name="particulier-ete-duree">
+                                    <label for="particulier-ete-duree">Duree</label>
+                                    <input id="particulier-ete-duree" type="number" name="particulier-ete-duree">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-particulier-ete-kilometrage">Kilometrage</label>
-                                    <input id="fichier-tarifs-particulier-ete-kilometrage" type="number" name="particulier-ete-kilometrage">
+                                    <label for="particulier-ete-kilometrage">Kilometrage</label>
+                                    <input id="particulier-ete-kilometrage" type="number" name="particulier-ete-kilometrage">
                                 </div>
                             </div>
                             <h3>Hiver</h3>
                             <div class="box-l">
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-particulier-hiver-forfait">Forfait</label>
-                                    <input id="fichier-tarifs-particulier-hiver-forfait" type="number" name="particulier-hiver-forfait">
+                                    <label for="particulier-hiver-forfait">Forfait</label>
+                                    <input id="particulier-hiver-forfait" type="number" name="particulier-hiver-forfait">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-particulier-hiver-duree">Duree</label>
-                                    <input id="fichier-tarifs-particulier-hiver-duree" type="number" name="particulier-hiver-duree">
+                                    <label for="particulier-hiver-duree">Duree</label>
+                                    <input id="particulier-hiver-duree" type="number" name="particulier-hiver-duree">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-particulier-hiver-kilometrage">Kilometrage</label>
-                                    <input id="fichier-tarifs-particulier-hiver-kilometrage" type="number" name="particulier-hiver-kilometrage">
+                                    <label for="particulier-hiver-kilometrage">Kilometrage</label>
+                                    <input id="particulier-hiver-kilometrage" type="number" name="particulier-hiver-kilometrage">
                                 </div>
                             </div>
 
@@ -81,46 +80,46 @@
                             <h3>Vacances scolaires</h3>
                             <div class="box-l">
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-entreprise-vacances-forfait">Forfait</label>
-                                    <input id="fichier-tarifs-entreprise-vacances-forfait" type="number" name="entreprise-vacances-forfait">
+                                    <label for="entreprise-vacances-forfait">Forfait</label>
+                                    <input id="entreprise-vacances-forfait" type="number" name="entreprise-vacances-forfait">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-entreprise-vacances-duree">Duree</label>
-                                    <input id="fichier-tarifs-entreprise-vacances-duree" type="number" name="entreprise-vacances-duree">
+                                    <label for="entreprise-vacances-duree">Duree</label>
+                                    <input id="entreprise-vacances-duree" type="number" name="entreprise-vacances-duree">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-entreprise-vacances-kilometrage">Kilometrage</label>
-                                    <input id="fichier-tarifs-entreprise-vacances-kilometrage" type="number" name="entreprise-vacances-kilometrage">
+                                    <label for="entreprise-vacances-kilometrage">Kilometrage</label>
+                                    <input id="entreprise-vacances-kilometrage" type="number" name="entreprise-vacances-kilometrage">
                                 </div>
                             </div>
                             <h3>Eté</h3>
                             <div class="box-l">
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-entreprise-ete-forfait">Forfait</label>
-                                    <input id="fichier-tarifs-entreprise-ete-forfait" type="number" name="entreprise-ete-forfait">
+                                    <label for="entreprise-ete-forfait">Forfait</label>
+                                    <input id="entreprise-ete-forfait" type="number" name="entreprise-ete-forfait">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-entreprise-ete-duree">Duree</label>
-                                    <input id="fichier-tarifs-entreprise-ete-duree" type="number" name="entreprise-ete-duree">
+                                    <label for="entreprise-ete-duree">Duree</label>
+                                    <input id="entreprise-ete-duree" type="number" name="entreprise-ete-duree">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-entreprise-ete-kilometrage">Kilometrage</label>
-                                    <input id="fichier-tarifs-entreprise-ete-kilometrage" type="number" name="entreprise-ete-kilometrage">
+                                    <label for="entreprise-ete-kilometrage">Kilometrage</label>
+                                    <input id="entreprise-ete-kilometrage" type="number" name="entreprise-ete-kilometrage">
                                 </div>
                             </div>
                             <h3>Hiver</h3>
                             <div class="box-l">
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-entreprise-hiver-forfait">Forfait</label>
-                                    <input id="fichier-tarifs-entreprise-hiver-forfait" type="number" name="entreprise-hiver-forfait">
+                                    <label for="entreprise-hiver-forfait">Forfait</label>
+                                    <input id="entreprise-hiver-forfait" type="number" name="entreprise-hiver-forfait">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-entreprise-hiver-duree">Duree</label>
-                                    <input id="fichier-tarifs-entreprise-hiver-duree" type="number" name="entreprise-hiver-duree">
+                                    <label for="entreprise-hiver-duree">Duree</label>
+                                    <input id="entreprise-hiver-duree" type="number" name="entreprise-hiver-duree">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-entreprise-hiver-kilometrage">Kilometrage</label>
-                                    <input id="fichier-tarifs-entreprise-hiver-kilometrage" type="number" name="entreprise-hiver-kilometrage">
+                                    <label for="entreprise-hiver-kilometrage">Kilometrage</label>
+                                    <input id="entreprise-hiver-kilometrage" type="number" name="entreprise-hiver-kilometrage">
                                 </div>
                             </div>
 
@@ -131,47 +130,47 @@
                             <h3>Vacances scolaires</h3>
                             <div class="box-l">
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-privilegie-vacances-forfait">Forfait</label>
-                                    <input id="fichier-tarifs-privilegie-vacances-forfait" type="number" name="privilegie-vacances-forfait">
+                                    <label for="privilegie-vacances-forfait">Forfait</label>
+                                    <input id="privilegie-vacances-forfait" type="number" name="privilegie-vacances-forfait">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-privilegie-vacances-duree">Duree</label>
-                                    <input id="fichier-tarifs-privilegie-vacances-duree" type="number" name="privilegie-vacances-duree">
+                                    <label for="privilegie-vacances-duree">Duree</label>
+                                    <input id="privilegie-vacances-duree" type="number" name="privilegie-vacances-duree">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-privilegie-vacances-kilometrage">Kilometrage</label>
-                                    <input id="fichier-tarifs-privilegie-vacances-kilometrage" type="number" name="privilegie-vacances-kilometrage">
+                                    <label for="privilegie-vacances-kilometrage">Kilometrage</label>
+                                    <input id="privilegie-vacances-kilometrage" type="number" name="privilegie-vacances-kilometrage">
                                 </div>
                             </div>
                             <h3>Eté</h3>
                             <div class="box-l">
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-privilegie-ete-forfait">Forfait</label>
-                                    <input id="fichier-tarifs-privilegie-ete-forfait" type="number" name="privilegie-ete-forfait">
+                                    <label for="privilegie-ete-forfait">Forfait</label>
+                                    <input id="privilegie-ete-forfait" type="number" name="privilegie-ete-forfait">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-privilegie-ete-duree">Duree</label>
-                                    <input id="fichier-tarifs-privilegie-ete-duree" type="number" name="privilegie-ete-duree">
+                                    <label for="privilegie-ete-duree">Duree</label>
+                                    <input id="privilegie-ete-duree" type="number" name="privilegie-ete-duree">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-privilegie-ete-kilometrage">Kilometrage</label>
-                                    <input id="fichier-tarifs-privilegie-ete-kilometrage" type="number" name="privilegie-ete-kilometrage">
+                                    <label for="privilegie-ete-kilometrage">Kilometrage</label>
+                                    <input id="privilegie-ete-kilometrage" type="number" name="privilegie-ete-kilometrage">
                                 </div>
                             </div>
 
                             <h3>Hiver</h3>
                             <div class="box-l">
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-privilegie-hiver-forfait">Forfait</label>
-                                    <input id="fichier-tarifs-privilegie-hiver-forfait" type="number" name="privilegie-hiver-forfait">
+                                    <label for="privilegie-hiver-forfait">Forfait</label>
+                                    <input id="privilegie-hiver-forfait" type="number" name="privilegie-hiver-forfait">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-privilegie-hiver-duree">Duree</label>
-                                    <input id="fichier-tarifs-privilegie-hiver-duree" type="number" name="privilegie-hiver-duree">
+                                    <label for="privilegie-hiver-duree">Duree</label>
+                                    <input id="privilegie-hiver-duree" type="number" name="privilegie-hiver-duree">
                                 </div>
                                 <div class="container-element">
-                                    <label for="fichier-tarifs-privilegie-hiver-kilometrage">Kilometrage</label>
-                                    <input id="fichier-tarifs-privilegie-hiver-kilometrage" type="number" name="privilegie-hiver-kilometrage">
+                                    <label for="privilegie-hiver-kilometrage">Kilometrage</label>
+                                    <input id="privilegie-hiver-kilometrage" type="number" name="privilegie-hiver-kilometrage">
                                 </div>
                             </div>
 
@@ -184,66 +183,104 @@
     </main>
 </body>
 <script>
-    $("input[type='number']").on("input", function() {
-        const formId = 'priceForm';
-        const form = document.getElementById(formId);
-        const formData = new FormData(form);
-        data = generateEmptyDataStructure(); // Créer une structure vide
+    document.getElementById('privilegie-hiver-kilometrage').value = 0.500;
+    document.addEventListener("DOMContentLoaded", function() {
+        // Récupère tous les inputs du document
+        var inputs = document.querySelectorAll("input[type='number']");
+
+        // Ajoute une écoute pour chaque element
+        inputs.forEach(function(input) {
+            
+            // Ajout de l'évement "Si perte de focus sur input" 
+            input.addEventListener("blur", function(event) { 
+                // Recupère les données des cibles ayant déclancher l'évenement
+                var inputName = event.target.name;
+                var inputValue = event.target.value;
+                console.log("Input " + inputName + " has changed to " + inputValue);
+                $.ajax({
+                    url: "../php/savePrice.php",
+                    type: 'POST',
+                    header: {
+                        'Content-Type': 'json/application',
+                    },
+                    data: {
+                        'tarifs': {
+                            'name' : inputName,
+                            'value' : inputValue,
+                        }
+                    },
+                    success: function() {
+                        console.log('Prices have been saved.');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error page in (fichier-tarifs.php)', status, error);
+                    }
 
 
-
-        formData.forEach((value, key) => {
-            cat = key.split('-'); //Recupère les noms des inputs et sépare les différentes catégories
-            data['tarifs'][cat[0]][cat[1]][cat[2]] = value; // Place la valeur en fonction des catégories dans la structure
+                });
+            });
         });
-
-    
-        $.ajax({
-            url: "",
-            type: 'GET',
-            header: {
-                'Content-Type': 'json/application',
-            },
-            data: JSON.stringify(data),
-            success: function() {
-                console.log('Prices have been saved.');
-            },
-            error: function(xhr, status, error) {
-                console.error('Error page in (fichier-tarifs.php)', status, error);
-            }
-
-
-        });
-
     });
 
 
 
-    function generateEmptyDataStructure() {
-        return {
-            tarifs: {
-                particulier: generateSubcategory(),
-                entreprise: generateSubcategory(),
-                privilegie: generateSubcategory()
-            }
-        };
-    }
 
-    function generateSubcategory() {
-        return {
-            vacances: generateFieldStructure(),
-            hiver: generateFieldStructure(),
-            ete: generateFieldStructure()
-        };
-    }
-
-    function generateFieldStructure() {
-        return {
-            forfait: '',
-            duree: '',
-            kilometrage: ''
-        };
-    }
+    
 </script>
+<?php 
+$query = 'SELECT * FROM TARIFER';
 
+$dbh = new PDO('mysql:host=localhost;dbname=wb-atyscar','root','');
+$stmt = $dbh->prepare($query);
+$stmt->execute();
+
+// Fetch all rows as an array of associative arrays
+$allRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// You can loop through the rows if needed
+echo "<script>";
+foreach ($allRows as $row) {
+    // Access individual columns using the column name
+    $name = '';
+    switch ($row['CodTypC']) {
+        case '1':
+            $name .= 'particulier';
+            break;
+        case '2':
+            $name .= 'entreprise';
+            break;
+        case '3':
+            $name .= 'privilegie';
+            break;
+    }
+    switch ($row['CodPerT']) {
+        case 'VAC':
+            $name .= '-vacances';
+            break;
+        case 'HIV':
+            $name .= '-hiver';
+            break;
+        case 'ETE':
+            $name .= '-ete';
+            break;
+    }
+    switch ($row['CodTypTarif']) {
+        case '1':
+            $name .= '-forfait';
+            break;
+        case '2':
+            $name .= '-duree';
+            break;
+        case '3':
+            $name .= '-kilometrage';
+            break;
+    }
+
+    echo "var element = document.getElementById('" . $name . "');";
+    echo "    element.value = " . $row['tarif'] . ";";
+
+        // Process data or output as needed
+}
+echo "</script>";
+?>
 </html>
