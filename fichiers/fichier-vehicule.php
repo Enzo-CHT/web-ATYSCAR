@@ -17,7 +17,7 @@
 </head>
 
 <body>
- 
+
   <main id="fichier-vehicule">
     <div>
       <div>
@@ -68,6 +68,7 @@
           <div class="right-container top">
             <div class="btn-container">
               <div>
+
                 <input id="btn-add" class="menu-button" type="button" value="Ajouter" />
                 <input id="btn-update" class="menu-button" type="button" value="Modifier" />
                 <input id="btn-del" class="menu-button" type="button" value="Supprimer" />
@@ -79,7 +80,10 @@
               </div>
 
               <div>
-                <input id="btn-save" class="menu-button" type="button" value="Enregistrer" />
+                <!-- Not used 
+                  <input id="btn-save" class="menu-button" type="button" value="Enregistrer" />
+                -->
+                <input id="btn-clear" class="menu-button" type="button" value="Vider" />
                 <a href="../actualiser/index.html"><input class="menu-button" type="button" value="Annuler" /></a>
               </div>
             </div>
@@ -135,11 +139,14 @@
                 dernier entretien</label>
               <input style="width: 55%" type="number" name="KilDernE" id="fichier-vehicule-entretien-pre-kilometrage" value="<?php echo isset($_SESSION['vehicule']['KilDernE']) ? $_SESSION['vehicule']['KilDernE'] : ''; ?>" />
             </div>
+            <!--
             <div class="container-element">
               <label for="fichier-vehicule-entretien-pre-date">Date dernier
                 entretien</label>
-              <input style="width: 55%" type="text" name="Date-Ent" id="fichier-vehicule-entretien-pre-date" value="<?php echo isset($_SESSION['vehicule']['Date-Ent']) ? $_SESSION['vehicule']['Date-Ent'] : ''; ?>" />
+              <input style="width: 55%" type="text" name="Date-Ent" id="fichier-vehicule-entretien-pre-date" value="<?php //echo isset($_SESSION['vehicule']['Date-Ent']) ? $_SESSION['vehicule']['Date-Ent'] : ''; 
+                                                                                                                    ?>" />
             </div>
+          -->
             <div class="container-element">
               <label for="fichier-vehicule-entretien-pro-kilometrage">Kilométrage
                 prochain entretien</label>
@@ -162,16 +169,16 @@
 
   let formId = "vehiculeForm";
 
-  document.getElementById('btn-save').onclick = function() {
+  document.getElementById('btn-add').onclick = function() {
     let element = new Vehicule(formId);
     element.saveVehicule();
-    
-    
+
+
   };
   document.getElementById('btn-del').onclick = function() {
     let element = new Vehicule(formId);
     element.delVehicule();
-    
+
 
   }
   document.getElementById('btn-update').onclick = function() {
@@ -179,28 +186,39 @@
     element.updateVehicule();
 
   }
-  
+
   document.getElementById("btn-pre").onclick = function() {
-    cSwitchVehicule(-1);
+    let element = new Vehicule(formId);
+    element.switchVehicule(-1)
   };
   document.getElementById("btn-suiv").onclick = function() {
-    cSwitchVehicule(1);
-  };
-  
-  function cSwitchVehicule(way) {
     let element = new Vehicule(formId);
-    element.switchVehicule(way)
+    element.switchVehicule(1)
   };
+
+
+  // Vide les champs remplit
+  document.getElementById('btn-clear').onclick = function() {
+
+    let inputs = document.querySelectorAll('input:not(.menu-button)');
+    inputs.forEach(input => {
+      input.value = '';
+      $(input).prop("checked", false);
+    });
+
+  };
+
+
+
+
 
   let spanStats = document.getElementById("span-stats");
   if (spanStats.innerHTML != '') {
     setTimeout(function() {
-      spanStats.innerHTML = "" ;
-      <?php unset($_SESSION['stats']);?>
-    }, 5000); 
+      spanStats.innerHTML = "";
+      <?php unset($_SESSION['stats']); ?>
+    }, 5000);
   }
-
-
 </script>
 
 </html>

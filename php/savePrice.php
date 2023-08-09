@@ -16,6 +16,9 @@ if ($data != 'NONE') {
 
     $OCCURENCE = array();
     $OCCURENCE['tarif'] = $data['value'];
+
+    // Traitement de data
+    // Récupération des catégories de la valeur
     $OCCURENCE += categorizeInput($data['name']);
 
 
