@@ -74,6 +74,16 @@ select {
   box-shadow: inset 0px -2px 0px -1px rgba(0, 0, 0, 0.3);
 }
 
+.form-wrapper {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border: 1px solid blue;
+  background-color: blue;
+  /* other styles */
+}
+
+
 .menu-settings {
   display: inline-flex;
   flex-direction: column;

@@ -26,6 +26,7 @@ require "../php/connexion.php";
 
                 <div>
                     <img class="logo" src="../addons/Atys Car.jpg" alt="logo-atyscar.jpg">
+                    <b><span id="span-stats"><?php  echo isset($_SESSION['stats']) ? $_SESSION['stats'] : '' ; ?></span></b>
                 </div>
                 <div class="container">
 
@@ -266,6 +267,13 @@ require "../php/connexion.php";
     document.getElementById('btn-annuler').onclick = function() {
         resetSession();
     }
+
+
+    setInterval(function() {
+        <?php $_SESSION['stats'] = '' ?>
+        document.getElementById('span-stats').innerHTML = '';
+    }, 5000);
+
 </script>
 
 </html>

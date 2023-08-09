@@ -24,6 +24,11 @@ $function = isset($_GET['function']) ? $_GET['function'] : "No function";
 $data = isset($_GET['data']) ? json_decode($_GET['data'], true) : '';
 
 
+
+
+print_r($data);
+
+
 switch ($function) {
     case "saveVehicule":
         saveVehicule($data);
@@ -39,13 +44,22 @@ switch ($function) {
         break;
 }
 
+
+/**
+ * Fonction de sauvegarde de véhicule
+ * 
+ * La fonction vérifie l'existance d'un véhicule utilisant le matricule MatV
+ * S'il existe ignoré la sauvegarde
+ * Sinon le véhicule est sauvegardé
+ */
 function saveVehicule($data)
 {
     include "connexion.php";
 
-    if (!empty($data)) {
+    // Vérification que les données existe et qu'elles respectent les prérequis
+    if (!empty($data) && checkRequirements($data)) {
 
-
+        // Recherche d'un élement pré existant
         $ask = "SELECT count(*) FROM VEHICULE WHERE MatV = ?";
         $stmt = $connexion->prepare($ask);
 
@@ -58,7 +72,9 @@ function saveVehicule($data)
         $stmt->fetch();
         $stmt->close();
 
-        echo $count;
+        
+
+        // Si aucun element trouvé
         if (!$count) {
 
 
@@ -107,7 +123,7 @@ function saveVehicule($data)
                 die("Erreur lors de l'exécution de la requête : " . $stmt->error);
             }
 
-
+        
             $_SESSION['stats'] = "VEHICULE ENREGISTRE";
             echo "Save : Success!";
             $stmt->close();
@@ -126,6 +142,13 @@ function saveVehicule($data)
     }
 }
 
+/**
+ * Fonction de mis à jour d'un véhicule existant
+ * 
+ * Si le véhicule n'existe pas, la mis à jour est ignoré
+ * 
+ * @param mixed $newData Tableau comportant les nouvelles données du véhicule
+ */
 function updateVehicule($newData)
 {
     include "connexion.php";
@@ -198,9 +221,13 @@ function updateVehicule($newData)
     }
 }
 
+/**
+ * Fonction de suppression de véhicule existant
+ */
 function deleteVehicule()
 {
     require "connexion.php";
+    // Récupération du MatV du véhicule en SESSION
     $identifier = $_SESSION['vehicule']['MatV'];
     $sql = " DELETE FROM VEHICULE WHERE MatV=?";
 
@@ -214,15 +241,23 @@ function deleteVehicule()
     if (!$stmt->execute()) {
         die("Erreur lors de l'exécution de la requête : " . $stmt->error);
     }
+
+
     $_SESSION['stats'] = "VEHICULE SUPPRIMER";
     echo "Delete : Success!";
     $stmt->close();
     mysqli_close($connexion);
 }
 
+/**
+ * Fonction de changement de véhicule
+ * @param mixed $way Direction du changement (-1 ou 1)
+ */
 function switchVehicule($way)
 {
     include "connexion.php";
+
+    // Si la variable ne respecte pas les prérequis
     if (!in_array($way, [1, -1, 0])) {
         $way = 0;
     }
@@ -235,9 +270,12 @@ function switchVehicule($way)
     $stmt->execute();
 
     $result = $stmt->get_result();
-    $MATV = []; //COntient les resultats de la requete
+    $MATV = []; //Contient les resultats de la requete
     $VEHICULE = isset($_SESSION['vehicule']['MatV']) ? $_SESSION['vehicule']['MatV'] : ""; // Contient les infos du vehicule dans la session
 
+
+
+    // Récupération de tous les matricules
     $count = 0;
     while ($row = $result->fetch_assoc()) {
         foreach ($row as $key => $value) {
@@ -247,11 +285,8 @@ function switchVehicule($way)
     }
 
 
-    //print_r($MATV);
-    if (empty($VEHICULE)) {
-        $VEHICULE = $MATV[0];
-    }
-
+    
+    // Si pas de véhicule au départ 
     $condition = (!empty($VEHICULE));
     if ($condition) {
         foreach ($MATV as $i => $value) {
@@ -267,14 +302,51 @@ function switchVehicule($way)
             }
         }
     } else {
+        // Choisir le premier par défaut
         $next = $MATV[0];
     }
 
    
     echo "Next : Success!";
 
-    $_SESSION['vehicule']['MatV'] = $next;
+    $_SESSION['vehicule']['MatV'] = $next; // Définition du nouveau matricule
+    // Le reste des informations seront récupérer lors de la mis à jour de la SESSION
 
 
     return 0;
+}
+
+
+/**
+ * Fonction de vérification des prérequis à l'enregistrement d'un nouveau véhicule
+ */
+function checkRequirements($data) {
+    $Require = [
+        'MatV',	
+        'ImmatV',
+       'TypeV',	
+        'MarV',	
+        'ModV',	
+        'CatV',	
+        'PuisV',
+       'CarbV',	
+       'CoulV',	
+       'NbPlV',	
+       'AnnV',
+    ];
+
+
+    foreach($data['vehicule'] as $key=>$val) {
+        
+
+        //Si la valeur qui est dans le tableau est null ou vide
+        if (in_array($key, $Require) && $val == (null || '')) {
+            
+            $_SESSION['stats'] = 'CHAMP(S) OBLITOIRE(S) MANQUANT(S)';
+            return false;
+        }
+    }
+
+
+    return true ;
 }

@@ -2,7 +2,7 @@ import { resetSession, setSession, updateSession } from "./sessionHandler.js";
 import { redirectTo } from "./actButton.js";
 
 
-let path = "../php/";
+let path = "../php/clientModel.php";
 
 
 /**
@@ -19,8 +19,11 @@ export async function newClient(dataArray, page = null) {
         await setSession(dataArray);
         try {
             await $.ajax({
-                url: path + 'newClient',
+                url: path,
                 type: 'GET',
+                data: {
+                    function: 'newClient',
+                },
                 success: async function () {
                     console.log('newClient has been executed.');
                     await updateSession();
@@ -41,26 +44,25 @@ export async function newClient(dataArray, page = null) {
  */
 export async function delClient(page = null) {
 
-    try {
+    await $.ajax({
+        url: path,
+        type: 'GET',
+        data: {
+            function: 'delClient',
+        },
+        success: async function () {
+            console.log("delClient has been executed.");
+            await resetSession('client');
+            $("#fichier-client").load(document.URL + '#fichier-client');
 
-        await $.ajax({
-            url: path + 'delClient',
-            type: 'GET',
-            success: async function () {
-                console.log("delClient has been executed.");
-                await resetSession();
 
-            },
-            error: function (xhr, status, error) {
-                console.error('Page error (delClient) : ', error, status)
-            }
-        })
+        },
+        error: function (xhr, status, error) {
+            console.error('Page error (delClient) : ', error, status)
+        }
+    })
 
-    } catch (error) {
-        console.error("clientHandler error : ", error);
-    }
 
-    window.location.href = page;
 
 }
 
@@ -73,10 +75,15 @@ export async function updateClient(dataArray) {
     await setSession(dataArray) //Ne récupère que le numéro client
     try {
         await $.ajax({
-            url: path + 'updateClient',
+            url: path,
             type: 'GET',
+            data: {
+                function: 'updateClient',
+            },
             success: async function () {
                 console.log('updateClient has been executed.');
+                $("#fichier-client").load(document.URL + '#fichier-client');
+
             }
         })
 
@@ -97,15 +104,16 @@ export async function changeClient(way) {
     try {
 
         await $.ajax({
-            url: path + 'changeClient',
-            type: 'POST',
+            url: path,
+            type: 'GET',
             data: {
-                way: way
+                function: 'changeClient',
+                data: way,
             },
             success: async function () {
                 console.log('changeClient has been executed.');
                 await updateSession();
-                $("#fichier-client").load(document.URL + '#fichier-client'); 
+                $("#fichier-client").load(document.URL + '#fichier-client');
             },
             error: function (xhr, status, error) {
                 console.error('Page error (newClient)', error, status)
