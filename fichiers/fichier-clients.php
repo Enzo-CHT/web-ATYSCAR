@@ -25,7 +25,7 @@ require "../php/connexion.php";
             <form method="POST" action='#' id="clientForm">
 
                 <div>
-                    <img class="logo" src="../addons/Atys Car.jpg" alt="logo-atyscar.jpg">
+                    <img class="logo" src="../addons/img/Atys Car.jpg" alt="logo-atyscar.jpg">
                     <b><span id="span-stats"><?php  echo isset($_SESSION['stats']) ? $_SESSION['stats'] : '' ; ?></span></b>
                 </div>
                 <div class="container">

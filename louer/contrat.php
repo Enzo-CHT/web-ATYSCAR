@@ -49,7 +49,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
             <div class="left-container">
 
                 <div class="head" id="head">
-                    <img class="logo" src="../addons/Atys car.jpg" alt="atyscar-logo.jpg">
+                    <img class="logo" src="../addons/img/Atys Car.jpg" alt="atyscar-logo.jpg">
                     <br>
                     <div>
                         <a href="rechercher_client.html">

@@ -21,7 +21,7 @@
   <main id="fichier-vehicule">
     <div>
       <div>
-        <img class="logo" src="../addons/Atys Car.jpg" alt="logo-atyscar.jpg" />
+        <img class="logo" src="../addons/img/Atys Car.jpg" alt="logo-atyscar.jpg" />
       </div>
 
       <form id="vehiculeForm">

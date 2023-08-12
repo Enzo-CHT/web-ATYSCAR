@@ -18,7 +18,7 @@
                 <div class="container">
                     <div class="left-container">
 
-                        <img class="logo" src="../addons/Atys Car.jpg" alt="atyscar-logo">
+                        <img class="logo" src="../addons/img/Atys Car.jpg" alt="atyscar-logo">
 
                         <a href="../actualiser/"><input value="Retour" type="button" class="menu-button"></a>
 
