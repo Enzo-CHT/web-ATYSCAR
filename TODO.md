@@ -27,10 +27,44 @@
 
 - Vérifier que les années soient valides
 - Changer les champs texte qui exige des nombres en champs nombre (Retravaille du CSS)
+- Enregistrer le type de vehicule dans la session (utilisation dans facturation et contrat imprimer)
 
 ## TARIFS
 
 - Retravailler CSS
+
+
+## PDFs
+
+
+
+**Facture**
+
+
+*Corp*
+    - Nom/prenom Client
+    - lieu + Date naissance
+    - Nationalité
+    
+    - Véhicule
+
+    - Type de facturation
+    - Remise
+    - Prix a payé (calculer)
+
+
+
+###### FACTURES
+
+
+- Créer la page de facturation
+    - Bouton Enregistrer les modification
+    - Bouton imprimer
+    - Bouton Annuler 
+- Page de facturation
+    - Modification du contrat
+    - Impression de la facture
+
 
 
 ### COMPRENDRE

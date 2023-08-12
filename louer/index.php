@@ -16,7 +16,7 @@ session_start();
 <body>
     <main id="menu-location">
         <div>
-            <img class="logo" src="../addons/Atys Car.jpg" alt="atyscar-logo">
+            <img class="logo" src="../addons/img/Atys Car.jpg" alt="atyscar-logo">
         <div class="container-main-button">
             <a href="contrat.php">
                 <input id="button-nouveau-contrat" class="menu-button"  type="button" value="NOUVEAU CONTRAT">
