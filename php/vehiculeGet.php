@@ -2,63 +2,58 @@
 session_start();
 
 
+include 'connexion.php';
 
-$dbh = new PDO('mysql:host=localhost;dbname=wb-atyscar', 'root', '');
-$options = isset($_SESSION['vehicule']) ? $_SESSION['vehicule'] : 0;
-
+$options = isset($_GET['data']) ? json_decode($_GET['data']) : 0;
 
 
 
 if ($options) {
     $place_holder = array();
     $params = array();
-    $sql = "SELECT MatV FROM VEHICULE";
-    $cpt = 0;
+    $sql = "SELECT MatV FROM VEHICULE WHERE ";
+
     foreach ($options as $key => $value) {
-        $place_holder[] = "$key = :$cpt";
+        $place_holder[] = "$key = ?";
         $params[] = $value;
-        $cpt++;
     }
 
 
-    $sql .= ' WHERE ' . implode(' AND ', $place_holder);
+    $sql .=  implode(' AND ', $place_holder);
 
-    echo $sql;
 
-    $stmt = $dbh->prepare($sql);
+    $stmt = $connexion->prepare($sql);
     if (!$stmt) {
-        die("Error in SQL query : " . $dbh->errorInfo()[2]);
+        die("Error in SQL query : " . $connexion->error);
     }
 
 
-    $cpt = 0;
-    foreach ($params as $value) {
-        $stmt->bindValue(":$cpt", $params[$cpt]);
-        $cpt++;
-    }
+    // Build a string representing the types of parameters ('ssss...' based on the number of parameters)
+    $param_types = str_repeat('s', count($params));
 
+    $stmt->bind_param($param_types, ...$params);
 
 
     if ($stmt->execute()) {
 
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC); //Récupère les données
-        print_r($result);
-        if (!empty($result)) {
-            $_SESSION['vehicule']['MatV'] = $result[0]['MatV'];
-        } else {
-
-            die("No results found" . $stmt->errorInfo()[2]);
+        $result = $stmt->get_result(); //Récupère les données
+        while ($el = $result->fetch_assoc()) {
+            if (!empty($el)) {
+                foreach ($el as $key => $value) {
+                    $_SESSION['vehicule']['MatV'] = $value;
+                }
+            } else {
+                die("No results found" . $stmt->error);
+            }
         }
     } else {
-        die("Error during query execution");
+        die("Error during query execution" . $stmt->error);
     }
 
     echo "Success!";
 
-    $dbh->query('KILL CONNECTION_ID()');
-    $dbh = null;
-
-    
+    $stmt->close();
+    mysqli_close($connexion);
 } else {
     echo $options;
     die('Error vehiculeGet.php : no options loaded ');

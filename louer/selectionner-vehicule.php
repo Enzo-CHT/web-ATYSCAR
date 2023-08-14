@@ -223,7 +223,7 @@ unset($_SESSION['vehicule']);
                 }
             });
 
-
+            console.log(dataArray);
             await setSession({
                 vehicule: dataArray
             });
@@ -232,6 +232,9 @@ unset($_SESSION['vehicule']);
             await $.ajax({
                 url: '../php/vehiculeGet.php', // Récupère la voiture
                 type: 'GET',
+                data : {
+                    data : JSON.stringify(dataArray),
+                },
                 success: function(response) {
                     console.log('carGet has been executed!');
 
@@ -243,7 +246,7 @@ unset($_SESSION['vehicule']);
 
 
             /// Add condition to raise error if element is not found
-            //redirectTo("../louer/contrat")
+            redirectTo("../louer/contrat")
         }
     </script>
 </body>
