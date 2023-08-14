@@ -2,8 +2,6 @@
 session_start();
 
 
-
-print_r($_SESSION['vehicule']);
 // Si Client et vehicule définis 
 if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
     $_SESSION['contrat'] = array();
@@ -264,7 +262,8 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
 
 <script type="module">
     import {
-        setSession
+        setSession,
+        updateSession 
     } from "../js/sessionHandler.js";
 
     var formId = "formContrat";
@@ -328,11 +327,13 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
 
     }
 
-    document.getElementById('contrat-btn-imprimer').onclick = function() {
+    document.getElementById('contrat-btn-imprimer').onclick = async function() {
+        await updateSession('vehicule');
+        /// AJouter session updater pour contrat
         var dataArray = encapsulateData(formId);
 
         console.log(dataArray);
-        setSession({
+        await setSession({
             'contrat': dataArray
         });
 

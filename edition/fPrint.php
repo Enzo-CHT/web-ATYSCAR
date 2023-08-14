@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+
 $addons_files = $_SERVER['DOCUMENT_ROOT'] . '/web-ATYSCAR/addons';
 require("$addons_files/fpdf186/fpdf.php");
 
@@ -20,6 +23,11 @@ class RentalInvoicePDF extends FPDF
     }
     function EntrepriseDetails($content)
     {
+        global $addons_files;
+        // Add an image
+        $imagePath = "$addons_files/img/Atys Car.jpg"; // Update with the actual path to your image
+        $this->Image($imagePath, 160, 5, 40); // Adjust the coordinates and dimensions as needed
+
         $this->SetFont('Arial', 'I', 12);
         $this->SetFillColor(255, 255, 255);
         $this->MultiCell(0, 7, iconv("UTF-8", "CP1252", $content), 0, 'L', true);
@@ -52,18 +60,43 @@ $pdf->AddPage();
 $entreprise = "ATYSCAR";
 $contactEntreprise = "contrat@atyscar.com";
 $contactSupport = "support@atyscar.com";
-$nbContract = "0000";
-$dateDeb = "0000";
-$dateFin = "0000";
+$nbContract = isset($_SESSION['contrat']['NumCont']) ? $_SESSION['contrat']['NumCont'] : "0000";
+$dateDeb = isset($_SESSION['contrat']['DatDebCont']) ? $_SESSION['contrat']['DatDebCont'] : "0000";
+$dateFin = isset($_SESSION['contrat']['DatRetCont']) ? $_SESSION['contrat']['DatRetCont'] : "0000";
 
 
 $nbFact = "AT0000-0000";
-$locataire = "John Doe";
-$vehicule = "Type Marque Modele";
-$duree = "0 Jours";
+
+$nomC = isset($_SESSION['client']['NomC']) ? $_SESSION['client']['NomC'] : "ERROR";
+$prenomC = isset($_SESSION['client']['PrenomC']) ? $_SESSION['client']['PrenomC'] : "ERROR";
+$locataire = $nomC . ' ' . $prenomC;
+
+$typeV = isset($_SESSION['vehicule']['TypeV']) ? $_SESSION['vehicule']['TypeV'] : 'ERROR';
+$marqV = isset($_SESSION['vehicule']['MarV']) ? $_SESSION['vehicule']['MarV'] : 'ERROR';
+$modV = isset($_SESSION['vehicule']['ModV']) ? $_SESSION['vehicule']['ModV'] : 'ERROR';
+$vehicule = "$typeV $marqV $modV";
+
+
+$datediff = strtotime($dateFin) - strtotime($dateDeb)  ;
+$duree = round($datediff / (60 * 60 * 24));
+
 $totalPrice = 0;
-$facturationType = "NONE";
-$remise = "0%";
+$facturationType = 'ERROR';
+$codeTarification = isset($_SESSION['contrat']['CodTypTarif']) ? $_SESSION['contrat']['CodTypTarif'] : '';
+
+switch ($codeTarification) {
+    case 1:
+        $facturationType = "Forfait";
+        break;
+    case 2:
+        $facturationType = "Durée";
+        break;
+    case 3:
+        $facturationType = "Kilométrage";
+        break;
+}
+
+$remise = isset($_SESSION['contrat']['remise']) ? $_SESSION['contrat']['remise'] : "0%";
 
 // Ajouter les détails du locataire
 $entrepriseDetails = "Entreprise : $entreprise
@@ -80,7 +113,7 @@ $factureDetails = "Numéro de facture : INV".date('Y')."-001
 Date : " . date('d/m/Y') . "
 Locataire : $locataire
 Véhicule loué : $vehicule
-Durée de location : $duree
+Durée de location : $duree Jours
 Type de facturation : $facturationType
 Remise : $remise";
 $pdf->Section('Détails de la Facture', $factureDetails);
@@ -92,4 +125,4 @@ $pdf->Section('Détails de la Facture', $factureDetails);
 $pdf->Total($totalPrice);
 
 // Output PDF
-$pdf->Output(); // Display in browser and force download
+$pdf->Output("$nbFact-$locataire.pdf", "D"); // Display in browser and force download

@@ -43,6 +43,10 @@ class ContractPDF extends FPDF
 
     function EntrepriseDetails($content)
     {
+        global $addons_files;
+        // Add an image
+        $imagePath = "$addons_files/img/Atys Car.jpg"; // Update with the actual path to your image
+        $this->Image($imagePath, 160, 5, 40); // Adjust the coordinates and dimensions as needed
         $this->SetFont('Arial', 'I', 12);
         $this->SetFillColor(255, 255, 255);
         $this->MultiCell(0, 7, iconv("UTF-8", "CP1252", $content), 0, 'L', true);
