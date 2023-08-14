@@ -168,7 +168,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                             <a href="selectionner-vehicule"><input id="contrat-btn-select-vehicule" class="menu-button" type="button" value="SELECTIONNER VEHICULE"></a>
                             <div>
                                 <input id="contrat-btn-enregistrer" class="menu-button" type="button" value="Enregistrer">
-                                <input id="contrat-btn-imprimer" class="menu-button" type="button" value="Imprimer">
+                                <!--<input id="contrat-btn-imprimer" class="menu-button" type="button" value="Imprimer">-->
                                 <a href="index.php"><input id="contrat-btn-annuler" class="menu-button" type="button" value="Annuler" onclick="resetSession();"></a>
                             </div>
                     </form>
@@ -327,29 +327,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
 
     }
 
-    document.getElementById('contrat-btn-imprimer').onclick = async function() {
-        await updateSession('vehicule');
-        /// AJouter session updater pour contrat
-        var dataArray = encapsulateData(formId);
-
-        console.log(dataArray);
-        await setSession({
-            'contrat': dataArray
-        });
-
-
-        var newWindow = window.open('../php/contractPrint.php');
-
-      
-        setTimeout(function() {
-            if (newWindow) {
-                newWindow.close();
-            }
-        }, 3000); 
-
-
-
-    };
+  
 
     let spanStats = document.getElementById("span-stats");
     if (spanStats.innerHTML != '') {
