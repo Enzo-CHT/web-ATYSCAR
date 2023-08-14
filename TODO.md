@@ -1,18 +1,15 @@
 
 
 # TOUS
-- Definir les imprimessions
 - Définir un retournement de page lorsque erreur dans php
 
-
-**- Definir les aides**
+**Definir les aides**
 
 ## CONTRAT
 
 - Enlever les testes
 - Non reinitilisation de la fenetre en cas d'erreur
 - Ajouter une pastille pour s'assurer qu'un matricule à été choisie
-- Ajouter 
 - Vérifier la validitité  des documents avant création du contrat(Contrat.php)
 - Récupération de la remise en fonction du type de client (Contrat.php)
 
@@ -26,13 +23,29 @@
 ## FICHIER VOITURE
 
 - Vérifier que les années soient valides
-- Changer les champs texte qui exige des nombres en champs nombre (Retravaille du CSS)
-
-## TARIFS
-
-- Retravailler CSS
 
 
+## BASE DE DONNEES
+- Ajouter le kilometrage véhicule actuel dans la base de données 
+
+
+
+###### Modifier contrat
+
+
+- Créer la page de modification (Utiliser facture.php)
+- Bouton Enregistrer les modification
+- Bouton Annuler 
+
+
+
+## RETRAVAILLER (FIN)
+- Affichage (Louer)
+- CSS (Impression facture)
+- CSS (Impression contrat)
+- CSS (Tarifs)
+- CSS (Fichier voiture)
+- CSS (COntrat)
 ### COMPRENDRE
 
 - carSelector /// TESTER

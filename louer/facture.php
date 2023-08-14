@@ -12,7 +12,7 @@
     <main id="facture">
         <div>
             <div class="head">
-                <img class="logo" src="../addons/Atys Car.jpg" alt="atyscar-logo">
+                <img class="logo" src="../addons/img/Atys Car.jpg" alt="atyscar-logo">
             </div>
             <div class="container">
                 <div class="left-container">

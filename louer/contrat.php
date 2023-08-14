@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 // Si Client et vehicule définis 
 if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
     $_SESSION['contrat'] = array();
@@ -140,34 +141,34 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                         </div>
                         <div class="container-element">
                             <label for="contrat-contrat-depart-date">Date départ<span style="color:red">*</span> :</label>
-                            <input type="date" name="DatDebCont" id="contrat-contrat-depart-date" value="2023-01-01"/>
+                            <input type="date" name="DatDebCont" id="contrat-contrat-depart-date" value="2023-01-01" />
                         </div>
                         <div class="container-element">
                             <label for="contrat-contrat-depart-heure">Heure départ<span style="color:red">*</span> :</label>
-                            <input type="time" name="HeurDepCont" id="contrat-contrat-depart-heure" value="00:00:00"/>
+                            <input type="time" name="HeurDepCont" id="contrat-contrat-depart-heure" value="00:00:00" />
                         </div>
                         <div class="container-element">
                             <label for="contrat-contrat-retour-date">Date retour prévue<span style="color:red">*</span> :</label>
-                            <input type="date" name="DatRetCont" id="contrat-contrat-retour-date" value="2023-01-01"/>
+                            <input type="date" name="DatRetCont" id="contrat-contrat-retour-date" value="2023-01-01" />
                         </div>
                         <div class="container-element">
                             <label for="contrat-contrat-retour-heure">Heure retour prévue<span style="color:red">*</span> :</label>
-                            <input type="time" name="HeurRetCont" id="contrat-contrat-retour-heure" value="00:00:00"/>
+                            <input type="time" name="HeurRetCont" id="contrat-contrat-retour-heure" value="00:00:00" />
                         </div>
                         <div class="container-element">
                             <label for="contrat-contrat-depart-ville">Ville départ<span style="color:red">*</span> :</label>
-                            <input type="text" name="VilDepCont" id="contrat-contrat-depart-ville" value="tmp"/>
+                            <input type="text" name="VilDepCont" id="contrat-contrat-depart-ville" value="tmp" />
                         </div>
                         <div class="container-element">
                             <label for="contrat-contrat-retour-ville">Ville retour prévue<span style="color:red">*</span> :</label>
-                            <input type="text" name="VilRetCont" id="contrat-contrat-retour-ville" value="tmp"/>
+                            <input type="text" name="VilRetCont" id="contrat-contrat-retour-ville" value="tmp" />
                         </div>
 
                         <div class="utilities-btn">
                             <a href="selectionner-vehicule"><input id="contrat-btn-select-vehicule" class="menu-button" type="button" value="SELECTIONNER VEHICULE"></a>
                             <div>
                                 <input id="contrat-btn-enregistrer" class="menu-button" type="button" value="Enregistrer">
-                                <input id="contrat-btn-imprimer" class="menu-button" type="button" value="Imprimer">
+                                <!--<input id="contrat-btn-imprimer" class="menu-button" type="button" value="Imprimer">-->
                                 <a href="index.php"><input id="contrat-btn-annuler" class="menu-button" type="button" value="Annuler" onclick="resetSession();"></a>
                             </div>
                     </form>
@@ -261,7 +262,8 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
 
 <script type="module">
     import {
-        setSession
+        setSession,
+        updateSession 
     } from "../js/sessionHandler.js";
 
     var formId = "formContrat";
@@ -291,12 +293,12 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
 
 
     document.getElementById('contrat-btn-enregistrer').onclick = async function() {
-        console.log(encapsulateData(formId));
+        var dataArray = encapsulateData(formId);
         $.ajax({
             url: '../php/newContract.php',
             type: 'POST',
             data: {
-                'data': JSON.stringify(encapsulateData(formId)),
+                'data': JSON.stringify(dataArray),
             },
             success: function(response) {
 
@@ -310,7 +312,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                     $('#contrat-location').load(document.URL + '#contrat-location');
                 }
                 */
-                
+
                 // tmp --
                 $('#contrat-location').load(document.URL + '#contrat-location');
                 // --
@@ -325,10 +327,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
 
     }
 
-    document.getElementById('contrat-btn-imprimer').onclick = function() {
-
-
-    };
+  
 
     let spanStats = document.getElementById("span-stats");
     if (spanStats.innerHTML != '') {

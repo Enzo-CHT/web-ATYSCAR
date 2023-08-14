@@ -23,7 +23,7 @@ unset($_SESSION['vehicule']);
         <span id="raise-error"></span>
         <div>
 
-            <img class="logo" src="../addons/Atys Car.jpg" alt="atyscar-logo">
+            <img class="logo" src="../addons/img/Atys Car.jpg" alt="atyscar-logo">
             <div class="left-container">
                 <div class="radio-lists">
                     <h2>Carburant</h2>
