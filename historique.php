@@ -163,7 +163,7 @@
         getValue(function(dataToPrint) {
             if (dataToPrint.indexOf('ERREUR') <= -1) {
                 $.ajax({
-                    url : 'php/rPrint.php',
+                    url : 'edition/rPrint.php',
                     type : 'GET',
                     data : {
                         'data' : JSON.stringify(dataToPrint),
