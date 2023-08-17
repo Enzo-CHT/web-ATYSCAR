@@ -27,7 +27,7 @@
                             <div class="container-element">
                                 <label for="historique-nom-client">Nom
                                     Client</label>
-                                <input type="text" id="historique-nom-client" name="nom-client" list="client-list" value="CHETAH">
+                                <input type="text" id="historique-nom-client" name="nom-client" list="client-list" value="CHETAH" onchange="selectField(this)">
                                 <datalist id="client-list">
 
                                     <?php
@@ -53,7 +53,7 @@
                             <div class="container-element">
                                 <label for="historique-num-vehicule">Numéro
                                     Véhicule</label>
-                                <input type="text" id="historique-num-vehicule" name="num-vehicule" list="vehicule-list">
+                                <input type="text" id="historique-num-vehicule" name="num-vehicule" list="vehicule-list" onchange="selectField(this)">
                                 <datalist id="vehicule-list">
 
                                     <?php
@@ -98,7 +98,7 @@
 
                             </div>
                             <div>
-                                <input type="button" class="menu-button" id="btn-print-ref-client" value="IMPRIMER REFERENCES CLIENT">
+                                <input type="button" class="menu-button" id="btn-print-ref-client" value="IMPRIMER REFERENCES CLIENT" onclick="printRef()">
                                 <input type="button" class="menu-button" id="btn-print-ref-client" value="IMPRIMER REFERENCES VEHICULE">
 
                             </div>
@@ -123,9 +123,9 @@
     let dateInput = document.getElementById('historique-date');
     let spanStats = document.getElementById('span-stat');
 
-    function buildDisplay() {
-        console.log("starting to build display..");
 
+
+    function getValue(callback) {
 
         $.ajax({
             url: 'php/referenceGet.php',
@@ -136,11 +136,8 @@
                 'date': dateInput.value,
             },
             success: function(response) {
-                
                 console.log('referenceGet has been executed.');
-                let capsul = response;
-
-                $("#displayer").html(capsul);
+                callback(JSON.parse(response));
 
             },
             error: function(xhr, error, status) {
@@ -149,9 +146,57 @@
         });
 
 
+    }
 
-        console.log("finish building display..");
 
+    function selectField(element) {
+        console.log('Event triggered');
+        if (element.id != 'historique-num-vehicule') {
+            numVehiculeInput.value = '';
+        } else {
+            nomClientInput.value = '';
+        }
+    }
+
+    function printRef() {
+        console.log('Get printed mf');
+        getValue(function(dataToPrint) {
+            if (dataToPrint.indexOf('ERREUR') <= -1) {
+                $.ajax({
+                    url : 'php/rPrint.php',
+                    type : 'GET',
+                    data : {
+                        'data' : JSON.stringify(dataToPrint),
+                    }
+                })
+            }
+        });
+    }
+
+    function buildDisplay() {
+        getValue(function(dataToDisplay) {
+            console.log(dataToDisplay);
+            let output = dataToDisplay;
+            if (dataToDisplay.indexOf('ERREUR') <= -1) {
+                output = "<table style='width:85%'><br><br>";
+                output += "<thead><tr><th>CODE CLIENT </th><th> MATRICULE VEHICULE </th><th> DATES DEPART </th><th> DATES RETOUR </th></tr></thead>";
+                output += "<tbody>";
+
+                dataToDisplay.forEach(element => {
+                    output += '<tr>';
+                    output += '<td>' + element['numClient'] + '</td>';
+                    output += '<td>' + element['matVehicule'] + '</td>';
+                    output += '<td>' + element['dateDebut'] + '</td>';
+                    output += '<td>' + element['dateFin'] + '</td>';
+                    output += '</tr>';
+                });
+
+                output += "</tbody>";
+                output += "</table>";
+
+            }
+            $("#displayer").html(output);
+        });
     }
 </script>
 
