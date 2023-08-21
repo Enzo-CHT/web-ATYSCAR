@@ -1,6 +1,4 @@
-<?php session_start();
-
-?>
+<?php session_start();?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -93,14 +91,10 @@
                     <div class="btn-container">
                         <div class="left-container">
                             <div>
-                                <input type="button" class="menu-button" id="btn-display-ref-client" value="AFFICHER REFERENCES CLIENT" onclick="buildDisplay()">
-                                <input type="button" class="menu-button" id="btn-display-ref-vehicule" value="AFFICHER REFERENCES VEHICULE">
-
+                                <input type="button" class="menu-button" id="btn-display-ref-client" value="AFFICHER REFERENCES" onclick="buildDisplay()">
                             </div>
                             <div>
-                                <input type="button" class="menu-button" id="btn-print-ref-client" value="IMPRIMER REFERENCES CLIENT" onclick="printRef()">
-                                <input type="button" class="menu-button" id="btn-print-ref-client" value="IMPRIMER REFERENCES VEHICULE">
-
+                                <input type="button" class="menu-button" id="btn-print-ref-client" value="IMPRIMER REFERENCES" onclick="printRef()">
                             </div>
                         </div>
                         <div class="right-container">
@@ -159,16 +153,21 @@
     }
 
     function printRef() {
-        console.log('Get printed mf');
         getValue(function(dataToPrint) {
+
             if (dataToPrint.indexOf('ERREUR') <= -1) {
                 $.ajax({
-                    url : 'edition/rPrint.php',
-                    type : 'GET',
-                    data : {
-                        'data' : JSON.stringify(dataToPrint),
+                    url: 'php/sessionSetter.php',
+                    type: 'POST',
+                    data: {
+                        data : JSON.stringify({'REF2PRINT': dataToPrint}),
+                    },
+                    success: function() {
+                        console.log('session setted.')
+                        window.open('edition/rPrint.php', '_blank');
+
                     }
-                })
+                });
             }
         });
     }
