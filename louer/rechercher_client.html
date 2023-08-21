@@ -8,9 +8,6 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="module">
-        import {
-            redirectTo
-        } from "../js/actButton.js";
         document.getElementById('btn-chercher').onclick = function() {
             const data = document.getElementById('contract-id').value;
 
@@ -23,7 +20,7 @@
                     },
                     success: function() {
                         console.log("searchClient has been executed.");
-                        redirectTo('../fichiers/fichier-clients.php')
+                        window.location.href = '../fichiers/fichier-clients.php';
                     },
                     error: function(xhr, status, error) {
                         console.error("Page error (searchClient) : ", error, status);

@@ -20,6 +20,9 @@ CodTypTarif
 
 
 
+
+
+
 $ASSOC = isset($_POST['data']) ? json_decode($_POST['data'], true) : 'NONE';
 
 
@@ -43,10 +46,13 @@ $requirement = [
 
 foreach ($ASSOC as $key => $val) {
     if (in_array($key, $requirement) && $val == null || $val == '') {
-        $_SESSION['stats'] = 'CHAMP(S) OBLIGATOIRE(S) MANQUANT(S)';
-        die("Fail : $key est manquant");
+        die("ERREUR : CHAMP(S) OBLIGATOIRE(S) MANQUANT(S)");
     }
 }
+
+
+
+
 
 
 
@@ -69,7 +75,7 @@ if ($ASSOC != 'NONE') {
 
 
 
-    echo $count;
+   
     if (!$count) {
 
         $sql = "INSERT INTO CONTRAT (
@@ -127,16 +133,15 @@ if ($ASSOC != 'NONE') {
         }
 
 
-        $_SESSION['stats'] = "CONTRAT ENREGISTRE AVEC SUCCES !";
-        echo "Success!";
+       
+        echo "CONTRAT ENREGISTRE AVEC SUCCES !";
         $stmt->close();
 
 
 
         mysqli_close($connexion);
     } else {
-        $_SESSION['stats'] = "CONTRAT EXISTANT";
-        echo "Existing element";
+        echo "ERREUR : CONTRAT EXISTANT";
     }
 } else {
 

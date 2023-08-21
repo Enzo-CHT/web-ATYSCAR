@@ -160,6 +160,6 @@ function updateContract($data)
         $stmt->close();
         mysqli_close($connexion);
     } else {
-        die('No DATA embedded.');
+        die('Contract : No DATA embedded.');
     }
 }

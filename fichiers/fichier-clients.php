@@ -11,10 +11,10 @@ require "../php/connexion.php";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-
-
-
     <title>FICHIER CLIENTS</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/sessionHandler.js"></script>
+    <script src="../js/clientHandler.js"></script>
 </head>
 
 <body>
@@ -26,7 +26,7 @@ require "../php/connexion.php";
 
                 <div>
                     <img class="logo" src="../addons/img/Atys Car.jpg" alt="logo-atyscar.jpg">
-                    <b><span id="span-stats"><?php  echo isset($_SESSION['stats']) ? $_SESSION['stats'] : '' ; ?></span></b>
+                    <b><span id="span-stats"><?php echo isset($_SESSION['stats']) ? $_SESSION['stats'] : ''; ?></span></b>
                 </div>
                 <div class="container">
 
@@ -149,18 +149,18 @@ require "../php/connexion.php";
 
                             <div class="btn-container">
                                 <div>
-                                    <input id="btn-modifier" class="menu-button" type="button" value="Modifier">
-                                    <input id="btn-supprimer" class="menu-button" type="button" value="Supprimer">
+                                    <input id="btn-modifier" class="menu-button" type="button" value="Modifier" onclick="modifierClient();">
+                                    <input id="btn-supprimer" class="menu-button" type="button" value="Supprimer" onclick="delClient();">
                                 </div>
 
                                 <div>
-                                    <input id="btn-pre" class="menu-button" type="button" value="Précèdent">
-                                    <input id="btn-suiv" class="menu-button" type="button" value="Suivant">
+                                    <input id="btn-pre" class="menu-button" type="button" value="Précèdent" onclick="changeClient(1);">
+                                    <input id="btn-suiv" class="menu-button" type="button" value="Suivant" onclick="changeClient(-1);">
                                 </div>
 
                                 <div>
-                                    <input class="menu-button" type="button" value="Enregistrer" id="btn-enregistrer">
-                                    <a href="../louer/contrat.php"><input id="btn-annuler" class="menu-button" type="button" value="Annuler" onclick="resetSession();"></a>
+                                    <input class="menu-button" type="button" value="Enregistrer" id="btn-enregistrer" onclick="enregistrerClient();">
+                                    <a href="../louer/contrat.php"><input id="btn-annuler" class="menu-button" type="button" value="Annuler" onclick="resetSession('client');"></a>
                                 </div>
 
                             </div>
@@ -208,21 +208,13 @@ require "../php/connexion.php";
     </main>
 
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="module">
-    import {
-        newClient,
-        updateClient,
-        delClient,
-        changeClient
-    } from "../js/clientHandler.js";
-    import {
-        resetSession
-    } from "../js/sessionHandler.js";
 
+<script>
     var formId = "clientForm";
     var thisPage = window.location.pathname;
-    document.getElementById('btn-enregistrer').onclick = function() {
+
+
+    function enregistrerClient() {
         const form = document.getElementById(formId);
         const formData = new FormData(form);
 
@@ -238,7 +230,10 @@ require "../php/connexion.php";
         newClient(ENCAPS, '../louer/contrat');
     }
 
-    document.getElementById('btn-modifier').onclick = function() {
+
+
+
+    function modifierClient() {
         const form = document.getElementById(formId);
         const formData = new FormData(form);
 
@@ -252,21 +247,6 @@ require "../php/connexion.php";
         });
         updateClient(ENCAPS);
     }
-    document.getElementById('btn-supprimer').onclick = function() {
-        delClient(thisPage);
-    }
-
-
-    document.getElementById('btn-suiv').onclick = function() {
-        changeClient(1, thisPage);
-    }
-    document.getElementById('btn-pre').onclick = function() {
-        changeClient(-1, thisPage);
-    }
-
-    document.getElementById('btn-annuler').onclick = function() {
-        resetSession();
-    }
 
 
     setInterval(function() {
@@ -274,6 +254,7 @@ require "../php/connexion.php";
         document.getElementById('span-stats').innerHTML = '';
     }, 5000);
 
+    
 </script>
 
 </html>

@@ -7,11 +7,10 @@
 
 ## CONTRAT
 
-- Enlever les testes
-- Non reinitilisation de la fenetre en cas d'erreur
-- Ajouter une pastille pour s'assurer qu'un matricule à été choisie
+O Ajouter une pastille pour s'assurer qu'un matricule à été choisie
 - Vérifier la validitité  des documents avant création du contrat(Contrat.php)
 - Récupération de la remise en fonction du type de client (Contrat.php)
+- Corriger l'entré des heures
 
 
 ## FICHIER CLIENT

@@ -1,16 +1,11 @@
-<?php
-session_start();
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <script scr="../js/sessionHandler.js"></script>
+
     <title>LOUER UN VEHICULE</title>
 </head>
 <body>
@@ -19,7 +14,7 @@ session_start();
             <img class="logo" src="../addons/img/Atys Car.jpg" alt="atyscar-logo">
         <div class="container-main-button">
             <a href="contrat.php">
-                <input id="button-nouveau-contrat" class="menu-button"  type="button" value="NOUVEAU CONTRAT">
+                <input id="button-nouveau-contrat" class="menu-button"  type="button" value="NOUVEAU CONTRAT" onclick="resetSession()">
             </a>
             <a href="../build.html">
                 <input id="button-nouveau-contrat" class="menu-button"  type="button" value="MODIFIER CONTRAT">

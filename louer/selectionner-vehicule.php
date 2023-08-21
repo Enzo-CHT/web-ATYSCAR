@@ -12,6 +12,7 @@ unset($_SESSION['vehicule']);
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <title>SELECTIONNER VEHICULE</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/sessionHandler.js"></script>
 
 
 
@@ -89,7 +90,7 @@ unset($_SESSION['vehicule']);
                 </div>
                 <br>
                 <div class="container-element">
-                    <input id="btn-ok" class="menu-button" type="button" value="Ok">
+                    <input id="btn-ok" class="menu-button" type="button" value="Ok" onclick="run()">
                     <a href="contrat.php"><input id="btn-annuler" class="menu-button" type="button" value="Annuler"></a>
 
                 </div>
@@ -97,13 +98,58 @@ unset($_SESSION['vehicule']);
 
         </div>
     </main>
-    <script type="module" type="text/javascript">
-        import {
-            setSession
-        } from "../js/sessionHandler.js";
-        import {
-            redirectTo
-        } from "../js/actButton.js";
+    <script>
+        async function run() {
+            var dataArray = {};
+            var inputs = document.querySelectorAll('input:not(.menu-button)'); //Récupère tous les inputs
+
+            // Récupère les radio
+            inputs.forEach(function(element) {
+                var elementName = element.name;
+
+
+                if (elementName === "CarbV") {
+
+                    if (element.checked) {
+                        var typeCarbV = [
+                            "diesel",
+                            "essence"
+                        ];
+
+                        dataArray[elementName] = typeCarbV[(element.value) - 1];
+
+                    }
+
+                } else {
+                    dataArray[elementName] = element.value;
+                }
+            });
+
+            console.log(dataArray);
+            await setSession({
+                vehicule: dataArray
+            });
+
+            console.log(dataArray);
+            await $.ajax({
+                url: '../php/vehiculeGet.php', // Récupère la voiture
+                type: 'GET',
+                data: {
+                    data: JSON.stringify(dataArray),
+                },
+                success: function(response) {
+                    console.log('carGet has been executed!');
+
+                },
+                error: function(xhr, status, error) {
+                    console.error(error, status);
+                }
+            });
+
+
+            /// Add condition to raise error if element is not found
+            window.location.href = "../louer/contrat";
+        }
 
 
         $(document).ready(function() {
@@ -192,62 +238,6 @@ unset($_SESSION['vehicule']);
             }
 
         });
-
-
-
-
-
-        document.getElementById('btn-ok').onclick = async function() {
-            var dataArray = {};
-            var inputs = document.querySelectorAll('input:not(.menu-button)'); //Récupère tous les inputs
-
-            // Récupère les radio
-            inputs.forEach(function(element) {
-                var elementName = element.name;
-
-
-                if (elementName === "CarbV") {
-
-                    if (element.checked) {
-                        var typeCarbV = [
-                            "diesel",
-                            "essence"
-                        ];
-
-                        dataArray[elementName] = typeCarbV[(element.value) - 1];
-
-                    }
-
-                } else {
-                    dataArray[elementName] = element.value;
-                }
-            });
-
-            console.log(dataArray);
-            await setSession({
-                vehicule: dataArray
-            });
-
-            console.log(dataArray);
-            await $.ajax({
-                url: '../php/vehiculeGet.php', // Récupère la voiture
-                type: 'GET',
-                data : {
-                    data : JSON.stringify(dataArray),
-                },
-                success: function(response) {
-                    console.log('carGet has been executed!');
-
-                },
-                error: function(xhr, status, error) {
-                    console.error(error, status);
-                }
-            });
-
-
-            /// Add condition to raise error if element is not found
-            redirectTo("../louer/contrat")
-        }
     </script>
 </body>
 

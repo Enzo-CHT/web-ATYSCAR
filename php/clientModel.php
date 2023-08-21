@@ -147,13 +147,13 @@ function delClient()
 
     // Récupération du numéro Client
     $NUMC = isset($_SESSION['client']['NumC']) ? $_SESSION['client']['NumC'] : 'NONE';
-
+   
     if ($NUMC != 'NONE') {
         $sql = "DELETE FROM CLIENT WHERE NumC=?";
 
         $stmt = $connexion->prepare($sql);
 
-        $stmt->bind_param('s', $ASSOC['NumC']);
+        $stmt->bind_param('s', $NUMC);
         $stmt->execute();
         if (!$stmt->execute()) {
             die("Erreur lors de l'exécution de la requête : " . $stmt->error);
@@ -300,6 +300,7 @@ function changeClient($way)
     } else {
         $next = $NUMC[0];
     }
+
 
     $_SESSION['client']['NumC'] = $next;
 
