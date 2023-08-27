@@ -1,3 +1,34 @@
+<?php 
+session_start();
+include '../php/connexion.php';
+print_r($_SESSION);
+if (isset($_SESSION['contrat']['NumCont'])) {
+
+    $NumCont = $_SESSION['contrat']['NumCont'];
+
+    $sql = "SELECT * FROM CONTRAT WHERE NumCont = ?";
+    $stmt = $connexion->prepare($sql);
+    $stmt->bind_param('s', $NumCont);
+    $stmt->execute();
+
+    $res = $stmt->get_result();
+    
+    while ($row = $res->fetch_assoc()) {
+        foreach ($row as $key => $val) {
+            $_SESSION['contrat'][$key] = $val;
+        }
+    }
+}
+
+
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,67 +51,67 @@
 
                         <div class="container-element">
                             <label for="facture-nom">Nom</label>
-                            <input type="text" name="nom" id="facture-nom" value="<?php echo isset($_SESSION['NomC']) ? $_SESSION['NomC'] : ''; ?>" />
+                            <input type="text" name="nom" id="facture-nom" value="<?php echo isset($_SESSION['client']['NomC']) ? $_SESSION['client']['NomC'] : ''; ?>" />
                         </div>
                         <div class="container-element">
 
                             <label for="facture-prenom">Prénom</label>
-                            <input type="text" name="prenom" id="facture-prenom" value="<?php echo isset($_SESSION['PrenomC']) ? $_SESSION['PrenomC'] : ''; ?>" />
+                            <input type="text" name="prenom" id="facture-prenom" value="<?php echo isset($_SESSION['client']['PrenomC']) ? $_SESSION['client']['PrenomC'] : ''; ?>" />
                         </div>
                         <div class="container-element">
 
                             <label for="facture-date-naissance">Date de naissance</label>
-                            <input type="text" name="date-naissance" id="facture-date-naissance" value="<?php echo isset($_SESSION['DatNaisC']) ? $_SESSION['DatNaisC'] : ''; ?>" />
+                            <input type="text" name="date-naissance" id="facture-date-naissance" value="<?php echo isset($_SESSION['client']['DatNaisC']) ? $_SESSION['client']['DatNaisC'] : ''; ?>" />
                         </div>
                         <div class="container-element">
 
                             <label for="facture-lieu-naissance">Lieu de naissance</label>
-                            <input type="text" name="lieu-naissance" id="facture-lieu-naissance" value="<?php echo isset($_SESSION['LieuNaisC']) ? $_SESSION['LieuNaisC'] : ''; ?>" />
+                            <input type="text" name="lieu-naissance" id="facture-lieu-naissance" value="<?php echo isset($_SESSION['client']['LieuNaisC']) ? $_SESSION['client']['LieuNaisC'] : ''; ?>" />
                         </div>
                         <div class="container-element">
 
                             <label for="facture-nationalite">Nationalité</label>
-                            <input type="text" name="nationalite" id="facture-nationalite" value="<?php echo isset($_SESSION['NationaliteC']) ? $_SESSION['NationaliteC'] : ''; ?>" />
+                            <input type="text" name="nationalite" id="facture-nationalite" value="<?php echo isset($_SESSION['client']['NationaliteC']) ? $_SESSION['client']['NationaliteC'] : ''; ?>" />
                         </div>
                         <br><br>
                         <div class="container-element">
 
                             <label for="facture-adresse"> Adresse </label>
-                            <input type="text" name="adresse" id="facture-adresse" value="<?php echo isset($_SESSION['AdrRueC']) ? $_SESSION['AdrRueC'] : ''; ?>" />
+                            <input type="text" name="adresse" id="facture-adresse" value="<?php echo isset($_SESSION['client']['AdrRueC']) ? $_SESSION['client']['AdrRueC'] : ''; ?>" />
                         </div>
                         <div class="container-element">
 
                             <label for="facture-ville">Ville</label>
-                            <input type="text" name="ville" id="facture-ville" value="<?php echo isset($_SESSION['AdrVilC']) ? $_SESSION['AdrVilC'] :  ''; ?>" />
+                            <input type="text" name="ville" id="facture-ville" value="<?php echo isset($_SESSION['client']['AdrVilC']) ? $_SESSION['client']['AdrVilC'] :  ''; ?>" />
                         </div>
                         <div class="container-element">
 
                             <label for="facture-code-postal">Code Postal</label>
-                            <input type="text" name="code-postal" id="facture-code-postal" value="<?php echo isset($_SESSION['CodPosC']) ? $_SESSION['CodPosC'] : ''; ?>" />
+                            <input type="text" name="code-postal" id="facture-code-postal" value="<?php echo isset($_SESSION['client']['CodPosC']) ? $_SESSION['client']['CodPosC'] : ''; ?>" />
                         </div>
                         <div class="container-element">
 
                             <label for="facture-telephone">Téléphone</label>
-                            <input type="text" name="telephone" id="facture-telephone" value="<?php echo isset($_SESSION['TelC']) ? $_SESSION['TelC'] : ''; ?>" />
+                            <input type="text" name="telephone" id="facture-telephone" value="<?php echo isset($_SESSION['client']['TelC']) ? $_SESSION['client']['TelC'] : ''; ?>" />
                         </div>
                     </div>
                     <br><br>
                     <div class="passeport">
                         <div class="container-element">
                             <label for="facture-num-passeport">Numéro de passeport </label>
-                            <input type="text" name="num-passeport" id="facture-num-passeport" value="<?php echo isset($_SESSION['NumPasC']) ? $_SESSION['NumPasC'] : ''; ?>" />
+                            <input type="text" name="num-passeport" id="facture-num-passeport" value="<?php echo isset($_SESSION['client']['NumPasC']) ? $_SESSION['client']['NumPasC'] : ''; ?>" />
                         </div>
                         <div class="container-element">
                             <label for="facture-delivrer-date">Date de délivrance </label>
-                            <input type="text" name="delivrer-date" id="facture-delivrer-date" value="<?php echo isset($_SESSION['DatDelPasC']) ? $_SESSION['DatDelPasC'] : ''; ?>" />
+                            <input type="text" name="delivrer-date" id="facture-delivrer-date" value="<?php echo isset($_SESSION['client']['DatDelPasC']) ? $_SESSION['client']['DatDelPasC'] : ''; ?>" />
                         </div>
                         <div class="container-element">
                             <label for="facture-passeport-delivrer-lieu">Lieu de délivrance </label>
-                            <input type="text" name="delivrer-lieu" id="facture-passeport-delivrer-lieu" value="<?php echo isset($_SESSION['LieuDelPasC']) ? $_SESSION['LieuDelPasC'] : ''; ?>" />
+                            <input type="text" name="delivrer-lieu" id="facture-passeport-delivrer-lieu" value="<?php echo isset($_SESSION['client']['LieuDelPasC']) ? $_SESSION['client']['LieuDelPasC'] : ''; ?>" />
                         </div>
                         <div class="container-element">
                             <label for="facture-passeport-delivrer-pays">Pays délivrance </label>
-                            <input type="text" name="delivrer-pays" id="facture-passeport-delivrer-pays" value="<?php echo isset($_SESSION['PaysDelPasC']) ? $_SESSION['PaysDelPasC'] : ''; ?>" />
+                            <input type="text" name="delivrer-pays" id="facture-passeport-delivrer-pays" value="<?php echo isset($_SESSION['client']['PaysDelPasC']) ? $_SESSION['client']['PaysDelPasC'] : ''; ?>" />
                         </div>
                     </div>
                 </div>
@@ -94,6 +125,10 @@
                             <label for="facture-station-retour">Station retour réelle :</label>
                             <input type="text" name="station-retour" id="facture-station-retour" value="<?php echo isset($_SESSION['PaysDelPasC']) ? $_SESSION['PaysDelPasC'] : ''; ?>" />
                         </div>
+                    </div>
+
+                    <div>
+                        <a href="index.html"><input type="button" id="btn-annuler" class="menu-button" value="Annuler"></a>
                     </div>
 
                     <div class="permis">

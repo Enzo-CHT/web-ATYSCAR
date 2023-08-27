@@ -31,10 +31,12 @@ O Ajouter une pastille pour s'assurer qu'un matricule à été choisie
 
 ###### Modifier contrat
 
-
-- Créer la page de modification (Utiliser facture.php)
+O Créer la page de modification (Utiliser facture.php)
+O Bouton Annuler 
+- Mettre en place la recherche d'element (recherche de contrat et de client)
+- Rajouter les champs nécessaire à la modification 
 - Bouton Enregistrer les modification
-- Bouton Annuler 
+- Lié les modification à un Updater de contrat
 
 
 

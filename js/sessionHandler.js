@@ -26,7 +26,7 @@ async function setSession(dataArray) {
 async function updateSession(sessionName = "all") {
   await $.ajax({
     url: "../php/sessionUpdater.php",
-    type: "GET",
+    type: "POST",
     data: {
       session: sessionName,
     },

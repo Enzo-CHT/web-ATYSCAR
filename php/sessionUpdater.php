@@ -7,8 +7,8 @@ session_start();
 
 
 // BUG
-$session = isset($_GET['session']) ? $_GET['session'] : '';
-$data = isset($_GET['data']) ? $_GET['data'] : 'NONE';
+$session = isset($_POST['session']) ? $_POST['session'] : '';
+$data = isset($_POST['data']) ? $_POST['data'] : 'NONE';
 
 
 switch ($session) {
