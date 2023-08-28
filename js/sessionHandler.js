@@ -46,7 +46,7 @@ async function resetSession(session = "all") {
   try {
     await $.ajax({
       url: "../php/sessionReset.php",
-      type: "GET",
+      type: "POST",
       data: {
         session: JSON.stringify(session),
       },

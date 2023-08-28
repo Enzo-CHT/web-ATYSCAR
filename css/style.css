@@ -245,6 +245,12 @@ a {
   width: 95%;
 }
 
+.readonly {
+  box-shadow: none !important;
+  color :#b9352c;
+  font-weight: bold;
+}
+
 .permis {
   display: inline-flex;
   flex-direction: column;
@@ -252,7 +258,7 @@ a {
   width: 95%;
 }
 
-.station {
+.contrat {
   display: inline-flex;
   flex-direction: column;
   padding: 5px;

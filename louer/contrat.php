@@ -35,7 +35,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                     <img class="logo" src="../addons/img/Atys Car.jpg" alt="atyscar-logo.jpg">
                     <br>
                     <div>
-                        <a href="rechercher_client.html">
+                        <a href="recherche_element.html">
                             <input class="menu-button" type="button" value="RECHERCHER CLIENT" onclick="location.href = '../php/searchClient.php'">
                         </a>
                         <input id="btn-nouveauClient" class="menu-button" type="button" value="NOUVEAU CLIENT" onclick="resetSession('client');location.href = '../fichiers/fichier-clients.php'">
@@ -150,7 +150,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                             <div>
                                 <input id="contrat-btn-enregistrer" class="menu-button" type="button" value="Enregistrer" onclick="enregistrerContrat();">
                                 <!--<input id="contrat-btn-imprimer" class="menu-button" type="button" value="Imprimer">-->
-                                <a href="index.php"><input id="contrat-btn-annuler" class="menu-button" type="button" value="Annuler" onclick="resetSession();"></a>
+                                <a href="index.html"><input id="contrat-btn-annuler" class="menu-button" type="button" value="Annuler" onclick="resetSession();"></a>
                             </div>
                     </form>
                 </div>

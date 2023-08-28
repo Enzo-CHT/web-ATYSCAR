@@ -1,31 +1,6 @@
-<?php 
+<?php
 session_start();
-include '../php/connexion.php';
-print_r($_SESSION);
-if (isset($_SESSION['contrat']['NumCont'])) {
-
-    $NumCont = $_SESSION['contrat']['NumCont'];
-
-    $sql = "SELECT * FROM CONTRAT WHERE NumCont = ?";
-    $stmt = $connexion->prepare($sql);
-    $stmt->bind_param('s', $NumCont);
-    $stmt->execute();
-
-    $res = $stmt->get_result();
-    
-    while ($row = $res->fetch_assoc()) {
-        foreach ($row as $key => $val) {
-            $_SESSION['contrat'][$key] = $val;
-        }
-    }
-}
-
-
-
 ?>
-
-
-
 
 
 
@@ -36,6 +11,9 @@ if (isset($_SESSION['contrat']['NumCont'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/sessionHandler.js"></script>
+    <script src="../js/contractHandler.js"></script>
     <title>FACTURE</title>
 </head>
 
@@ -47,104 +25,132 @@ if (isset($_SESSION['contrat']['NumCont'])) {
             </div>
             <div class="container">
                 <div class="left-container">
-                    <div class="client">
+                    <form id="contratForm">
+                        <div class="client">
 
-                        <div class="container-element">
-                            <label for="facture-nom">Nom</label>
-                            <input type="text" name="nom" id="facture-nom" value="<?php echo isset($_SESSION['client']['NomC']) ? $_SESSION['client']['NomC'] : ''; ?>" />
-                        </div>
-                        <div class="container-element">
+                            <label for="select-client"> Client </label>
+                            <input type="text" name="numero-client" id="datalist-client" list="client" value="<?php echo isset($_SESSION['client']['NomC']) ? $_SESSION['client']['NomC'] : ''; ?> <?php echo isset($_SESSION['client']['PrenomC']) ? $_SESSION['client']['PrenomC'] : ''; ?>">
+                            <datalist id="client">
 
-                            <label for="facture-prenom">Prénom</label>
-                            <input type="text" name="prenom" id="facture-prenom" value="<?php echo isset($_SESSION['client']['PrenomC']) ? $_SESSION['client']['PrenomC'] : ''; ?>" />
-                        </div>
-                        <div class="container-element">
+                                <?php
+                                include "../php/connexion.php";
+                                $sql = "SELECT NumC, NomC, PrenomC FROM CLIENT";
+                                $stmt = $connexion->prepare($sql);
+                                if ($stmt->execute()) {
+                                    $result = $stmt->get_result();
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
 
-                            <label for="facture-date-naissance">Date de naissance</label>
-                            <input type="text" name="date-naissance" id="facture-date-naissance" value="<?php echo isset($_SESSION['client']['DatNaisC']) ? $_SESSION['client']['DatNaisC'] : ''; ?>" />
-                        </div>
-                        <div class="container-element">
+                                            // Affichage des noms clients et de leur numéro d'identification
+                                            echo "<option value='" . $row['NumC'] . "'>" . $row['PrenomC'] . " " . $row['NomC'] . "</option>";
+                                        }
+                                    }
+                                }
 
-                            <label for="facture-lieu-naissance">Lieu de naissance</label>
-                            <input type="text" name="lieu-naissance" id="facture-lieu-naissance" value="<?php echo isset($_SESSION['client']['LieuNaisC']) ? $_SESSION['client']['LieuNaisC'] : ''; ?>" />
-                        </div>
-                        <div class="container-element">
 
-                            <label for="facture-nationalite">Nationalité</label>
-                            <input type="text" name="nationalite" id="facture-nationalite" value="<?php echo isset($_SESSION['client']['NationaliteC']) ? $_SESSION['client']['NationaliteC'] : ''; ?>" />
+                                ?>
+                            </datalist>
+
+                            <div class="container-element">
+                                <label for="facture-adresse"> Véhicuel </label>
+                                <input class="readonly" type="text" name="adresse" id="facture-adresse" value="<?php echo isset($_SESSION['vehicule']['MarV']) ? $_SESSION['vehicule']['MarV'] : ''; ?> <?php echo isset($_SESSION['vehicule']['ModV']) ? $_SESSION['vehicule']['ModV'] : ''; ?>" readonly />
+                            </div>
+                            <a href="../fichiers/fichier-vehicule.php"><input type="button" class="menu-button" value="Changer Véhicule"></a>
+                            <input hidden type="button" class="menu-button" value="Voir caractéristiques">
+
+
+
+                            <br><br>
+                            <div class="container-element">
+
+                                <label for="facture-adresse"> Adresse </label>
+                                <input class="readonly" type="text" name="adresse" id="facture-adresse" value="<?php echo isset($_SESSION['client']['AdrRueC']) ? $_SESSION['client']['AdrRueC'] : ''; ?>" readonly />
+                            </div>
+                            <div class="container-element">
+
+                                <label for="facture-ville">Ville</label>
+                                <input class="readonly" type="text" name="ville" id="facture-ville" value="<?php echo isset($_SESSION['client']['AdrVilC']) ? $_SESSION['client']['AdrVilC'] :  ''; ?>" readonly />
+                            </div>
+                            <div class="container-element">
+
+                                <label for="facture-code-postal">Code Postal</label>
+                                <input class="readonly" type="text" name="code-postal" id="facture-code-postal" value="<?php echo isset($_SESSION['client']['CodPosC']) ? $_SESSION['client']['CodPosC'] : ''; ?>" readonly />
+                            </div>
+                            <div class="container-element">
+
+                                <label for="facture-telephone">Téléphone</label>
+                                <input class="readonly" type="text" name="telephone" id="facture-telephone" value="<?php echo isset($_SESSION['client']['TelC']) ? $_SESSION['client']['TelC'] : ''; ?>" readonly />
+                            </div>
                         </div>
                         <br><br>
-                        <div class="container-element">
-
-                            <label for="facture-adresse"> Adresse </label>
-                            <input type="text" name="adresse" id="facture-adresse" value="<?php echo isset($_SESSION['client']['AdrRueC']) ? $_SESSION['client']['AdrRueC'] : ''; ?>" />
+                        <div class="passeport">
+                            <div class="container-element">
+                                <label for="facture-num-passeport">Numéro de passeport </label>
+                                <input class="readonly" type="text" name="num-passeport" id="facture-num-passeport" value="<?php echo isset($_SESSION['client']['NumPasC']) ? $_SESSION['client']['NumPasC'] : ''; ?>" readonly />
+                            </div>
+                            <div class="container-element">
+                                <label for="facture-delivrer-date">Date de délivrance </label>
+                                <input class="readonly" type="text" name="delivrer-date" id="facture-delivrer-date" value="<?php echo isset($_SESSION['client']['DatDelPasC']) ? $_SESSION['client']['DatDelPasC'] : ''; ?>" readonly />
+                            </div>
+                            <div class="container-element">
+                                <label for="facture-passeport-delivrer-lieu">Lieu de délivrance </label>
+                                <input class="readonly" type="text" name="delivrer-lieu" id="facture-passeport-delivrer-lieu" value="<?php echo isset($_SESSION['client']['LieuDelPasC']) ? $_SESSION['client']['LieuDelPasC'] : ''; ?>" readonly />
+                            </div>
+                            <div class="container-element">
+                                <label for="facture-passeport-delivrer-pays">Pays délivrance </label>
+                                <input class="readonly" type="text" name="delivrer-pays" id="facture-passeport-delivrer-pays" value="<?php echo isset($_SESSION['client']['PaysDelPasC']) ? $_SESSION['client']['PaysDelPasC'] : ''; ?>" readonly />
+                            </div>
                         </div>
-                        <div class="container-element">
-
-                            <label for="facture-ville">Ville</label>
-                            <input type="text" name="ville" id="facture-ville" value="<?php echo isset($_SESSION['client']['AdrVilC']) ? $_SESSION['client']['AdrVilC'] :  ''; ?>" />
-                        </div>
-                        <div class="container-element">
-
-                            <label for="facture-code-postal">Code Postal</label>
-                            <input type="text" name="code-postal" id="facture-code-postal" value="<?php echo isset($_SESSION['client']['CodPosC']) ? $_SESSION['client']['CodPosC'] : ''; ?>" />
-                        </div>
-                        <div class="container-element">
-
-                            <label for="facture-telephone">Téléphone</label>
-                            <input type="text" name="telephone" id="facture-telephone" value="<?php echo isset($_SESSION['client']['TelC']) ? $_SESSION['client']['TelC'] : ''; ?>" />
-                        </div>
-                    </div>
-                    <br><br>
-                    <div class="passeport">
-                        <div class="container-element">
-                            <label for="facture-num-passeport">Numéro de passeport </label>
-                            <input type="text" name="num-passeport" id="facture-num-passeport" value="<?php echo isset($_SESSION['client']['NumPasC']) ? $_SESSION['client']['NumPasC'] : ''; ?>" />
-                        </div>
-                        <div class="container-element">
-                            <label for="facture-delivrer-date">Date de délivrance </label>
-                            <input type="text" name="delivrer-date" id="facture-delivrer-date" value="<?php echo isset($_SESSION['client']['DatDelPasC']) ? $_SESSION['client']['DatDelPasC'] : ''; ?>" />
-                        </div>
-                        <div class="container-element">
-                            <label for="facture-passeport-delivrer-lieu">Lieu de délivrance </label>
-                            <input type="text" name="delivrer-lieu" id="facture-passeport-delivrer-lieu" value="<?php echo isset($_SESSION['client']['LieuDelPasC']) ? $_SESSION['client']['LieuDelPasC'] : ''; ?>" />
-                        </div>
-                        <div class="container-element">
-                            <label for="facture-passeport-delivrer-pays">Pays délivrance </label>
-                            <input type="text" name="delivrer-pays" id="facture-passeport-delivrer-pays" value="<?php echo isset($_SESSION['client']['PaysDelPasC']) ? $_SESSION['client']['PaysDelPasC'] : ''; ?>" />
-                        </div>
-                    </div>
                 </div>
                 <div class="right-container">
-                    <div class="station">
+                    <div class="contrat">
+                        <div class="container-element">
+                            <label for="facture-date-depart">Date de départ : </label>
+                            <input type="date" name="date-depart" id="facture-date-depart" value="<?php echo isset($_SESSION['contrat']['DatDebCont']) ? $_SESSION['contrat']['DatDebCont'] : ''; ?>" />
+                        </div>
+                        <div class="container-element">
+                            <label for="facture-date-retour">Date de retour : </label>
+                            <input type="date" name="date-retour" id="facture-date-retour" value="<?php echo isset($_SESSION['contrat']['DatRetCont']) ? $_SESSION['contrat']['DatRetCont'] : ''; ?>" />
+                        </div>
                         <div class="container-element">
                             <label for="facture-station-depart">Station départ : </label>
-                            <input type="text" name="station-depart" id="facture-station-depart" value="<?php echo isset($_SESSION['LieuDelPasC']) ? $_SESSION['LieuDelPasC'] : ''; ?>" />
+                            <input type="text" name="station-depart" id="facture-station-depart" value="<?php echo isset($_SESSION['contrat']['VilDepCont']) ? $_SESSION['contrat']['VilDepCont'] : ''; ?>" />
                         </div>
                         <div class="container-element">
                             <label for="facture-station-retour">Station retour réelle :</label>
-                            <input type="text" name="station-retour" id="facture-station-retour" value="<?php echo isset($_SESSION['PaysDelPasC']) ? $_SESSION['PaysDelPasC'] : ''; ?>" />
+                            <input type="text" name="station-retour" id="facture-station-retour" value="<?php echo isset($_SESSION['contrat']['VilRetCont']) ? $_SESSION['contrat']['VilRetCont'] : ''; ?>" />
+                        </div>
+                        <div class="container-element">
+                            <label for="facture-heure-depart">Heure de départ :</label>
+                            <input type="time" name="heure-depart" id="facture-heure-depart" value="<?php echo isset($_SESSION['contrat']['HeurDepCont']) ? $_SESSION['contrat']['HeurDepCont'] : ''; ?>" />
+                        </div>
+                        <div class="container-element">
+                            <label for="facture-heure-retour">Heure d'arrivé :</label>
+                            <input type="time" name="heure-retour" id="facture-heure-retour" value="<?php echo isset($_SESSION['contrat']['HeurRetCont']) ? $_SESSION['contrat']['HeurRetCont'] : ''; ?>" />
                         </div>
                     </div>
 
-                    <div>
+
+                    <div class="box-c">
+                        <input type="button" id="btn-valider" class="menu-button" value="Valider" onclick="modifierContrat()">
                         <a href="index.html"><input type="button" id="btn-annuler" class="menu-button" value="Annuler"></a>
                     </div>
 
                     <div class="permis">
                         <div class="container-element">
                             <label for="facture-permis-num">Numéro permis : </label>
-                            <input type="text" name="permis-num" id="facture-permis-num" value="<?php echo isset($_SESSION['LieuDelPasC']) ? $_SESSION['LieuDelPasC'] : ''; ?>" />
+                            <input class="readonly" type="text" name="permis-num" id="facture-permis-num" value="<?php echo isset($_SESSION['client']['NumPermisC']) ? $_SESSION['client']['NumPermisC'] : ''; ?>" readonly />
                         </div>
                         <div class="container-element">
                             <label for="facture-permis-delivrer-date">Délivré le :</label>
-                            <input type="text" name="permis-delivrer-date" id="facture-permis-delivrer-date" value="<?php echo isset($_SESSION['PaysDelPasC']) ? $_SESSION['PaysDelPasC'] : ''; ?>" />
+                            <input class="readonly" type="text" name="permis-delivrer-date" id="facture-permis-delivrer-date" value="<?php echo isset($_SESSION['client']['DatDelPermiC']) ? $_SESSION['client']['DatDelPermiC'] : ''; ?>" readonly />
                         </div>
                         <div class="container-element">
                             <label for="facture-permis-delivrer-lieu">à :</label>
-                            <input type="text" name="permis-delivrer-lieu" id="facture-permis-delivrer-lieu" value="<?php echo isset($_SESSION['PaysDelPasC']) ? $_SESSION['PaysDelPasC'] : ''; ?>" />
+                            <input class="readonly" type="text" name="permis-delivrer-lieu" id="facture-permis-delivrer-lieu" value="<?php echo isset($_SESSION['client']['LieuDelPermisC']) ? $_SESSION['client']['LieuDelPermisC'] : ''; ?>" readonly />
                         </div>
                     </div>
+                    </form>
                 </div>
 
             </div>
@@ -153,5 +159,21 @@ if (isset($_SESSION['contrat']['NumCont'])) {
         </div>
     </main>
 </body>
+<script>
+    function modifierContrat() {
+        const form = document.getElementById('contratForm');
+        const formData = new FormData(form);
+
+        var dataArray = {};
+        formData.forEach((val, el) => {
+            dataArray[el] = val;
+        });
+
+        console.log(dataArray);
+
+        updateContract(dataArray);
+
+    }
+</script>
 
 </html>

@@ -131,14 +131,14 @@ function updateContract($data)
             die('No result found (contrat)');
         }
 
-        if (!empty($result)) {
+        if ($result->num_rows > 0) {
 
 
             while ($row = $result->fetch_assoc()) {
 
 
                 foreach ($row as $key => $value) {
-                  
+
                     $_SESSION['contrat'][$key] = $value;
 
                     // Utiliser pour récupérer les autres sessions après chargement de celle ci
@@ -150,10 +150,13 @@ function updateContract($data)
                     }
                 }
             }
+
+            echo "Contract : Success!";
+        } else {
+            die("No result");
         }
 
-
-        echo "Contract : Success!";
+    
 
 
 

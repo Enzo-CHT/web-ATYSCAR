@@ -22,7 +22,7 @@ require "connexion.php";
       } else {
          $resultat = $stmt->get_result();
          
-         if (!empty($resultat)) {
+         if ($resultat->num_rows > 0) {
            
             while ($row = $resultat->fetch_assoc()) {
                
@@ -33,9 +33,7 @@ require "connexion.php";
             }
             echo "SUCCESS!!!";
         } else {
-            $_SESSION['page_error'] = "louer/contrat.php";
-            $_SESSION['error'] = "L'utilisateur n'existe pas";
-            echo "<script>window.location.href = '../error.php';</script>";
+            echo "FAIL : No result";
          }
          
       }

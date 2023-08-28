@@ -22,6 +22,7 @@ O Ajouter une pastille pour s'assurer qu'un matricule à été choisie
 ## FICHIER VOITURE
 
 - Vérifier que les années soient valides
+- Retour en arrière en fonction de la page précédente
 
 
 ## BASE DE DONNEES
@@ -33,10 +34,12 @@ O Ajouter une pastille pour s'assurer qu'un matricule à été choisie
 
 O Créer la page de modification (Utiliser facture.php)
 O Bouton Annuler 
-- Mettre en place la recherche d'element (recherche de contrat et de client)
-- Rajouter les champs nécessaire à la modification 
+O Mettre en place la recherche d'element (recherche de contrat et de client)
+O Rajouter les champs nécessaire à la modification 
 - Bouton Enregistrer les modification
 - Lié les modification à un Updater de contrat
+- Moyen de vérifié les caractéristiques du véhicule
+- Ajouter type de tarifs dans les modifs
 
 
 
@@ -54,3 +57,9 @@ O Bouton Annuler
 
 - carSelector /// TESTER
 - selection_vehicule -> JS 
+
+
+# SECURITE 
+
+- Systeme de connexion
+- System de logs
