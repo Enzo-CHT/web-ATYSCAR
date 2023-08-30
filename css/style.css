@@ -319,7 +319,7 @@ a {
   padding: 10px;
 }
 
-#contrat-location #select-check {
+.success-operation {
   display: flex;
   width: 20px;
   height: 20px;

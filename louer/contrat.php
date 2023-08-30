@@ -23,6 +23,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
     <title>CONTRAT DE LOCATION</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/sessionHandler.js"></script>
+    <script src="../js/contractHandler.js"></script>
 </head>
 
 <body>
@@ -140,11 +141,11 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                         <div class="utilities-btn">
                             <a href="selectionner-vehicule"><input id="contrat-btn-select-vehicule" class="menu-button" type="button" value="SELECTIONNER VEHICULE"></a>
                             <span id="span-img-check"></span>
-                            <?php 
+                            <?php
                             if (isset($_SESSION['vehicule'])) {
-                                echo '<img id="select-check" src="../addons/img/check.png" alt="valid-png">';
+                                echo '<img class="success-operation" src="../addons/img/check.png" alt="valid-png">';
                             } else {
-                                echo '<img id="select-check" src="../addons/img/notcheck.png" alt="valid-png">';
+                                echo '<img class="success-operation" src="../addons/img/notcheck.png" alt="valid-png">';
                             }
                             ?>
                             <div>
@@ -270,60 +271,8 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
 
     async function enregistrerContrat() {
         var dataArray = encapsulateData(formId);
-        $.ajax({
-            url: '../php/newContract.php',
-            type: 'POST',
-            async: 'false',
-            data: {
-                'data': JSON.stringify(dataArray),
-            },
-            success: function(response) {
-                console.log('newContract has been executed.');
-
-
-                if (response.indexOf("ERREUR") > 0) {
-                    // Si une ERREUR est detecté
-                    // Afficher le statu et ne rien faire
-                    $('#span-stats').html('<span style=color:red>' + response + '</span>');
-                } else {
-                    // Sinon 
-                    // Afficher le statu et refresh les données
-                    $('#span-stats').html('<span style=color:green>' + response + '</span>');
-
-                    // Suppression des éléments remplie
-                    var textInputs = document.querySelectorAll('input[type="text"],input[type="date"],input[type="time"]');
-                    textInputs.forEach(element => {
-                        element.value = '';
-                    });
-
-                }
-
-
-                setInterval(function() {
-                    $('#span-stats').html('');
-                }, 3000);
-
-            },
-            error: function(xhr, error, status) {
-                console.error('Error page (newContract) ', error, status);
-            },
-        });
-
+        addContract(dataArray, delete_all = true);
     }
-
-
-
-
-    if (document.getElementById("span-stats").innerHTML != '') {
-        setTimeout(function() {
-            document.getElementById("span-stats").innerHTML = "";
-        }, 5000);
-    }
-
-
-   
-   
-
 </script>
 
 </html>

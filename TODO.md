@@ -36,10 +36,11 @@ O Créer la page de modification (Utiliser facture.php)
 O Bouton Annuler 
 O Mettre en place la recherche d'element (recherche de contrat et de client)
 O Rajouter les champs nécessaire à la modification 
-- Bouton Enregistrer les modification
-- Lié les modification à un Updater de contrat
+O Bouton Enregistrer les modification
+O Lié les modification à un Updater de contrat
 - Moyen de vérifié les caractéristiques du véhicule
 - Ajouter type de tarifs dans les modifs
+- Permettre de changer de véhicule
 
 
 
@@ -51,6 +52,7 @@ O Rajouter les champs nécessaire à la modification
 - CSS (Fichier voiture)
 - CSS (COntrat)
 - CSS (Historique)
+- CSS (Modification de contrat)
 
 
 ### COMPRENDRE
