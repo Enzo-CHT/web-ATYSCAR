@@ -91,7 +91,7 @@ unset($_SESSION['vehicule']);
                 <br>
                 <div class="container-element">
                     <input id="btn-ok" class="menu-button" type="button" value="Ok" onclick="run()">
-                    <a href="contrat.php"><input id="btn-annuler" class="menu-button" type="button" value="Annuler"></a>
+                    <input id="btn-annuler" class="menu-button" type="button" value="Annuler" onclick="document.location.href=''">
 
                 </div>
             </div>
@@ -147,8 +147,8 @@ unset($_SESSION['vehicule']);
             });
 
 
-            /// Add condition to raise error if element is not found
-            window.location.href = "../louer/contrat";
+            // Refresh la page pour retourner en arriere
+            document.location.href='';
         }
 
 

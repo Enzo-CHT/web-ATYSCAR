@@ -125,7 +125,7 @@ function addContract(data, delete_all = false) {
 
 
             // Réinitialisation automatique du statu de l'opération 
-            setInterval(function () { $('#span-stats').html('') }, 3000);
+            setInterval(function () { $('#span-stats').html('') }, 5000);
         },
         error: function (xhr, status, error) {
             console.error('Error page (addContract) : ', status, error);

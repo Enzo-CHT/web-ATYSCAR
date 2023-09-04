@@ -15,12 +15,17 @@
     <body>
         <main id="rechercher-client">
             <div>
-                <span id="rechercher_client-raise-error"></span>
+                <span id="raise-error"></span>
 
                 <form action="../php/searchClient.php" method="post">
                     <input id="contract-id" type="text">
-                    <input id="btn-chercher" class="menu-button" type="button"
-                        value="CHERCHER" onclick="lookFor()">
+                    <span id="btn-action">
+                        <input id="btn-chercher" class="menu-button"
+                            type="button"
+                            value="CHERCHER" onclick="lookFor()">
+                    </span>
+                    <a href="index.html"><input type="button"
+                            class="menu-button" value="Annuler"></a>
                 </form>
             </div>
         </main>
@@ -86,11 +91,12 @@
             success: function (response) {
                 console.log("searchClient has been executed.");
         
-                if (response.indexOf('FAIL') <= -1) {
+                if (response.indexOf('FAIL') > -1) {
                     window.location.href = '../fichiers/fichier-clients.php';
                 }
                 else {
-                    document.getElementById('rechercher_client-raise-error').innerHTML = 'Aucun correspondance';
+                    
+                    document.getElementById('raise-error').innerHTML = 'Aucun correspondance';
                 }
             },
             error: function (xhr, status, error) {
@@ -99,6 +105,12 @@
         })
     }
 
+   
+
+
+
+
+    
 
 
 </script>

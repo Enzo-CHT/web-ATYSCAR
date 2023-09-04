@@ -247,7 +247,7 @@ a {
 
 .readonly {
   box-shadow: none !important;
-  color :#b9352c;
+  color: #b9352c;
   font-weight: bold;
 }
 
@@ -969,4 +969,47 @@ a {
   width: 250px;
   height: 250px;
 
+}
+
+
+/* Style de base du paragraphe */
+.trigger-event {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+
+/* Styles du menu contextuel */
+.sub {
+  position: absolute;
+  visibility: hidden;
+  list-style-type: none;
+  background-color: #ffffff !important;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 111;
+  min-width: 300px;
+  left: 65%;
+  top : 35%;
+  transform: translateX(-50%);
+}
+
+.sub .container-element {
+  margin: 0 0 0 0;
+  padding: 0;
+}
+
+/* Afficher le menu lorsque le paragraphe est survolé */
+.trigger-event:hover+.sub {
+  visibility: visible;
+}
+
+
+#raise-error {
+  font-weight: bold;
+  color : red;
 }

@@ -69,6 +69,7 @@ function updateContract($newData)
             'station-retour',
             'numero-client',
             'MatV',
+            'tarif'
         ];
 
 
@@ -97,7 +98,21 @@ function updateContract($newData)
             }
         }
 
+        ////// Vérification de validité
+        /*
+        DateDebut < DateFin
+        CodTypTarif <= 2
+        */
+        $condition = 1;
+        $condition &= (strtotime($newData['date-depart']) < strtotime($newData['date-retour']));
+        $condition &= ($newData['tarif'] <= 2);
 
+
+        if (!$condition) {
+            die('FAIL : LE CONTRAT NE RESPECT PAS LES CONDITIONS');
+        }
+
+        /////
 
         $sql = "UPDATE Contrat SET
             DatDebCont = ? ,
@@ -107,12 +122,14 @@ function updateContract($newData)
             VilDepCont = ? ,
             VilRetCont = ? ,
             NumC = ? ,
-            MatV = ?  WHERE NumCont = ? ;";
+            MatV = ?,  
+            CodTypTarif = ? 
+            WHERE NumCont = ? ;";
 
         $stmt = $connexion->prepare($sql);
         if ($stmt) {
             $stmt->bind_param(
-                'sssssssss',
+                'ssssssssss',
                 $newData['date-depart'],
                 $newData['heure-depart'],
                 $newData['date-retour'],
@@ -121,7 +138,7 @@ function updateContract($newData)
                 $newData['station-retour'],
                 $newData['numero-client'],
                 $newData['MatV'],
-                // Ajouter code tarif
+                $newData['tarif'],
                 $newData['NumCont']
             );
 
@@ -176,6 +193,20 @@ function addContract($data)
         }
 
 
+        ////// Vérification de validité
+        /*
+        DateDebut < DateFin
+        CodTypTarif <= 2
+        */
+        $condition = 1;
+        $condition &= (strtotime($data['DatDebCont']) < strtotime($data['DatRetCont']));
+        $condition &= ($data['CodTypTarif'] <= 2);
+        /////
+
+        if (!$condition) {
+            die('FAIL : LE CONTRAT NE RESPECT PAS LES CONDITIONS');
+        }
+
 
 
         $q = "SELECT count(*) AS row_count FROM CONTRAT WHERE NumCont = ?";
@@ -198,17 +229,17 @@ function addContract($data)
         if (!$count) {
 
             $sql = "INSERT INTO CONTRAT (
-                NumCont,
-                DatDebCont,	
-                HeurDepCont,
-                DatRetCont,
-                HeurRetCont,
-                VilDepCont,	
-                VilRetCont,	
-                NumC,
-                MatV,	
-                CodTypTarif
-            ) VALUES ( ?,?,?,?,?,?,?,?,?,? )";
+                    NumCont,
+                    DatDebCont,	
+                    HeurDepCont,
+                    DatRetCont,
+                    HeurRetCont,
+                    VilDepCont,	
+                    VilRetCont,	
+                    NumC,
+                    MatV,	
+                    CodTypTarif
+                ) VALUES ( ?,?,?,?,?,?,?,?,?,? )";
 
 
             $stmt = $connexion->prepare($sql);

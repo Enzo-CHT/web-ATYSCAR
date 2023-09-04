@@ -2,21 +2,26 @@
 
 # TOUS
 - Définir un retournement de page lorsque erreur dans php
+- le temps d'affichage du statu ne reste pas le temps escompté
 
 **Definir les aides**
 
 ## CONTRAT
 
 O Ajouter une pastille pour s'assurer qu'un matricule à été choisie
-- Vérifier la validitité  des documents avant création du contrat(Contrat.php)
-- Récupération de la remise en fonction du type de client (Contrat.php)
-- Corriger l'entré des heures
+O Vérifier la validitité des documents avant création du contrat(Contrat.php)
+O Corriger l'entré des heures
 
+? Récupération de la remise en fonction du type de client (Contrat.php)
 
 ## FICHIER CLIENT
 
 - Vérifier l'age du client(Contrat.php)
 - Ajustement de la remise en fonction du type de client
+
+## STATISTIQUE
+
+- Affichage du tableau sous PDF
 
 
 ## FICHIER VOITURE
@@ -29,6 +34,9 @@ O Ajouter une pastille pour s'assurer qu'un matricule à été choisie
 - Ajouter le kilometrage véhicule actuel dans la base de données 
 
 
+## Selectionner vehicule
+O Modifier son fonctionnement
+
 
 ###### Modifier contrat
 
@@ -38,11 +46,14 @@ O Mettre en place la recherche d'element (recherche de contrat et de client)
 O Rajouter les champs nécessaire à la modification 
 O Bouton Enregistrer les modification
 O Lié les modification à un Updater de contrat
-- Moyen de vérifié les caractéristiques du véhicule
-- Ajouter type de tarifs dans les modifs
-- Permettre de changer de véhicule
+O Moyen de vérifié les caractéristiques du véhicule
+O Ajouter type de tarifs dans les modifs
+O Permettre de changer de véhicule
 
 
+## AIDE
+- Titre : "Manuel d'utilisation de l'application web AtysCar"
+- Retour des boutons "Aides" aux sections correpondantes
 
 ## RETRAVAILLER (FIN)
 - Affichage (Louer)
@@ -52,7 +63,7 @@ O Lié les modification à un Updater de contrat
 - CSS (Fichier voiture)
 - CSS (COntrat)
 - CSS (Historique)
-- CSS (Modification de contrat)
+- CSS (Modification de contrat) x2
 
 
 ### COMPRENDRE

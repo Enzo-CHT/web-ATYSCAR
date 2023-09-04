@@ -27,7 +27,7 @@ session_start();
                 <div class="left-container">
                     <div class="client">
 
-                        <label for="select-client"> Client </label>
+                        <label for="select-client"> Client<b><span style="color:red">*</span></b> </label>
                         <input type="text" name="numero-client" id="datalist-client" list="client" value="<?php echo isset($_SESSION['client']['NumC']) ? $_SESSION['client']['NumC'] : ''; ?>">
                         <datalist id="client">
 
@@ -51,11 +51,37 @@ session_start();
                         </datalist>
 
                         <div class="container-element">
-                            <label for="facture-adresse"> Véhicuel </label>
+                            <label for="facture-adresse"> Véhicuel<b><span style="color:red">*</span></b> </label>
                             <input class="readonly" type="text" name="adresse" id="facture-adresse" value="<?php echo isset($_SESSION['vehicule']['MarV']) ? $_SESSION['vehicule']['MarV'] : ''; ?> <?php echo isset($_SESSION['vehicule']['ModV']) ? $_SESSION['vehicule']['ModV'] : ''; ?>" readonly />
                         </div>
-                        <a href="../fichiers/fichier-vehicule.php"><input type="button" class="menu-button" value="Changer Véhicule"></a>
-                        <input hidden type="button" class="menu-button" value="Voir caractéristiques">
+                        <div class="container-element">
+                            <input id="btn-vehiculeChanger" type="button" class="menu-button" value="Changer Véhicule" onclick="$('body').load('../louer/selectionner-vehicule.php');">
+                            <p class="menu-button trigger-event">Caractéristiques du véhicule</p>
+                            <div class="sub">
+                                <div class="container-element">
+                                    <p>Type du véhicule : </p>
+                                    <p class="readonly"><?php echo isset($_SESSION['vehicule']['TypeV']) ? $_SESSION['vehicule']['TypeV'] : ''; ?> </p>
+                                </div>
+                                <div class="container-element">
+                                    <p>Puissance du véhicule : </p>
+                                    <p class="readonly"><?php echo isset($_SESSION['vehicule']['PuisV']) ? $_SESSION['vehicule']['PuisV'] : ''; ?></p>
+                                </div>
+                                <div class="container-element">
+                                    <p>Carburant du véhicule : </p>
+                                    <p class="readonly"><?php echo isset($_SESSION['vehicule']['CarbV']) ? $_SESSION['vehicule']['CarbV'] : ''; ?></p>
+                                </div>
+                                <div class="container-element">
+                                    <p>Couleur du véhicule : </p>
+                                    <p class="readonly"><?php echo isset($_SESSION['vehicule']['CoulV']) ? $_SESSION['vehicule']['CoulV'] : ''; ?></p>
+                                </div>
+                                <div class="container-element">
+                                    <p>Nombre de place disponnible : </p>
+                                    <p class="readonly"><?php echo isset($_SESSION['vehicule']['NbPlV']) ? $_SESSION['vehicule']['NbPlV'] : ''; ?></p>
+                                </div>
+                            </div>
+                        </div>
+
+
 
 
 
@@ -105,29 +131,57 @@ session_start();
                     <div class="right-container">
                         <div class="contrat">
                             <div class="container-element">
-                                <label for="facture-date-depart">Date de départ : </label>
+                                <label for="facture-date-depart">Date de départ<b><span style="color:red">*</span></b> : </label>
                                 <input type="date" name="date-depart" id="facture-date-depart" value="<?php echo isset($_SESSION['contrat']['DatDebCont']) ? $_SESSION['contrat']['DatDebCont'] : ''; ?>" />
                             </div>
                             <div class="container-element">
-                                <label for="facture-date-retour">Date de retour : </label>
+                                <label for="facture-date-retour">Date de retour<b><span style="color:red">*</span></b> : </label>
                                 <input type="date" name="date-retour" id="facture-date-retour" value="<?php echo isset($_SESSION['contrat']['DatRetCont']) ? $_SESSION['contrat']['DatRetCont'] : ''; ?>" />
                             </div>
                             <div class="container-element">
-                                <label for="facture-station-depart">Station départ : </label>
+                                <label for="facture-station-depart">Station départ<b><span style="color:red">*</span></b> : </label>
                                 <input type="text" name="station-depart" id="facture-station-depart" value="<?php echo isset($_SESSION['contrat']['VilDepCont']) ? $_SESSION['contrat']['VilDepCont'] : ''; ?>" />
                             </div>
                             <div class="container-element">
-                                <label for="facture-station-retour">Station retour réelle :</label>
+                                <label for="facture-station-retour">Station retour réelle<b><span style="color:red">*</span></b> :</label>
                                 <input type="text" name="station-retour" id="facture-station-retour" value="<?php echo isset($_SESSION['contrat']['VilRetCont']) ? $_SESSION['contrat']['VilRetCont'] : ''; ?>" />
                             </div>
                             <div class="container-element">
-                                <label for="facture-heure-depart">Heure de départ :</label>
+                                <label for="facture-heure-depart">Heure de départ<b><span style="color:red">*</span></b> :</label>
                                 <input type="time" name="heure-depart" id="facture-heure-depart" value="<?php echo isset($_SESSION['contrat']['HeurDepCont']) ? $_SESSION['contrat']['HeurDepCont'] : ''; ?>" />
                             </div>
                             <div class="container-element">
-                                <label for="facture-heure-retour">Heure d'arrivé :</label>
+                                <label for="facture-heure-retour">Heure d'arrivé<b><span style="color:red">*</span></b> :</label>
                                 <input type="time" name="heure-retour" id="facture-heure-retour" value="<?php echo isset($_SESSION['contrat']['HeurRetCont']) ? $_SESSION['contrat']['HeurRetCont'] : ''; ?>" />
                             </div>
+                        </div>
+                        <div class="type-facturation">
+                            <h2>Type facturation<b><span style="color:red">*</span></b> </h2>
+                            <?php
+                                $codeTarif = isset($_SESSION['contrat']['CodTypTarif']) ? $_SESSION['contrat']['CodTypTarif'] : null;
+                            ?>
+                            <ul class="list-type-facturation">
+                                <li>
+                                    <div class="container-element">
+                                        <label for="contrat-forfait">Forfait</label>
+                                        <input type="radio" name="tarif" id="contrat-forfait" value="1" <?php echo  ($codeTarif == '1') ? 'checked' : ''; ?>/>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="container-element">
+                                        <label for="contrat-durée">Durée</label>
+                                        <input type="radio" name="tarif" id="contrat-durée" value="2" <?php echo  ($codeTarif == '2') ? 'checked' : ''; ?>/>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="container-element">
+                                        <label for="contrat-kilmetrage">Kilometrage</label>
+                                        <input type="radio" name="tarif" id="contrat-kilmetrage" value="3" <?php echo  ($codeTarif == '3') ? 'checked' : ''; ?>/>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
 
 
@@ -173,10 +227,15 @@ session_start();
         dataArray['numero-client'] = document.getElementById('datalist-client').value;
 
         console.log(dataArray);
-        
+
 
         updateContract(dataArray);
 
+    }
+
+    function closeContent() {
+        // Remove the loaded content by emptying the body
+        $('body').empty();
     }
 </script>
 

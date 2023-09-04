@@ -139,7 +139,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                         </div>
 
                         <div class="utilities-btn">
-                            <a href="selectionner-vehicule"><input id="contrat-btn-select-vehicule" class="menu-button" type="button" value="SELECTIONNER VEHICULE"></a>
+                            <input id="contrat-btn-select-vehicule" class="menu-button" type="button" value="SELECTIONNER VEHICULE" onclick="$('body').load('../louer/selectionner-vehicule.php');">
                             <span id="span-img-check"></span>
                             <?php
                             if (isset($_SESSION['vehicule'])) {
@@ -253,6 +253,8 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
         formData.forEach((value, key) => {
             dataArray[key] = value;
         });
+
+        console.log(dataArray);
 
         // Récupération des élements non manuellement remplissable
         dataArray['MatV'] = "<?php echo isset($_SESSION['vehicule']['MatV']) ? $_SESSION['vehicule']['MatV'] : '' ?>";
