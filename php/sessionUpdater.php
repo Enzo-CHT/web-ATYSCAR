@@ -7,8 +7,8 @@ session_start();
 
 
 // BUG
-$session = isset($_GET['session']) ? $_GET['session'] : '';
-$data = isset($_GET['data']) ? $_GET['data'] : 'NONE';
+$session = isset($_POST['session']) ? $_POST['session'] : '';
+$data = isset($_POST['data']) ? $_POST['data'] : 'NONE';
 
 
 switch ($session) {
@@ -131,14 +131,14 @@ function updateContract($data)
             die('No result found (contrat)');
         }
 
-        if (!empty($result)) {
+        if ($result->num_rows > 0) {
 
 
             while ($row = $result->fetch_assoc()) {
 
 
                 foreach ($row as $key => $value) {
-                  
+
                     $_SESSION['contrat'][$key] = $value;
 
                     // Utiliser pour récupérer les autres sessions après chargement de celle ci
@@ -150,16 +150,19 @@ function updateContract($data)
                     }
                 }
             }
+
+            echo "Contract : Success!";
+        } else {
+            die("No result");
         }
 
-
-        echo "Contract : Success!";
+    
 
 
 
         $stmt->close();
         mysqli_close($connexion);
     } else {
-        die('No DATA embedded.');
+        die('Contract : No DATA embedded.');
     }
 }

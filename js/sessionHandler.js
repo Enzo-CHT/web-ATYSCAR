@@ -1,13 +1,13 @@
-let path = "../php/";
+
 
 /**
  *
  * @param {Array} dataArray Données contenant les informatiosn à définir en session
  */
-export async function setSession(dataArray) {
+async function setSession(dataArray) {
   try {
     await $.ajax({
-      url: path + "sessionSetter.php",
+      url: "../php/sessionSetter.php",
       type: "POST",
       data: {
         data: JSON.stringify(dataArray),
@@ -23,10 +23,10 @@ export async function setSession(dataArray) {
 /**
  * Met à jour la session en liant le numéro client à ses informations intra base de données
  */
-export async function updateSession(sessionName = "all") {
+async function updateSession(sessionName = "all") {
   await $.ajax({
-    url: path + "sessionUpdater.php",
-    type: "GET",
+    url: "../php/sessionUpdater.php",
+    type: "POST",
     data: {
       session: sessionName,
     },
@@ -42,11 +42,11 @@ export async function updateSession(sessionName = "all") {
 /**
  * Réinitialise la session en cour
  */
-export async function resetSession(session = "all") {
+async function resetSession(session = "all") {
   try {
     await $.ajax({
-      url: path + "sessionReset.php",
-      type: "GET",
+      url: "../php/sessionReset.php",
+      type: "POST",
       data: {
         session: JSON.stringify(session),
       },

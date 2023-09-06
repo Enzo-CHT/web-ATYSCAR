@@ -26,9 +26,11 @@ input:focus {
   outline: none;
 }
 
-table ,th, td {
+table,
+th,
+td {
   text-align: left;
-  
+
 }
 
 input[type="text"] {
@@ -210,7 +212,7 @@ a {
   display: inline-flex;
   flex-direction: column;
   position: relative;
-  
+
 }
 
 #menu-location .container-main-button .menu-button {
@@ -243,6 +245,12 @@ a {
   width: 95%;
 }
 
+.readonly {
+  box-shadow: none !important;
+  color: #b9352c;
+  font-weight: bold;
+}
+
 .permis {
   display: inline-flex;
   flex-direction: column;
@@ -250,7 +258,7 @@ a {
   width: 95%;
 }
 
-.station {
+.contrat {
   display: inline-flex;
   flex-direction: column;
   padding: 5px;
@@ -310,6 +318,13 @@ a {
   box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
   padding: 10px;
 }
+
+.success-operation {
+  display: flex;
+  width: 20px;
+  height: 20px;
+}
+
 
 #contrat-location .head {
   position: relative;
@@ -915,8 +930,8 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top : 2%;
-  font-weight: 800 ;
+  margin-top: 2%;
+  font-weight: 800;
 }
 
 
@@ -944,8 +959,8 @@ a {
   position: relative;
   justify-content: space-around;
   width: 200px;
-  color : rgb(234, 231, 231);
-  
+  color: rgb(234, 231, 231);
+
 }
 
 #construction img {
@@ -956,3 +971,45 @@ a {
 
 }
 
+
+/* Style de base du paragraphe */
+.trigger-event {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+
+/* Styles du menu contextuel */
+.sub {
+  position: absolute;
+  visibility: hidden;
+  list-style-type: none;
+  background-color: #ffffff !important;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 111;
+  min-width: 300px;
+  left: 65%;
+  top : 35%;
+  transform: translateX(-50%);
+}
+
+.sub .container-element {
+  margin: 0 0 0 0;
+  padding: 0;
+}
+
+/* Afficher le menu lorsque le paragraphe est survolé */
+.trigger-event:hover+.sub {
+  visibility: visible;
+}
+
+
+#raise-error {
+  font-weight: bold;
+  color : red;
+}

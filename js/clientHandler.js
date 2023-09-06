@@ -1,9 +1,3 @@
-import { resetSession, setSession, updateSession } from "./sessionHandler.js";
-import { redirectTo } from "./actButton.js";
-
-
-let path = "../php/clientModel.php";
-
 
 /**
  * Permet d'ajouter un nouveau client s'il n'en existe pas encore
@@ -11,23 +5,23 @@ let path = "../php/clientModel.php";
  * @param {array} dataArray Données du formulaire
  * @param {*} page Page de redirection
  */
-export async function newClient(dataArray, page = null) {
+async function newClient(dataArray, page = null) {
 
 
     if (checkRequirement(dataArray)) {
-        await resetSession();
+        await resetSession('client');
         await setSession(dataArray);
         try {
             await $.ajax({
-                url: path,
+                url: "../php/clientModel.php",
                 type: 'GET',
                 data: {
                     function: 'newClient',
                 },
                 success: async function () {
                     console.log('newClient has been executed.');
-                    await updateSession();
-                    redirectTo(page);
+                    await updateSession('client');
+                    location.href = page;
                 }
             })
 
@@ -42,10 +36,10 @@ export async function newClient(dataArray, page = null) {
  * Permet de supprimer un client dans la base de données
  * @param {str} page chemin de redirection après la suppression
  */
-export async function delClient(page = null) {
+async function delClient() {
 
     await $.ajax({
-        url: path,
+        url: "../php/clientModel.php",
         type: 'GET',
         data: {
             function: 'delClient',
@@ -71,11 +65,11 @@ export async function delClient(page = null) {
  * Les données du formulaire doivent être nommée de la même manière que les attributs de la base de données
  * @param {array} dataArray Contient les données du formulaire 
  */
-export async function updateClient(dataArray) {
+async function updateClient(dataArray) {
     await setSession(dataArray) //Ne récupère que le numéro client
     try {
         await $.ajax({
-            url: path,
+            url: "../php/clientModel.php",
             type: 'GET',
             data: {
                 function: 'updateClient',
@@ -99,12 +93,12 @@ export async function updateClient(dataArray) {
  * @param {int} way (1 : Suivant / -1 : Précédent)
  * @param {str} page chemin vers la page de redirection
  */
-export async function changeClient(way) {
+async function changeClient(way) {
 
     try {
 
         await $.ajax({
-            url: path,
+            url: "../php/clientModel.php",
             type: 'GET',
             data: {
                 function: 'changeClient',
@@ -112,7 +106,7 @@ export async function changeClient(way) {
             },
             success: async function () {
                 console.log('changeClient has been executed.');
-                await updateSession();
+                await updateSession('client');
                 $("#fichier-client").load(document.URL + '#fichier-client');
             },
             error: function (xhr, status, error) {

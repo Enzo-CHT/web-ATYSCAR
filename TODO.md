@@ -2,42 +2,58 @@
 
 # TOUS
 - Définir un retournement de page lorsque erreur dans php
+- le temps d'affichage du statu ne reste pas le temps escompté
 
 **Definir les aides**
 
 ## CONTRAT
 
-- Enlever les testes
-- Non reinitilisation de la fenetre en cas d'erreur
-- Ajouter une pastille pour s'assurer qu'un matricule à été choisie
-- Vérifier la validitité  des documents avant création du contrat(Contrat.php)
-- Récupération de la remise en fonction du type de client (Contrat.php)
+O Ajouter une pastille pour s'assurer qu'un matricule à été choisie
+O Vérifier la validitité des documents avant création du contrat(Contrat.php)
+O Corriger l'entré des heures
 
+? Récupération de la remise en fonction du type de client (Contrat.php)
 
 ## FICHIER CLIENT
 
 - Vérifier l'age du client(Contrat.php)
 - Ajustement de la remise en fonction du type de client
 
+## STATISTIQUE
+
+- Affichage du tableau sous PDF
+
 
 ## FICHIER VOITURE
 
 - Vérifier que les années soient valides
+- Retour en arrière en fonction de la page précédente
 
 
 ## BASE DE DONNEES
 - Ajouter le kilometrage véhicule actuel dans la base de données 
 
 
+## Selectionner vehicule
+O Modifier son fonctionnement
+
 
 ###### Modifier contrat
 
+O Créer la page de modification (Utiliser facture.php)
+O Bouton Annuler 
+O Mettre en place la recherche d'element (recherche de contrat et de client)
+O Rajouter les champs nécessaire à la modification 
+O Bouton Enregistrer les modification
+O Lié les modification à un Updater de contrat
+O Moyen de vérifié les caractéristiques du véhicule
+O Ajouter type de tarifs dans les modifs
+O Permettre de changer de véhicule
 
-- Créer la page de modification (Utiliser facture.php)
-- Bouton Enregistrer les modification
-- Bouton Annuler 
 
-
+## AIDE
+- Titre : "Manuel d'utilisation de l'application web AtysCar"
+- Retour des boutons "Aides" aux sections correpondantes
 
 ## RETRAVAILLER (FIN)
 - Affichage (Louer)
@@ -47,9 +63,16 @@
 - CSS (Fichier voiture)
 - CSS (COntrat)
 - CSS (Historique)
+- CSS (Modification de contrat) x2
 
 
 ### COMPRENDRE
 
 - carSelector /// TESTER
 - selection_vehicule -> JS 
+
+
+# SECURITE 
+
+- Systeme de connexion
+- System de logs

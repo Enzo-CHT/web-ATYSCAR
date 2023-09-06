@@ -13,9 +13,6 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
 ?>
 
 
-
-
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -25,22 +22,8 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <title>CONTRAT DE LOCATION</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="module">
-        import {
-            resetSession
-        } from "../js/sessionHandler.js";
-        import {
-            redirectTo
-        } from "../js/actButton.js";
-
-
-        var condition1 = <?php echo json_encode(isset($_SESSION['client'])); ?>;
-
-        document.getElementById('btn-nouveauClient').onclick = async function() {
-            await resetSession("client");
-            redirectTo('../fichiers/fichier-clients');
-        };
-    </script>
+    <script src="../js/sessionHandler.js"></script>
+    <script src="../js/contractHandler.js"></script>
 </head>
 
 <body>
@@ -53,23 +36,14 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                     <img class="logo" src="../addons/img/Atys Car.jpg" alt="atyscar-logo.jpg">
                     <br>
                     <div>
-                        <a href="rechercher_client.html">
-                            <input class="menu-button" onclick="" type="button" value="RECHERCHER CLIENT">
+                        <a href="recherche_element.html">
+                            <input class="menu-button" type="button" value="RECHERCHER CLIENT" onclick="location.href = '../php/searchClient.php'">
                         </a>
-                        <input id="btn-nouveauClient" class="menu-button" type="button" value="NOUVEAU CLIENT">
+                        <input id="btn-nouveauClient" class="menu-button" type="button" value="NOUVEAU CLIENT" onclick="resetSession('client');location.href = '../fichiers/fichier-clients.php'">
 
                     </div>
                     <b><span id="span-stats"><?php echo isset($_SESSION['stats']) ?  $_SESSION['stats'] : '' ?></span></b>
-
-
                 </div>
-
-
-
-
-
-
-
 
                 <div class="client">
                     <h1>Client</h1>
@@ -136,40 +110,48 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                     <form action="#" method="POST" id="formContrat">
                         <h1>Contrat</h1>
                         <div class="container-element">
-                            <label for="contrat-contrat-id">Numéro contrat<span style="color:red">*</span> :</label>
+                            <label for="contrat-contrat-id">Numéro contrat<b><span style="color:red">*</span></b> :</label>
                             <input type="text" name="NumCont" id="contrat-num-id" readonly value="<?php echo isset($_SESSION['contrat']['NumCont']) ? $_SESSION['contrat']['NumCont'] : ''; ?>" />
                         </div>
                         <div class="container-element">
-                            <label for="contrat-contrat-depart-date">Date départ<span style="color:red">*</span> :</label>
-                            <input type="date" name="DatDebCont" id="contrat-contrat-depart-date" value="2023-01-01" />
+                            <label for="contrat-contrat-depart-date">Date départ <b><span style="color:red">*</span></b> :</label>
+                            <input type="date" name="DatDebCont" id="contrat-contrat-depart-date" />
                         </div>
                         <div class="container-element">
-                            <label for="contrat-contrat-depart-heure">Heure départ<span style="color:red">*</span> :</label>
-                            <input type="time" name="HeurDepCont" id="contrat-contrat-depart-heure" value="00:00:00" />
+                            <label for="contrat-contrat-depart-heure">Heure départ<b><span style="color:red">*</span></b> :</label>
+                            <input type="time" name="HeurDepCont" id="contrat-contrat-depart-heure" />
                         </div>
                         <div class="container-element">
-                            <label for="contrat-contrat-retour-date">Date retour prévue<span style="color:red">*</span> :</label>
-                            <input type="date" name="DatRetCont" id="contrat-contrat-retour-date" value="2023-01-01" />
+                            <label for="contrat-contrat-retour-date">Date retour prévue<b><span style="color:red">*</span></b> :</label>
+                            <input type="date" name="DatRetCont" id="contrat-contrat-retour-date" />
                         </div>
                         <div class="container-element">
-                            <label for="contrat-contrat-retour-heure">Heure retour prévue<span style="color:red">*</span> :</label>
-                            <input type="time" name="HeurRetCont" id="contrat-contrat-retour-heure" value="00:00:00" />
+                            <label for="contrat-contrat-retour-heure">Heure retour prévue<b><span style="color:red">*</span></b> :</label>
+                            <input type="time" name="HeurRetCont" id="contrat-contrat-retour-heure" />
                         </div>
                         <div class="container-element">
-                            <label for="contrat-contrat-depart-ville">Ville départ<span style="color:red">*</span> :</label>
-                            <input type="text" name="VilDepCont" id="contrat-contrat-depart-ville" value="tmp" />
+                            <label for="contrat-contrat-depart-ville">Ville départ<b><span style="color:red">*</span></b> :</label>
+                            <input type="text" name="VilDepCont" id="contrat-contrat-depart-ville" />
                         </div>
                         <div class="container-element">
-                            <label for="contrat-contrat-retour-ville">Ville retour prévue<span style="color:red">*</span> :</label>
-                            <input type="text" name="VilRetCont" id="contrat-contrat-retour-ville" value="tmp" />
+                            <label for="contrat-contrat-retour-ville">Ville retour prévue<b><span style="color:red">*</span></b> :</label>
+                            <input type="text" name="VilRetCont" id="contrat-contrat-retour-ville" />
                         </div>
 
                         <div class="utilities-btn">
-                            <a href="selectionner-vehicule"><input id="contrat-btn-select-vehicule" class="menu-button" type="button" value="SELECTIONNER VEHICULE"></a>
+                            <input id="contrat-btn-select-vehicule" class="menu-button" type="button" value="SELECTIONNER VEHICULE" onclick="$('body').load('../louer/selectionner-vehicule.php');">
+                            <span id="span-img-check"></span>
+                            <?php
+                            if (isset($_SESSION['vehicule'])) {
+                                echo '<img class="success-operation" src="../addons/img/check.png" alt="valid-png">';
+                            } else {
+                                echo '<img class="success-operation" src="../addons/img/notcheck.png" alt="valid-png">';
+                            }
+                            ?>
                             <div>
-                                <input id="contrat-btn-enregistrer" class="menu-button" type="button" value="Enregistrer">
+                                <input id="contrat-btn-enregistrer" class="menu-button" type="button" value="Enregistrer" onclick="enregistrerContrat();">
                                 <!--<input id="contrat-btn-imprimer" class="menu-button" type="button" value="Imprimer">-->
-                                <a href="index.php"><input id="contrat-btn-annuler" class="menu-button" type="button" value="Annuler" onclick="resetSession();"></a>
+                                <a href="index.html"><input id="contrat-btn-annuler" class="menu-button" type="button" value="Annuler" onclick="resetSession();"></a>
                             </div>
                     </form>
                 </div>
@@ -208,7 +190,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                     </div>
 
                     <div class="type-facturation">
-                        <h2>Type facturation<span style="color:red">*</span></h2>
+                        <h2>Type facturation<b><span style="color:red">*</span></b> </h2>
                         <ul class="list-type-facturation">
                             <li>
                                 <div class="container-element">
@@ -260,12 +242,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
     </main>
 </body>
 
-<script type="module">
-    import {
-        setSession,
-        updateSession 
-    } from "../js/sessionHandler.js";
-
+<script>
     var formId = "formContrat";
 
     function encapsulateData(formId) {
@@ -277,6 +254,8 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
             dataArray[key] = value;
         });
 
+        console.log(dataArray);
+
         // Récupération des élements non manuellement remplissable
         dataArray['MatV'] = "<?php echo isset($_SESSION['vehicule']['MatV']) ? $_SESSION['vehicule']['MatV'] : '' ?>";
         dataArray['NumC'] = "<?php echo isset($_SESSION['client']['NumC']) ? $_SESSION['client']['NumC'] : '' ?>";
@@ -287,70 +266,14 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
         dataArray['CodTypTarif'] = selectedCodTypTarif ? selectedCodTypTarif.value : '';
 
 
-        return dataArray
+        return dataArray;
     }
 
 
 
-    document.getElementById('contrat-btn-enregistrer').onclick = async function() {
+    async function enregistrerContrat() {
         var dataArray = encapsulateData(formId);
-        $.ajax({
-            url: '../php/newContract.php',
-            type: 'POST',
-            data: {
-                'data': JSON.stringify(dataArray),
-            },
-            success: function(response) {
-
-
-                console.log('newContract has been executed.');
-
-                // Ajouter non réinitilisation de tout le tableau en cas d'erreur
-
-                /*
-                if (response.indexOf('Fail') < 0) {
-                    $('#contrat-location').load(document.URL + '#contrat-location');
-                }
-                */
-
-                // tmp --
-                $('#contrat-location').load(document.URL + '#contrat-location');
-                // --
-
-
-                console.log("<?php echo (isset($_SESSION['stats']) ?  $_SESSION['stats'] : '') ?>");
-            },
-            error: function(xhr, error, status) {
-                console.error('Error page (newContract) ', error, status);
-            },
-        });
-
-    }
-
-  
-
-    let spanStats = document.getElementById("span-stats");
-    if (spanStats.innerHTML != '') {
-        setTimeout(function() {
-            spanStats.innerHTML = "";
-            <?php unset($_SESSION['stats']); ?>
-        }, 5000);
-    }
-
-
-    var stats = document.getElementById('span-stats');
-
-
-    switch (stats.textContent) {
-        case "CONTRAT EXISTANT":
-            stats.style = "color : red;";
-            break;
-        case "CHAMP(S) OBLIGATOIRE(S) MANQUANT(S)":
-            stats.style = "color : red;";
-            break;
-        case "CONTRAT ENREGISTRE AVEC SUCCES !":
-            stats.style = "color : green;";
-            break;
+        addContract(dataArray, delete_all = true);
     }
 </script>
 
