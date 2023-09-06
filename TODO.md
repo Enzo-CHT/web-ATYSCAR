@@ -6,13 +6,6 @@
 
 **Definir les aides**
 
-## CONTRAT
-
-O Ajouter une pastille pour s'assurer qu'un matricule à été choisie
-O Vérifier la validitité des documents avant création du contrat(Contrat.php)
-O Corriger l'entré des heures
-
-? Récupération de la remise en fonction du type de client (Contrat.php)
 
 ## FICHIER CLIENT
 
@@ -29,16 +22,10 @@ O Corriger l'entré des heures
 - Vérifier que les années soient valides
 - Retour en arrière en fonction de la page précédente
 
-
-## BASE DE DONNEES
-- Ajouter le kilometrage véhicule actuel dans la base de données 
-
-
 ## Selectionner vehicule
 O Modifier son fonctionnement
 
-
-###### Modifier contrat
+## contrat
 
 O Créer la page de modification (Utiliser facture.php)
 O Bouton Annuler 
@@ -49,6 +36,11 @@ O Lié les modification à un Updater de contrat
 O Moyen de vérifié les caractéristiques du véhicule
 O Ajouter type de tarifs dans les modifs
 O Permettre de changer de véhicule
+O Ajouter une pastille pour s'assurer qu'un matricule à été choisie
+O Vérifier la validitité des documents avant création du contrat(Contrat.php)
+O Corriger l'entré des heures
+
+? Récupération de la remise en fonction du type de client (Contrat.php)
 
 
 ## AIDE
@@ -64,6 +56,10 @@ O Permettre de changer de véhicule
 - CSS (COntrat)
 - CSS (Historique)
 - CSS (Modification de contrat) x2
+
+
+## BASE DE DONNEES
+- Ajouter le kilometrage véhicule actuel dans la base de données 
 
 
 ### COMPRENDRE
