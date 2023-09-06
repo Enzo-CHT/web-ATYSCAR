@@ -4,12 +4,14 @@
 - Définir un retournement de page lorsque erreur dans php
 - le temps d'affichage du statu ne reste pas le temps escompté
 
-**Definir les aides**
+- **Definir les aides**
 
 
 ## FICHIER CLIENT
 
-- Vérifier l'age du client(Contrat.php)
+O Vérifier l'age du client(Contrat.php)
+O Definition du statu dans Handler
+O Fichier-Client accessible par demande ajax depuis Fichiers et Contrats
 - Ajustement de la remise en fonction du type de client
 
 ## STATISTIQUE
@@ -19,8 +21,9 @@
 
 ## FICHIER VOITURE
 
+- Réparer les boutons
 - Vérifier que les années soient valides
-- Retour en arrière en fonction de la page précédente
+O Retour en arrière en fonction de la page précédente
 
 ## Selectionner vehicule
 O Modifier son fonctionnement
@@ -60,6 +63,10 @@ O Corriger l'entré des heures
 
 ## BASE DE DONNEES
 - Ajouter le kilometrage véhicule actuel dans la base de données 
+
+## TARIFS
+- Gerer l'implementation des tarifs
+
 
 
 ### COMPRENDRE
