@@ -349,5 +349,6 @@ function changeClient($way)
 
     $_SESSION['client']['NumC'] = $next;
 
+
     echo 'SUCCESS:CLIENT CHANGED';
 }

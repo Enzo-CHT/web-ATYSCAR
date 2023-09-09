@@ -183,7 +183,7 @@
     </main>
 </body>
 <script>
-    document.getElementById('privilegie-hiver-kilometrage').value = 0.500;
+
     document.addEventListener("DOMContentLoaded", function() {
         // Récupère tous les inputs du document
         var inputs = document.querySelectorAll("input[type='number']");

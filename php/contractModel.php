@@ -103,13 +103,11 @@ function updateContract($newData)
         DateDebut < DateFin
         CodTypTarif <= 2
         */
-        $condition = 1;
-        $condition &= (strtotime($newData['date-depart']) < strtotime($newData['date-retour']));
-        $condition &= ($newData['tarif'] <= 2);
-
-
-        if (!$condition) {
-            die('FAIL : LE CONTRAT NE RESPECT PAS LES CONDITIONS');
+        if (strtotime($data['DatDebCont']) > strtotime($data['DatRetCont'])) {
+            die('FAIL:DATES NON VALIDES');
+        }
+        if ($data['CodTypTarif'] < 0 || $data['CodTypTarif'] > 2) {
+            die('FAIL:VEUILLEZ ENTREZ UN TYPE DE FACTURATION VALIDE');
         }
 
         /////
@@ -198,14 +196,15 @@ function addContract($data)
         DateDebut < DateFin
         CodTypTarif <= 2
         */
-        $condition = 1;
-        $condition &= (strtotime($data['DatDebCont']) < strtotime($data['DatRetCont']));
-        $condition &= ($data['CodTypTarif'] <= 2);
+        if (strtotime($data['DatDebCont']) > strtotime($data['DatRetCont'])) {
+            die('FAIL:DATES NON VALIDES');
+        }
+        if ($data['CodTypTarif'] < 0 || $data['CodTypTarif'] > 2) {
+            die('FAIL:VEUILLEZ ENTREZ UN TYPE DE FACTURATION VALIDE');
+        }
+
         /////
 
-        if (!$condition) {
-            die('FAIL : LE CONTRAT NE RESPECT PAS LES CONDITIONS');
-        }
 
 
 

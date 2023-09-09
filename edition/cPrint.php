@@ -157,7 +157,7 @@ $termsAndConditions =
 2. Le locataire doit restituer le véhicule avec un niveau carburant semblable à avant son utilisation.
 3. Le locataire doit restituer le véhicule à la station convenu dans le contrat.
 4. Le locataire peut restituer le véhicule avec un maximum de 30min de retard.
-5. En cas de retard, chaque minute supplémentaire seront facturés en fonction du forfait du client.
+5. Au dela, chaque minute supplémentaire seront facturés en fonction du forfait du client.
 6. Le locataire est responsable des dommages causés au véhicule pendant la période de location.";
 $pdf->Section('Termes et Conditions', $termsAndConditions);
 

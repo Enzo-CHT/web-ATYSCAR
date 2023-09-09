@@ -148,7 +148,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                             if (isset($_SESSION['vehicule'])) {
                                 echo '<img class="success-operation" src="../addons/img/check.png" alt="valid-png">';
                             } else {
-                                echo '<img class="success-operation" src="../addons/img/notcheck.png" alt="valid-png">';
+                                echo '<img class="success-operation" src="../addons/img/notcheck.png" alt="notvalid-png">';
                             }
                             ?>
                             <div>
@@ -224,15 +224,15 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                 <h1>Permis</h1>
                 <div class="container-element">
                     <label for="contrat-num-permis">Numéro</label>
-                    <input type="text" name="NumPermisC" id="contrat-num-permis" value="<?php echo isset($_SESSION['NumPermisC']) ? $_SESSION['NumPermisC'] : ''; ?>" />
+                    <input type="text" name="NumPermisC" id="contrat-num-permis" value="<?php echo isset($_SESSION['client']['NumPermisC']) ? $_SESSION['client']['NumPermisC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
                     <label for="contrat-permis-delivrer-date">Délivrer le</label>
-                    <input type="date" name="DatDelPermiC" id="contrat-permis-delivrer-date" value="<?php echo isset($_SESSION['DatDelPermiC']) ? $_SESSION['DatDelPermiC'] : ''; ?>" />
+                    <input type="date" name="DatDelPermiC" id="contrat-permis-delivrer-date" value="<?php echo isset($_SESSION['client']['DatDelPermiC']) ? $_SESSION['client']['DatDelPermiC'] : ''; ?>" />
                 </div>
                 <div class="container-element">
                     <label for="ficheir-client-permis-delivrer-lieu">à</label>
-                    <input type="text" name="LieuDelPermisC" id="contrat-permis-delivrer-lieu" value="<?php echo isset($_SESSION['LieuDelPermisC']) ? $_SESSION['LieuDelPermisC'] : ''; ?>" />
+                    <input type="text" name="LieuDelPermisC" id="contrat-permis-delivrer-lieu" value="<?php echo isset($_SESSION['client']['LieuDelPermisC']) ? $_SESSION['client']['LieuDelPermisC'] : ''; ?>" />
                 </div>
 
             </div>

@@ -187,7 +187,7 @@ session_start();
 
                         <div class="box-c">
                             <input type="button" id="btn-valider" class="menu-button" value="Valider" onclick="modifierContrat()">
-                            <a href="index.html"><input type="button" id="btn-annuler" class="menu-button" value="Annuler"></a>
+                            <a href="index.html"><input type="button" id="btn-retour" class="menu-button" value="Retour"></a>
                             <span id='span-stats'></span>
                         </div>
 

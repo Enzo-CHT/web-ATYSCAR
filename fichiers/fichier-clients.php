@@ -149,6 +149,7 @@ require "../php/connexion.php";
 
                             <div class="btn-container">
                                 <div>
+                                    <input class="menu-button" type="button" value="Ajouter" id="btn-ajouter" onclick="ajouterClient();">
                                     <input id="btn-modifier" class="menu-button" type="button" value="Modifier" onclick="modifierClient();">
                                     <input id="btn-supprimer" class="menu-button" type="button" value="Supprimer" onclick="delClient();">
                                 </div>
@@ -159,8 +160,8 @@ require "../php/connexion.php";
                                 </div>
 
                                 <div>
-                                    <input class="menu-button" type="button" value="Enregistrer" id="btn-enregistrer" onclick="enregistrerClient();">
-                                    <input id="btn-retour" class="menu-button" type="button" value="Retour" onclick="document.location.href = '';">
+                                    <input class="menu-button" type="button" value="Selectionner" id="btn-selectionner" onclick="document.location.href = '';">
+                                    <input id="btn-annuler" class="menu-button" type="button" value="Annuler" onclick="resetSession('client');document.location.href = '';">
                                 </div>
 
                             </div>
@@ -214,7 +215,7 @@ require "../php/connexion.php";
     var thisPage = window.location.pathname;
 
 
-    function enregistrerClient() {
+    function ajouterClient() {
         const form = document.getElementById(formId);
         const formData = new FormData(form);
 

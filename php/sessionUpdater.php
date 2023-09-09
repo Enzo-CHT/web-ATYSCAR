@@ -6,7 +6,6 @@ session_start();
 
 
 
-// BUG
 $session = isset($_POST['session']) ? $_POST['session'] : '';
 $data = isset($_POST['data']) ? $_POST['data'] : 'NONE';
 
@@ -114,7 +113,6 @@ function updateVehicule()
 function updateContract($data)
 {
     require 'connexion.php';
-
 
     if (!empty($data) && $data != 'NONE') {
         $sql = "SELECT * FROM CONTRAT WHERE NumCont=?";

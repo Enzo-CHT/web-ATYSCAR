@@ -3,6 +3,7 @@
 # TOUS
 - Définir un retournement de page lorsque erreur dans php
 - le temps d'affichage du statu ne reste pas le temps escompté
+- Séréializer les données avant de les enregistrées dans la BDD
 
 - **Definir les aides**
 
@@ -27,6 +28,7 @@ O Retour en arrière en fonction de la page précédente
 
 ## Selectionner vehicule
 O Modifier son fonctionnement
+- Message renvoie vers la concurrence
 
 ## contrat
 
@@ -42,9 +44,13 @@ O Permettre de changer de véhicule
 O Ajouter une pastille pour s'assurer qu'un matricule à été choisie
 O Vérifier la validitité des documents avant création du contrat(Contrat.php)
 O Corriger l'entré des heures
-
+- Vérifier que la date de départ soit supérieur ou égale à la date d'aujourdhui
+- Récupération du typeV en cas de changement de vehicule (edit-contrat)
+- Type de client non affiché lorsque privilégié choisit
 ? Récupération de la remise en fonction du type de client (Contrat.php)
 
+## Recherche element 
+- Ajout de recherche pas nom/contrat
 
 ## AIDE
 - Titre : "Manuel d'utilisation de l'application web AtysCar"

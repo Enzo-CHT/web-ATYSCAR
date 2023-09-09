@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="../css/style.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../js/sessionHandler.js"></script>
+  <script src="../js/vehiculeHandler.js"></script>
 
   <title>FICHIER CLIENTS</title>
 </head>
@@ -66,14 +67,14 @@
             <div class="btn-container">
               <div>
 
-                <input id="btn-add" class="menu-button" type="button" value="Ajouter" />
-                <input id="btn-update" class="menu-button" type="button" value="Modifier" />
-                <input id="btn-del" class="menu-button" type="button" value="Supprimer" />
+                <input id="btn-add" class="menu-button" type="button" value="Ajouter" onclick="saveVehicule('vehiculeForm');" />
+                <input id="btn-update" class="menu-button" type="button" value="Modifier" onclick="updateVehicule('vehiculeForm');" />
+                <input id="btn-del" class="menu-button" type="button" value="Supprimer" onclick="delVehicule('vehiculeForm');" />
               </div>
 
               <div>
-                <input id="btn-pre" class="menu-button" type="button" value="Précèdent" />
-                <input id="btn-suiv" class="menu-button" type="button" value="Suivant" />
+                <input id="btn-pre" class="menu-button" type="button" value="Précèdent" onclick="switchVehicule(-1)" />
+                <input id="btn-suiv" class="menu-button" type="button" value="Suivant" onclick="switchVehicule(1)" />
               </div>
 
               <div>
@@ -158,35 +159,8 @@
 
   </main>
 </body>
-<script src="../js/vehiculeHandler.js">
-  let formId = "vehiculeForm";
-
-  document.getElementById('btn-add').onclick = function() {
-    let element = new Vehicule(formId);
-    element.saveVehicule();
-
-
-  };
-  document.getElementById('btn-del').onclick = function() {
-    let element = new Vehicule(formId);
-    element.delVehicule();
-
-
-  }
-  document.getElementById('btn-update').onclick = function() {
-    let element = new Vehicule(formId);
-    element.updateVehicule();
-
-  }
-
-  document.getElementById("btn-pre").onclick = function() {
-    let element = new Vehicule(formId);
-    element.switchVehicule(-1)
-  };
-  document.getElementById("btn-suiv").onclick = function() {
-    let element = new Vehicule(formId);
-    element.switchVehicule(1)
-  };
+<script>
+  
 
 
   // Vide les champs remplit
@@ -204,8 +178,8 @@
 
 
 
-  let spanStats = document.getElementById("span-stats");
-  if (spanStats.innerHTML != '') {
+
+  if (document.getElementById("span-stats").innerHTML != '') {
     setTimeout(function() {
       spanStats.innerHTML = "";
       <?php unset($_SESSION['stats']); ?>

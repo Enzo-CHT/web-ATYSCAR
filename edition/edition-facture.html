@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../css/style.css" type="text/css" />
     <title>EDITION FACTURE</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/sessionHandler.js"></script>
   </head>
 
   <body>
@@ -44,10 +45,11 @@
     </main>
   </body>
   <script>
+    
     document.getElementById("btn-ok").onclick = function () {
       $.ajax({
         url: "../php/sessionUpdater.php",
-        type: "GET",
+        type: "POST",
         data: {
           session: "all",
           data: document.getElementById("edition-facture-id").value,
