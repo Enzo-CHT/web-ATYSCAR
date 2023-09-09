@@ -5,38 +5,30 @@
  * @param {array} dataArray Données du formulaire
  * @param {*} page Page de redirection
  */
-async function newClient(dataArray) {
+async function newClient(dataArray, page = null) {
 
 
+    if (checkRequirement(dataArray)) {
+        await resetSession('client');
+        await setSession(dataArray);
+        try {
+            await $.ajax({
+                url: "../php/clientModel.php",
+                type: 'GET',
+                data: {
+                    function: 'newClient',
+                },
+                success: async function () {
+                    console.log('newClient has been executed.');
+                    await updateSession('client');
+                    location.href = page;
+                }
+            })
 
-    await resetSession('client');
-    await setSession(dataArray);
-
-    await $.ajax({
-        url: "../php/clientModel.php",
-        type: 'GET',
-        async: false,
-        data: {
-            function: 'newClient',
-        },
-        success: async function (response) {
-
-            displayResponse(response = response.split(':'), redirect = true);
-            console.log('newClient has been executed.');
-            await updateSession('client');
-
-
-            setInterval(function () {
-                document.getElementById('span-stats').innerHTML = '';
-            }, 5000)
-        },
-        error: function (xhr, error, status) {
+        } catch (error) {
             console.error('Page error (newClient) :', error);
         }
-    })
-
-
-
+    }
 
 }
 
@@ -49,20 +41,15 @@ async function delClient() {
     await $.ajax({
         url: "../php/clientModel.php",
         type: 'GET',
-        async: false,
         data: {
             function: 'delClient',
         },
-        success: async function (response) {
+        success: async function () {
             console.log("delClient has been executed.");
-
-            // Suppression des champs
-            var textInputs = document.querySelectorAll('input[type="text"],input[type="date"],input[type="time"]');
-            textInputs.forEach(element => {
-                element.value = '';
-            });
-            displayResponse(response.split(':'));
             await resetSession('client');
+            $("#fichier-client").load(document.URL + '#fichier-client');
+
+
         },
         error: function (xhr, status, error) {
             console.error('Page error (delClient) : ', error, status)
@@ -80,23 +67,23 @@ async function delClient() {
  */
 async function updateClient(dataArray) {
     await setSession(dataArray) //Ne récupère que le numéro client
+    try {
+        await $.ajax({
+            url: "../php/clientModel.php",
+            type: 'GET',
+            data: {
+                function: 'updateClient',
+            },
+            success: async function () {
+                console.log('updateClient has been executed.');
+                $("#fichier-client").load(document.URL + '#fichier-client');
 
-    await $.ajax({
-        url: "../php/clientModel.php",
-        type: 'GET',
-        data: {
-            function: 'updateClient',
-        },
-        success: function (response) {
-            console.log('updateClient has been executed.');
-            displayResponse(response.split(':'));
-            $("#fichier-client").load(document.URL + '#fichier-client');
+            }
+        })
 
-        },
-        error: function (xhr, error, status) {
-            console.error("Erreur dans updateClient:", error);
-        }
-    })
+    } catch (error) {
+        console.error("Erreur dans updateClient:", error);
+    }
 
 
 }
@@ -113,15 +100,14 @@ async function changeClient(way) {
         await $.ajax({
             url: "../php/clientModel.php",
             type: 'GET',
-            async: false,
             data: {
                 function: 'changeClient',
                 data: way,
             },
-            success: async function (response) {
+            success: async function () {
                 console.log('changeClient has been executed.');
                 await updateSession('client');
-                $('body').load('../fichiers/fichier-clients.php');
+                $("#fichier-client").load(document.URL + '#fichier-client');
             },
             error: function (xhr, status, error) {
                 console.error('Page error (newClient)', error, status)
@@ -139,27 +125,31 @@ async function changeClient(way) {
 
 
 
-
 /**
- * Fonction d'affichage du résultat de la réquête a l'agent
- * @param {*} response Reponse du serveur
- * @param {*} redirect Redirige vers caller de la page
+ * Permet de vérifier si des champs de données répondent à des conditions définis
+ * @param {array} data Contient les toutes les données contenu dans la page
+ * @returns True | False
  */
-function displayResponse(response, redirect = false) {
-    response[0] = response[0].replace(/[^a-zA-Z ]/g, "");
-    if (response[0] == 'FAIL') {
-        document.getElementById('span-stats').innerHTML = "<span style=color:red>" + response[1] + "</span>";
-    } else if (response[0] == 'SUCCESS') {
-        if (redirect) {
-            document.location.href = '';
-        } else {
-            document.getElementById('span-stats').innerHTML = "<span style=color:green>" + response[1] + "</span>";
+function checkRequirement(data) {
+    /// Vérifie que certaine condition ont été remplie avant de continuer 
+    console.log("Vérification des prérequis ... ");
+
+    if (data) {
+        for (const element in data) {
+            const currentElement = data[element];
+
+            if (element === 'client') {
+
+                if (currentElement['NomC'] && currentElement['PrenomC'] && currentElement['DatNaisC']) {
+                    return true;
+                }
+
+            }
         }
-    } else {
-        console.error('Une erreur cest produite');
     }
 
-    setInterval(function () {
-        document.getElementById('span-stats').innerHTML = '';
-    }, 5000)
+
+
 }
+
+

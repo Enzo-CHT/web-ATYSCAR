@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start();?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -8,7 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" type="text/css" href="../css/style.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="../js/sessionHandler.js"></script>
 
   <title>FICHIER CLIENTS</title>
 </head>
@@ -158,7 +157,12 @@
 
   </main>
 </body>
-<script src="../js/vehiculeHandler.js">
+<script type="module">
+  import {
+    Vehicule
+  } from "../js/vehiculeHandler.js";
+
+
   let formId = "vehiculeForm";
 
   document.getElementById('btn-add').onclick = function() {

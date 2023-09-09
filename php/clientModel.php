@@ -1,5 +1,8 @@
 <?php
 session_start();
+$_SESSION['stats'] = '';
+
+
 
 $function = isset($_GET['function']) ? $_GET['function'] : '';
 $data = isset($_GET['data']) ? $_GET['data'] : '';
@@ -42,58 +45,12 @@ function newClient()
         // Si un element est vide, on ajoute la note N/A 
         if (!empty($CLIENT[$key]) or $value != null) {
             $ASSOC[$key] = $value;
+        } else {
+            $ASSOC[$key] = "N/A";
         }
     }
 
 
-
-    ///// Vérifications
-    /*
-    - NomC PrenomC
-    - Date Naissance >= 18ans
-    - AdrVilC
-    - AdrRueC
-    - CodPosC
-
-    - DatDelPasC <= Aujourd'hui
-    - DatDelPermi >= 2 ans
-
-    */
-
-    // Vérification des champs
-    if (!(isset($ASSOC['NomC']) && isset($ASSOC['PrenomC']) && isset($ASSOC['DatNaisC']) && isset($ASSOC['AdrVilC']) && isset($ASSOC['AdrRueC']) && isset($ASSOC['CodPosC']))) {
-        die("FAIL:CHAMP(S) OBLIGATOIRE(S) MANQUANT(S)");
-    }
-
-    // Vérification du statu de majeur
-    $DatNais = isset($ASSOC['DatNaisC']) ? $ASSOC['DatNaisC'] : date('Y-m-d');
-    echo $DatNais;
-    $DatNais = new DateTime($DatNais);
-    $today = new DateTime();
-    $age = $today->diff($DatNais)->y;
-    if ($age < 18) {
-        die("FAIL:AGE NON VALIDE");
-    }
-
-    // Vérification de la date du passport
-    $datPass = isset($ASSOC['DatDelPasC']) ? $ASSOC['DatDelPasC'] : date('Y-m-d');
-    if (strtotime($datPass) > strtotime(date('Y-m-d'))) {
-        die("FAIL: DATE PASSPORT NON VALIDE");
-    }
-
-
-    // Vérification de permis de 2 ans d'ancienneté minimum
-    $datpermis = isset($ASSOC['DatDelPermiC']) ? $ASSOC['DatDelPermiC'] : date('Y-m-d');
-    $datpermis = new DateTime($datpermis);
-    $today = new DateTime();
-    $interval = $today->diff($datpermis);
-    $ancien = $interval->y;
-    if ($ancien < 2) {
-        die("FAIL: DATE PERMIS NON VALIDE");
-    }
-
-
-    ////
 
 
     if (!empty($ASSOC)) {
@@ -105,7 +62,7 @@ function newClient()
 
         $stmt->bind_param('s', $ASSOC['NumC']);
         if (!$stmt->execute()) {
-            die("ERREUR#1 addClient");
+            die("Erreur lors de l'exécution de la requête : " . $stmt->error);
         }
 
         $stmt->bind_result($count);
@@ -165,17 +122,15 @@ function newClient()
                 $ASSOC['Remarques'],
                 $ASSOC['CodTypC']
             );
-
+            $stmt->execute();
             if (!$stmt->execute()) {
-                die("ERREUR#2 addClient");
+                die("Erreur lors de l'exécution de la requête : " . $stmt->error);
             }
 
-            echo "SUCCESS:CLIENT AJOUTE A LA BASE DE DONNEES";
+            echo "Save : Success!";
 
             $stmt->close();
             mysqli_close($connexion);
-        } else {
-            die("FAIL:CLIENT EXISTANT");
         }
     } else {
         die('Pas de données');
@@ -192,7 +147,7 @@ function delClient()
 
     // Récupération du numéro Client
     $NUMC = isset($_SESSION['client']['NumC']) ? $_SESSION['client']['NumC'] : 'NONE';
-
+   
     if ($NUMC != 'NONE') {
         $sql = "DELETE FROM CLIENT WHERE NumC=?";
 
@@ -201,11 +156,11 @@ function delClient()
         $stmt->bind_param('s', $NUMC);
         $stmt->execute();
         if (!$stmt->execute()) {
-            die("Erreur#1 delClient");
+            die("Erreur lors de l'exécution de la requête : " . $stmt->error);
         }
 
-        echo "SUCCESS:CLIENT SUPPRIME";
-
+        echo "Delete : Success!";
+        $_SESSION['stats'] = "CLIENT SUPPRIMER";
 
         $stmt->close();
         mysqli_close($connexion);
@@ -283,12 +238,12 @@ function updateClient()
     );
 
     if (!$stmt->execute()) {
-        die("ERREUR#1 updateClient");
+        die("Erreur lors de l'exécution de la requête : " . $stmt->error);
     }
 
 
-    echo "SUCCESS:MODIFICATION COMFIRME !";
-
+    echo "Update : Success!";
+    $_SESSION['stats'] = "CLIENT MIT A JOUR";
 
     $stmt->close();
     mysqli_close($connexion);
@@ -315,8 +270,8 @@ function changeClient($way)
     $result = $stmt->get_result();
     $NUMC = []; //Contient les resultats de la requete
     $CLIENT = $_SESSION['client']; // Contient les infos du client dans la session
-
-
+   
+   
     $count = 0;
     while ($row = $result->fetch_assoc()) {
         foreach ($row as $key => $value) {
@@ -349,5 +304,5 @@ function changeClient($way)
 
     $_SESSION['client']['NumC'] = $next;
 
-    echo 'SUCCESS:CLIENT CHANGED';
+    echo 'Switch : Success!';
 }

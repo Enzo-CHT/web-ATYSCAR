@@ -8,9 +8,6 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
     $date = date('ymdhis', time());
     //creation du contrat  à partir de la date
     $_SESSION['contrat']['NumCont'] = "CTR" . $date;
-} else {
-    // S'assure que le contrat ne soit pas générer sans les éléments obligatoires
-    unset($_SESSION['contrat']);
 }
 
 ?>
@@ -39,10 +36,10 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                     <img class="logo" src="../addons/img/Atys Car.jpg" alt="atyscar-logo.jpg">
                     <br>
                     <div>
-
-                        <input class="menu-button" type="button" value="RECHERCHER CLIENT" onclick="$('body').load('recherche_element.html')">
-
-                        <input id="btn-nouveauClient" class="menu-button" type="button" value="NOUVEAU CLIENT" onclick="resetSession('client');$('body').load('../fichiers/fichier-clients.php')">
+                        <a href="recherche_element.html">
+                            <input class="menu-button" type="button" value="RECHERCHER CLIENT" onclick="location.href = '../php/searchClient.php'">
+                        </a>
+                        <input id="btn-nouveauClient" class="menu-button" type="button" value="NOUVEAU CLIENT" onclick="resetSession('client');location.href = '../fichiers/fichier-clients.php'">
 
                     </div>
                     <b><span id="span-stats"><?php echo isset($_SESSION['stats']) ?  $_SESSION['stats'] : '' ?></span></b>

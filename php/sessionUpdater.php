@@ -61,7 +61,7 @@ function updateClient()
                 }
             }
         }
-        echo "Client : SUCCESS";
+        echo "Client : Success!";
 
 
         $stmt->close();
@@ -99,7 +99,7 @@ function updateVehicule()
         }
 
 
-        echo "Vehicule : SUCCESS";
+        echo "Vehicule : Success!";
 
 
 
@@ -151,7 +151,7 @@ function updateContract($data)
                 }
             }
 
-            echo "Contract : SUCCESS";
+            echo "Contract : Success!";
         } else {
             die("No result");
         }

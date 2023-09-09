@@ -24,9 +24,8 @@
                             type="button"
                             value="CHERCHER" onclick="lookFor()">
                     </span>
-                    <input type="button"
-                        class="menu-button" value="Annuler"
-                        onclick="document.location.href=''">
+                    <a href="index.html"><input type="button"
+                            class="menu-button" value="Annuler"></a>
                 </form>
             </div>
         </main>
@@ -61,7 +60,7 @@
             },
             success: function (response) {
                 // Si aucun succès dans la réponse, appel du callback
-                if (response.indexOf('SUCCESS') > -1) {
+                if (response.indexOf('Success!') > -1) {
                     console.log("contract updated.");
                     window.location.href = "edit-contrat";
 
@@ -92,8 +91,8 @@
             success: function (response) {
                 console.log("searchClient has been executed.");
         
-                if (response.indexOf('SUCCESS') > -1) {
-                    $('body').load('../fichiers/fichier-clients.php');
+                if (response.indexOf('FAIL') > -1) {
+                    window.location.href = '../fichiers/fichier-clients.php';
                 }
                 else {
                     
