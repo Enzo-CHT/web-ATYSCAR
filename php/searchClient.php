@@ -27,11 +27,11 @@ if (isset($_GET['client']) && !empty($_GET['client'])) {
          while ($row = $resultat->fetch_assoc()) {
 
             foreach ($row as $key => $value) {
-               echo "$key => $value \n";
+
                $_SESSION['client'][$key] = $value;
             }
          }
-         echo "SUCCESS!!!";
+         echo "SUCCESS";
       } else {
          echo "FAIL : No result";
       }

@@ -1,4 +1,3 @@
-import { setSession, resetSession, updateSession } from "./sessionHandler";
 
 
 // Chemin vers le model
@@ -7,7 +6,7 @@ let processFile = "../php/vehiculeModel.php";
 /**
  * Class de gestion des intéraction avec le model vehicule
  */
-export class Vehicule {
+class Vehicule {
 
     constructor(formId) {
         const form = document.getElementById(formId);

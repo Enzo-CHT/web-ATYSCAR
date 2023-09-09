@@ -31,7 +31,7 @@ require "../php/connexion.php";
                 <div class="container">
 
                     <div class="left-container">
-                        <span id="raise-error"></span>
+                        <span id="span-stats"></span>
                         <div class="client">
                             <h3>CLIENT</h3>
 
@@ -61,17 +61,17 @@ require "../php/connexion.php";
                             </div>
                             <div class="container-element">
 
-                                <label for="fichier-client-adresse"> Adresse </label>
+                                <label for="fichier-client-adresse"> Adresse<span style="color:red">*</span> </label>
                                 <input type="text" name="AdrRueC" id="fichier-client-adresse" value="<?php echo isset($_SESSION['client']['AdrRueC']) ? $_SESSION['client']['AdrRueC'] : ''; ?>" />
                             </div>
                             <div class="container-element">
 
-                                <label for="fichier-client-ville">Ville</label>
+                                <label for="fichier-client-ville">Ville<span style="color:red">*</span></label>
                                 <input type="text" name="AdrVilC" id="fichier-client-ville" value="<?php echo isset($_SESSION['client']['AdrVilC']) ? $_SESSION['client']['AdrVilC'] :  ''; ?>" />
                             </div>
                             <div class="container-element">
 
-                                <label for="fichier-client-code-postal">Code Postal</label>
+                                <label for="fichier-client-code-postal">Code Postal<span style="color:red">*</span></label>
                                 <input type="text" name="CodPosC" id="fichier-client-code-postal" value="<?php echo isset($_SESSION['client']['CodPosC']) ? $_SESSION['client']['CodPosC'] : ''; ?>" />
                             </div>
                             <div class="container-element">
@@ -160,7 +160,7 @@ require "../php/connexion.php";
 
                                 <div>
                                     <input class="menu-button" type="button" value="Enregistrer" id="btn-enregistrer" onclick="enregistrerClient();">
-                                    <a href="../louer/contrat.php"><input id="btn-annuler" class="menu-button" type="button" value="Annuler" onclick="resetSession('client');"></a>
+                                    <input id="btn-retour" class="menu-button" type="button" value="Retour" onclick="document.location.href = '';">
                                 </div>
 
                             </div>
@@ -227,7 +227,7 @@ require "../php/connexion.php";
             ENCAPS['client'][key] = value;
         });
 
-        newClient(ENCAPS, '../louer/contrat');
+        newClient(ENCAPS);
     }
 
 
@@ -247,14 +247,6 @@ require "../php/connexion.php";
         });
         updateClient(ENCAPS);
     }
-
-
-    setInterval(function() {
-        <?php $_SESSION['stats'] = '' ?>
-        document.getElementById('span-stats').innerHTML = '';
-    }, 5000);
-
-    
 </script>
 
 </html>

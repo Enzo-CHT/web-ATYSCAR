@@ -1,8 +1,9 @@
 <?php
 session_start();
 
+$scope = isset($_GET['scope']) ? $_GET['scope'] : null;
 
-switch (json_decode($_GET['session'])) {
+switch ($scope) {
     case "client":
         unset($_SESSION['client']);
         echo "client reseted.";
@@ -22,5 +23,8 @@ switch (json_decode($_GET['session'])) {
     case "all":
         unset($_SESSION);
         echo "all reseted.";
+        break;
+    default:
+        echo 'Error in session reset';
         break;
 }

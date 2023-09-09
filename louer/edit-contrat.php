@@ -233,10 +233,7 @@ session_start();
 
     }
 
-    function closeContent() {
-        // Remove the loaded content by emptying the body
-        $('body').empty();
-    }
+
 </script>
 
 </html>

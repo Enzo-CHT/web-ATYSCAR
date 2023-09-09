@@ -6,12 +6,7 @@
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <title>ACTUALISER FICHIERS</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="module">
-        import {resetSession} from "../js/sessionHandler.js";
-        document.getElementById('actualiser-fichiers-btn-vehicules').onclick = function() {
-            resetSession('vehicule');
-        }
-    </script>
+    <script src="../js/sessionHandler.js"></script>
 </head>
 <body>
     <main id="actualiser-fichiers">
@@ -25,10 +20,10 @@
                         
                         <div class="left-container">
                             <div class="container-element">
-                                <a href="../fichiers/fichier-vehicule.php"><input class="menu-button" type="button"  id="actualiser-fichiers-btn-vehicules" value="VEHICULES" ></a>
+                                <a href="../fichiers/fichier-vehicule.php"><input class="menu-button" type="button"  id="actualiser-fichiers-btn-vehicules" value="VEHICULES" onclick="resetSession('vehicule')"></a>
                             </div>
                             <div class="container-element">
-                                <a href="../fichiers/fichier-clients.php"><input class="menu-button" type="button"  id="actualiser-fichiers-btn-clients" value="CLIENTS"></a>
+                               <input class="menu-button" type="button"  id="actualiser-fichiers-btn-clients" value="CLIENTS" onclick="resetSession('client');$('body').load('../fichiers/fichier-clients.php')">
                                 
                             </div>
                             <div class="container-element">
