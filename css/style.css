@@ -246,6 +246,7 @@ a {
 }
 
 .readonly {
+  cursor:default;
   box-shadow: none !important;
   color: #b9352c;
   font-weight: bold;

@@ -19,6 +19,12 @@ O Fichier-Client accessible par demande ajax depuis Fichiers et Contrats
 
 - Affichage du tableau sous PDF
 
+## ENTRETIEN
+- Pas d'affichage quand aucun matricule choisit
+- Affichage quand matricule choisit 
+- Enregistrement de l'entretien effectué
+- Pages bis 
+
 
 ## FICHIER VOITURE
 
