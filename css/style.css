@@ -972,6 +972,107 @@ a {
 
 }
 
+/* CSS LOCALISER  VOITURE**/
+
+
+#localiser>div {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: white;
+  width: 700px;
+  box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
+  padding: 15px;
+}
+
+
+#localiser input {
+  width: 75px;
+  margin-right: 5%;
+}
+
+
+#localiser .box {
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 400px;
+}
+
+
+
+#localiser iframe {
+margin: auto;
+
+}
+
+/* Entrée de texte **/
+
+
+
+.login-box {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 400px;
+   padding: 40px;
+   transform: translate(-50%, -50%);
+   background: #4048b8;
+   box-shadow: 0 15px 25px rgba(143, 124, 236, 0.7);
+   border-radius: 10px;
+}
+
+.login-box h2 {
+   margin: 0 0 30px;
+   padding: 0;
+   color: #b42929;
+   text-align: center;
+}
+
+.user-box input {
+   position: relative;
+   width: 100%;
+   padding: 10px 0;
+   font-size: 15px;
+   color: #46070f;
+   margin-bottom: 30px;
+   border: none;
+   border-bottom: 1px solid #df7f11;
+   outline: none;
+   background: transparent;
+}
+
+.user-box label {
+   position: relative;
+   left: 0;
+   top: -60px;
+   padding: 0px ;
+   font-size: 16px;
+   color: #339b52;
+   pointer-events: none;
+   transition: .5s;
+}
+
+.user-box input:focus~label,
+.user-box input:valid~label {
+   top: -86px;
+   left: 0;
+   color: #000000;
+   font-size: 12px;
+}
+
+
+
+
+
+
+
+
+/* FIN Entrée de texte **/
+
+
+/*FIN LOCALISER **/
+
+
 
 /* Style de base du paragraphe */
 .trigger-event {
