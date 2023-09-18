@@ -42,6 +42,9 @@ function newClient()
         // Si un element est vide, on ajoute la note N/A 
         if (!empty($CLIENT[$key]) or $value != null) {
             $ASSOC[$key] = $value;
+        } else {
+
+            $ASSOC[$key] = "";
         }
     }
 
@@ -61,13 +64,12 @@ function newClient()
     */
 
     // Vérification des champs
-    if (!(isset($ASSOC['NomC']) && isset($ASSOC['PrenomC']) && isset($ASSOC['DatNaisC']) && isset($ASSOC['AdrVilC']) && isset($ASSOC['AdrRueC']) && isset($ASSOC['CodPosC']))) {
+    if (!($ASSOC['NomC'] != '' && $ASSOC['PrenomC'] != '' && $ASSOC['DatNaisC'] != ''  && $ASSOC['AdrVilC'] != ''  && $ASSOC['AdrRueC'] != ''  && $ASSOC['CodPosC'] != '')) {
         die("FAIL:CHAMP(S) OBLIGATOIRE(S) MANQUANT(S)");
     }
 
     // Vérification du statu de majeur
-    $DatNais = isset($ASSOC['DatNaisC']) ? $ASSOC['DatNaisC'] : date('Y-m-d');
-    echo $DatNais;
+    $DatNais = $ASSOC['DatNaisC'] != '' ? $ASSOC['DatNaisC'] : date('Y-m-d');
     $DatNais = new DateTime($DatNais);
     $today = new DateTime();
     $age = $today->diff($DatNais)->y;
@@ -76,14 +78,14 @@ function newClient()
     }
 
     // Vérification de la date du passport
-    $datPass = isset($ASSOC['DatDelPasC']) ? $ASSOC['DatDelPasC'] : date('Y-m-d');
+    $datPass = $ASSOC['DatDelPasC'] != '' ? $ASSOC['DatDelPasC'] : date('Y-m-d');
     if (strtotime($datPass) > strtotime(date('Y-m-d'))) {
         die("FAIL: DATE PASSPORT NON VALIDE");
     }
 
 
     // Vérification de permis de 2 ans d'ancienneté minimum
-    $datpermis = isset($ASSOC['DatDelPermiC']) ? $ASSOC['DatDelPermiC'] : date('Y-m-d');
+    $datpermis = $ASSOC['DatDelPermiC'] != '' ? $ASSOC['DatDelPermiC'] : date('Y-m-d');
     $datpermis = new DateTime($datpermis);
     $today = new DateTime();
     $interval = $today->diff($datpermis);

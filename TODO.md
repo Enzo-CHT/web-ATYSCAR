@@ -53,6 +53,7 @@ O Corriger l'entré des heures
 - Vérifier que la date de départ soit supérieur ou égale à la date d'aujourdhui
 - Récupération du typeV en cas de changement de vehicule (edit-contrat)
 - Type de client non affiché lorsque privilégié choisit
+- Tranche d'ages 
 ? Récupération de la remise en fonction du type de client (Contrat.php)
 
 ## Recherche element 

@@ -90,7 +90,7 @@ async function updateClient(dataArray) {
         success: function (response) {
             console.log('updateClient has been executed.');
             displayResponse(response.split(':'));
-            $("#fichier-client").load(document.URL + '#fichier-client');
+           
 
         },
         error: function (xhr, error, status) {

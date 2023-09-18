@@ -36,17 +36,17 @@ require "../php/connexion.php";
                             <h3>CLIENT</h3>
 
                             <div class="container-element">
-                                <label for="fichier-client-nom">Nom<span style="color:red">*</span></label>
+                                <label for="fichier-client-nom">Nom<span style="color:red;font-weight:bold">*</span></label>
                                 <input type="text" name="NomC" id="fichier-client-nom" style="text-transform: uppercase" required value="<?php echo isset($_SESSION['client']['NomC']) ? $_SESSION['client']['NomC'] : ''; ?>" />
                             </div>
                             <div class="container-element">
 
-                                <label for="fichier-client-prenom">Prénom<span style="color:red">*</span></label>
+                                <label for="fichier-client-prenom">Prénom<span style="color:red;font-weight:bold">*</span></label>
                                 <input type="text" name="PrenomC" id="fichier-client-prenom" required value="<?php echo isset($_SESSION['client']['PrenomC']) ? $_SESSION['client']['PrenomC'] : ''; ?>" />
                             </div>
                             <div class="container-element">
 
-                                <label for="fichier-client-date-naissance">Date de naissance<span style="color:red">*</span></label>
+                                <label for="fichier-client-date-naissance">Date de naissance<span style="color:red;font-weight:bold">*</span></label>
                                 <input type="date" name="DatNaisC" id="fichier-client-date-naissance" required value="<?php echo isset($_SESSION['client']['DatNaisC']) ? $_SESSION['client']['DatNaisC'] : ''; ?>" />
                             </div>
                             <div class="container-element">
@@ -61,17 +61,17 @@ require "../php/connexion.php";
                             </div>
                             <div class="container-element">
 
-                                <label for="fichier-client-adresse"> Adresse<span style="color:red">*</span> </label>
+                                <label for="fichier-client-adresse"> Adresse<span style="color:red;font-weight:bold">*</span> </label>
                                 <input type="text" name="AdrRueC" id="fichier-client-adresse" value="<?php echo isset($_SESSION['client']['AdrRueC']) ? $_SESSION['client']['AdrRueC'] : ''; ?>" />
                             </div>
                             <div class="container-element">
 
-                                <label for="fichier-client-ville">Ville<span style="color:red">*</span></label>
+                                <label for="fichier-client-ville">Ville<span style="color:red;font-weight:bold">*</span></label>
                                 <input type="text" name="AdrVilC" id="fichier-client-ville" value="<?php echo isset($_SESSION['client']['AdrVilC']) ? $_SESSION['client']['AdrVilC'] :  ''; ?>" />
                             </div>
                             <div class="container-element">
 
-                                <label for="fichier-client-code-postal">Code Postal<span style="color:red">*</span></label>
+                                <label for="fichier-client-code-postal">Code Postal<span style="color:red;font-weight:bold">*</span></label>
                                 <input type="text" name="CodPosC" id="fichier-client-code-postal" value="<?php echo isset($_SESSION['client']['CodPosC']) ? $_SESSION['client']['CodPosC'] : ''; ?>" />
                             </div>
                             <div class="container-element">
@@ -168,17 +168,17 @@ require "../php/connexion.php";
 
                         </div>
                         <div class="permis">
-                            <h3>PERMIS DE CONDUIRE</h3>
+                            <h3>PERMIS DE CONDUIRE<span style="color:red;font-weight:bold">*</span></h3>
                             <div class="container-element">
-                                <label for="fichier-client-num-permis">Numéro</label>
+                                <label for="fichier-client-num-permis">Numéro<span style="color:red;font-weight:bold">*</span></label>
                                 <input type="text" name="NumPermisC" id="fichier-client-num-permis" value="<?php echo isset($_SESSION['client']['NumPermisC']) ? $_SESSION['client']['NumPermisC'] : ''; ?>" />
                             </div>
                             <div class="container-element">
-                                <label for="fichier-client-permis-delivrer-date">Date de délivrance</label>
+                                <label for="fichier-client-permis-delivrer-date">Date de délivrance<span style="color:red;font-weight:bold">*</span></label>
                                 <input type="date" name="DatDelPermiC" id="fichier-client-permis-delivrer-date" value="<?php echo isset($_SESSION['client']['DatDelPermiC']) ? $_SESSION['client']['DatDelPermiC'] : ''; ?>" />
                             </div>
                             <div class="container-element">
-                                <label for="ficheir-client-permis-delivrer-lieu">Lieu de Délivrance</label>
+                                <label for="ficheir-client-permis-delivrer-lieu">Lieu de Délivrance<span style="color:red;font-weight:bold">*</span></label>
                                 <input type="text" name="LieuDelPermisC" id="fichier-client-permis-delivrer-lieu" value="<?php echo isset($_SESSION['client']['LieuDelPermisC']) ? $_SESSION['client']['LieuDelPermisC'] : ''; ?>" />
                             </div>
                         </div>
