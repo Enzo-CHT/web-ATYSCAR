@@ -3,11 +3,14 @@
 include "connexion.php";
 $matv = isset($_GET['matricule']) ? $_GET['matricule'] : null;
 
-if ($matv) {
+if ($matv != null) {
     $aData = array(); // Informations container 
 
     $sql = "SELECT MarV, ModV, KilomAV FROM Vehicule WHERE Matv=?";
     $stmt = $connexion->prepare($sql);
+    if (!$stmt) {
+        die ("Erreur : " . $connexion->error);
+    }
     $stmt->bind_param("s", $matv);
     if ($stmt->execute() ) {
         $res = $stmt->get_result();
@@ -34,7 +37,7 @@ if ($matv) {
         }
     }
 
-    print_r(json_encode($aData));
+    echo json_encode($aData);
 }
 
 
