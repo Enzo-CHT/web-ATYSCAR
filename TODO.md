@@ -23,7 +23,7 @@ O Fichier-Client accessible par demande ajax depuis Fichiers et Contrats
 - Pas d'affichage quand aucun matricule choisit
 O Affichage quand matricule choisit 
 O Enregistrement de l'entretien effectué
-- Validation (sur page + flou arriere)
+- Validation gardé le vehicules(sur page + flou arriere)
 - Message d'erreur (en cas d'erreur lol)
 
 

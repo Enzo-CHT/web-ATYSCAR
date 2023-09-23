@@ -17,10 +17,10 @@ include "../php/connexion.php";
 </head>
 
 <body>
+    <div id="popup" class="popup-overlay"></div>
     <main id="enregistrer-entretien">
         <div>
             <form id="entretienForm" method="POST">
-
 
                 <div class="head">
                     <div class="box-l">
@@ -109,13 +109,16 @@ include "../php/connexion.php";
                     </div>
 
                 </div>
+                <!-- Display status of the request -->
+                <span id="span-stat"></span>
+
                 <div class="foot">
                     <div class="box-l">
                         <div class="container-element">
                             <a href="../index.html"><input class="menu-button" type="button" id="btn-annuler" value="Annuler" /></a>
                         </div>
                         <div class="container-element">
-                            <input class="menu-button" type="button" id="btn-enregistrer" value="Enregistrer" onclick="send()" />
+                            <input class="menu-button" type="button" id="btn-enregistrer" value="Enregistrer" onclick="showPopup()" />
                         </div>
 
                     </div>
@@ -127,6 +130,9 @@ include "../php/connexion.php";
     </main>
 </body>
 <script>
+    const mainFrame = document.getElementById('enregistrer-entretien');
+    var keepVehicule = false;
+
     immatInputObject = document.getElementById('enregistrer-vehicule-immatriculation');
     codeOperationInputObject = document.getElementById('enregistrer-entretien-code');
     descriptionOutputObject = document.getElementById('enregistrer-entretien-description');
@@ -166,6 +172,19 @@ include "../php/connexion.php";
         descriptionOutputObject.value = possibleDescription[this.value];
     }
 
+
+    /**@abstract
+     * Affiche l'overlay de validation afin de continuer ou non avec le même véhicule
+     */
+    function showPopup() {
+        mainFrame.style.filter = "blur(5px)";
+        document.getElementById("popup").style.zIndex = "1";
+        $("#popup").load("keepVehicule.php");
+        $("#popup").show();
+
+    }
+
+    // Fonction déclenché par showPopup()
     /**@abstract
      * Fonction d'envoie à base de données 
      */
@@ -173,8 +192,6 @@ include "../php/connexion.php";
 
         const formData = new FormData(document.getElementById("entretienForm"));
         var form = {};
-
-
         formData.forEach((value, key) => {
             form[key] = value;
         });
@@ -190,14 +207,38 @@ include "../php/connexion.php";
 
 
                 if (response.indexOf('SUCCESS') > -1) {
+
                     // Ajout de validation
+                    if (!keepVehicule) {
+                        fields = document.querySelectorAll("input:not([type='button'])");
+                        fields.forEach(element => {
+                            element.value = '';
+                        });
+                    } else {
+                        fields = document.querySelectorAll("input:not([type='button'])");
+                        fields.forEach(element => {
+                            if (element.id === "enregistrer-entretien-code" || element.id === "enregistrer-entretien-description") {
+                                element.value = "";
+                            }
+                        });
+                    }
+                    // Affiche de validation 
+                    document.getElementById("span-stat").innerHTML = "<p style='color:green;font-weight:bold'>  \
+                    Entretien enregistré avec succès </p>";
+                } else {
+                    document.getElementById("span-stat").innerHTML = "<p style='color:red;font-weight:bold'>  \
+                    Une erreur s'est produit. Veuillez réessayez </p>";
                 }
 
+                setInterval(function() {
+                    document.getElementById("span-stat").innerHTML = "";
+                }, 5000)
 
                 // Ajout d'erreur
-                
             }
         })
+
+
     }
 </script>
 
