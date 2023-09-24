@@ -153,9 +153,9 @@ include "../php/connexion.php";
                     var itemModele = document.getElementById('enregistrer-vehicule-modele');
                     var itemKilometrage = document.getElementById('enregistrer-vehicule-kilometrage');
 
-                    itemMarque.value = response['marqueVehicule'];
-                    itemModele.value = response['modeleVehicule'];
-                    itemKilometrage.value = response['kilometrageVehicule'];
+                    itemMarque.value = response['marqueVehicule'] !== undefined ? response['marqueVehicule'] : "";
+                    itemModele.value = response['modeleVehicule'] !== undefined ? response['modeleVehicule'] : "";
+                    itemKilometrage.value = response['kilometrageVehicule'] !== undefined ? response['kilometrageVehicule'] : "";
                 }
 
             },
@@ -169,7 +169,7 @@ include "../php/connexion.php";
     /// Affiche la description lié au code de l'opération 
     codeOperationInputObject.onchange = function() {
         possibleDescription = <?php echo json_encode($DescOpEArray) ?>;
-        descriptionOutputObject.value = possibleDescription[this.value];
+        descriptionOutputObject.value = possibleDescription[this.value] !== undefined ? possibleDescription[this.value] : "";
     }
 
 
@@ -217,7 +217,7 @@ include "../php/connexion.php";
                     } else {
                         fields = document.querySelectorAll("input:not([type='button'])");
                         fields.forEach(element => {
-                            if (element.id === "enregistrer-entretien-code" || element.id === "enregistrer-entretien-description") {
+                            if (element.id === "enregistrer-entretien-code" || element.id === "enregistrer-entretien-description" || element.type === "date") {
                                 element.value = "";
                             }
                         });
@@ -225,9 +225,13 @@ include "../php/connexion.php";
                     // Affiche de validation 
                     document.getElementById("span-stat").innerHTML = "<p style='color:green;font-weight:bold'>  \
                     Entretien enregistré avec succès </p>";
+                } else if (response.indexOf('FAIL') > -1) {
+                    status = response.split(":")[1];
+                    document.getElementById("span-stat").innerHTML = "<p style='color:red;font-weight:bold'>  \
+                    " + status + " </p>";
                 } else {
                     document.getElementById("span-stat").innerHTML = "<p style='color:red;font-weight:bold'>  \
-                    Une erreur s'est produit. Veuillez réessayez </p>";
+                    Une erreur s'est produite, veuillez réessayez </p>";
                 }
 
                 setInterval(function() {

@@ -8,9 +8,7 @@ if ($matv != null) {
 
     $sql = "SELECT MarV, ModV, KilomAV FROM Vehicule WHERE Matv=?";
     $stmt = $connexion->prepare($sql);
-    if (!$stmt) {
-        die ("Erreur : " . $connexion->error);
-    }
+   
     $stmt->bind_param("s", $matv);
     if ($stmt->execute() ) {
         $res = $stmt->get_result();
