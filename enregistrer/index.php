@@ -147,15 +147,16 @@ include "../php/connexion.php";
                 matricule: this.value,
             },
             success: function(response) {
+
                 if (response != null) {
                     response = JSON.parse(response);
                     var itemMarque = document.getElementById('enregistrer-vehicule-marque');
                     var itemModele = document.getElementById('enregistrer-vehicule-modele');
                     var itemKilometrage = document.getElementById('enregistrer-vehicule-kilometrage');
 
-                    itemMarque.value = response['marqueVehicule'] !== undefined ? response['marqueVehicule'] : "";
-                    itemModele.value = response['modeleVehicule'] !== undefined ? response['modeleVehicule'] : "";
-                    itemKilometrage.value = response['kilometrageVehicule'] !== undefined ? response['kilometrageVehicule'] : "";
+                    itemMarque.value = response['marqueVehicule'];
+                    itemModele.value = response['modeleVehicule'];
+                    itemKilometrage.value = response['kilometrageVehicule'];
                 }
 
             },

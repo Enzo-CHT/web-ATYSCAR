@@ -20,7 +20,7 @@ O Fichier-Client accessible par demande ajax depuis Fichiers et Contrats
 - Affichage du tableau sous PDF
 
 ## ENTRETIEN
-- Pas d'affichage quand aucun matricule choisit
+X Pas d'affichage quand aucun matricule choisit
 O Affichage quand matricule choisit 
 O Enregistrement de l'entretien effectué
 O Validation "gardé le vehicules"(sur page + flou arriere)

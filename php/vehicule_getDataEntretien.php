@@ -38,6 +38,7 @@ if ($matv != null) {
     echo json_encode($aData);
 }
 
+die();
 
 
 
