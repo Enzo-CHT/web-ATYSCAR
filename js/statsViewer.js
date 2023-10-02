@@ -18,37 +18,30 @@ function randomArray() {
 
 function displayGraphics(data = null) {
 
-   
+
 
     // Contient les données affichés dans l'axe X
     /// Ville
     /// Periode
     /// Ville + Periode 
-    xLabels = ['01 Jan', 'Ville', '03 Jan'];
+    xLabels = [];
 
     // Contient les données affichés dans le grahique (avec leur label)
     /// name : Type_Vehicule
     /// data : Recours concurrence
     /// data : Utilisation %
-    dataDisplay = [
-        {
-            name: "Session Duration",
-            data: randomArray(),
-        },
-        {
-            name: "Page Views",
-            data: randomArray()
-        },
-        {
-            name: 'Total Visits',
-            data: randomArray()
-        },
-        {
-            name: 'Total Visits',
-            data: randomArray()
-        }
-    ];
+    dataDisplay = [];
 
+    $.ajax({
+        url: 'php/statsModel.php',
+        type: 'GET',
+        async: false,
+        success: function (response) {
+            res = JSON.parse(response);
+            xLabels = res[0];
+            dataDisplay = res[1];
+        }
+    })
 
 
 
