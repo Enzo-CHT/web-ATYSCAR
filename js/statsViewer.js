@@ -5,9 +5,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 
+
 function randomArray() {
     var arrayRandom = [];
-    for (var i = 0; i < 12; i++) {
+    for (var i = 0; i < 3; i++) {
         var nb = Math.floor(Math.random() * 101);
         arrayRandom.push(nb);
 
@@ -17,13 +18,18 @@ function randomArray() {
 
 function displayGraphics(data = null) {
 
-
+   
 
     // Contient les données affichés dans l'axe X
-    xLabels = ['01 Jan', 'Ville', '03 Jan', '04 Jan', '05 Jan', '06 Jan', '07 Jan', '08 Jan', '09 Jan',
-        '10 Jan', '11 Jan', '12 Jan'];
+    /// Ville
+    /// Periode
+    /// Ville + Periode 
+    xLabels = ['01 Jan', 'Ville', '03 Jan'];
 
     // Contient les données affichés dans le grahique (avec leur label)
+    /// name : Type_Vehicule
+    /// data : Recours concurrence
+    /// data : Utilisation %
     dataDisplay = [
         {
             name: "Session Duration",
@@ -51,7 +57,7 @@ function displayGraphics(data = null) {
         series: dataDisplay,
         chart: {
             height: 350,
-            type: 'line',
+            type: 'bar',
             zoom: {
                 enabled: false
             },
