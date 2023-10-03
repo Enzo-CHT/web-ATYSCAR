@@ -1030,3 +1030,46 @@ a {
   justify-content: space-between;
   align-items: center;
 }
+
+
+/*
+Bouton RGPD POUR TOUTES LES PAGES 
+je veux que le bloc soit en bas et à droite de l'ecran : 
+**/ 
+
+#right-container-rgpd {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 100;
+}
+
+
+#right-container-rgpd .menu-button {
+  border: 1px solid rgba(255, 0, 0, 0);
+  background-color: #f44336;
+  border-radius: 5px;
+  padding: 5px 15px 5px 15px;
+  margin: 5px;
+  font-weight: 600;
+  min-width: 100px;
+
+  color: white;
+  transition: transform 0.1s;
+}
+
+#right-container-rgpd .menu-button:hover {
+  background-color: #b9352c;
+}
+
+#right-container-rgpd .menu-button:active {
+  transform: scale(1.05);
+}
