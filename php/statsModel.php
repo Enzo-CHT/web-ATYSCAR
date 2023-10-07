@@ -50,42 +50,27 @@ function UseByTypeCarByCity()
     $xLabels = array();
     $dataDisplay = array();
 
-    $previousName = "";
+    print_r($STATS);
+
+    foreach ($STATS as $el => $ignore) {
+        $xLabels = $el;
+    }
+
     $set = array();
-    foreach ($STATS as $el => $array) {
-        $xLabels[] = $el;
-
-
-        /// Calcul foireux 
-        /// Ajouter importation dataDisplay
-        print_r($array);
-
-
-        $name = $array['name'];
-        $data = $array['data'];
-        if ($name != $previousName) {
-            if (!empty($set)) {
-                $dataDisplay[] = $set;
+    while ($ville = $xLabels) {
+        foreach ($STATS as $el => $array) {
+            if (!in_array($el, $xLabels)) {
+                $xLabels = $el;
             }
-            $set = array();
-            $set['name'] = $name;
-            $set['data'][] = round($data);
-            $previousName = $name;
-        } else {
-            $set['data'][] = round($data);
-            $previousName = $name;
+
+            $set['data'][] = ($ville == $el) ? $array['data'] : 0;
         }
 
-
-
-
-
-
+        $dataDisplay[] = $set;
     }
-    $dataDisplay[] = $set;
 
     $return = [$xLabels, $dataDisplay];
-    print_r(json_encode($return));
+    //print_r(json_encode($return));
 }
 function UseByTypeCarByPeriode()
 {
