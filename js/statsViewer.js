@@ -1,23 +1,36 @@
-// Wait for the ApexCharts library to be fully loaded
 window.addEventListener('DOMContentLoaded', function () {
-    displayGraphics();
+    var selectElement = document.getElementById("statistiques-type-stat");
+
+    // première initialisation
+    displayGraphics(selectElement.value, 0);
+
+    
+    selectElement.addEventListener('change', function () {
+        //Recupère l'option selectionné
+        var selectedOption = this.options[this.selectedIndex];
+
+        if (selectedOption) {
+            var optionId = selectedOption.id;
+
+            displayGraphics(selectedOption.text, optionId);
+        }
+    });
+
 });
 
 
 
+/**
+ * Fonction d'affichage des données
+ * @param {*} titre Titre du graphique
+ * @param {*} typeStats Type de statistic à générer 
+ */
+function displayGraphics(titre, typeStats) {
 
-function randomArray() {
-    var arrayRandom = [];
-    for (var i = 0; i < 3; i++) {
-        var nb = Math.floor(Math.random() * 101);
-        arrayRandom.push(nb);
 
-    }
-    return arrayRandom;
-}
-
-function displayGraphics(data = null) {
-
+    document.querySelector("#stats").innerHTML = "";
+    if (window.myChart)
+        window.myChart.destroy();
 
 
     // Contient les données affichés dans l'axe X
@@ -32,15 +45,19 @@ function displayGraphics(data = null) {
     /// data : Utilisation %
     dataDisplay = [];
 
+    // Importation des données depuis la base de données
     $.ajax({
         url: 'php/statsModel.php',
         type: 'GET',
         async: false,
+        data: {
+            userStats: typeStats,
+        },
         success: function (response) {
             res = JSON.parse(response);
             xLabels = res[0];
             dataDisplay = res[1];
-            console.log(dataDisplay);
+
         }
     })
 
@@ -51,6 +68,7 @@ function displayGraphics(data = null) {
         series: dataDisplay,
         chart: {
             height: 350,
+            width: 450,
             type: 'bar',
             zoom: {
                 enabled: false
@@ -65,8 +83,8 @@ function displayGraphics(data = null) {
             dashArray: 0
         },
         title: {
-            text: 'Page Statistics',
-            align: 'left'
+            text: 'Statistique ' + titre,
+            align: 'left',
         },
         legend: {
             tooltipHoverFormatter: function (val, opts) {
@@ -112,6 +130,11 @@ function displayGraphics(data = null) {
         }
     };
 
-    var chart = new ApexCharts(document.querySelector("#stats"), options);
-    chart.render();
+    // Utilisation de apexcharts pour générer un graphique
+    var myChart = new ApexCharts(document.querySelector("#stats"), options);
+    myChart.render();
+
+
+
+
 }

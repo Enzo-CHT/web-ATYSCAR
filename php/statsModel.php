@@ -1,5 +1,4 @@
 <?php
-
 // Modele de récupération des données statistiques 
 
 
@@ -7,165 +6,120 @@
 /////////////////////////
 // Utilisation / Type voiture / ville
 // Utilisation / Type voiture / période
-// Utilisation / Type voiture / Période / ville
-// Recours concurrence / Type voiture / ville
-// Recours concurrence / Type voiture / période
+// A faire : Utilisation / Type voiture / Période / ville
+// A faire : Recours concurrence / Type voiture / ville
+// A faire : Recours concurrence / Type voiture / période
 
 
 
-// TO DO
-// Utilisation d'une seul fonction ??
 
-UseByTypeCarByCity();
-function UseByTypeCarByCity()
-{
-    $STATS = array();
-    include "connexion.php";
+$err = 0;
+$xLabels = array();
+$dataDisplays = array();
+$STATS = array();
 
-    $request = "SELECT TypeV, VilDepCont FROM contrat INNER JOIN vehicule ON contrat.MatV = vehicule.MatV;";
-    $res = $connexion->query($request);
+$userRequest = (isset($_GET['userStats']) ? $_GET['userStats'] : null);
 
-    if ($res->num_rows > 0) {
-        while ($row = $res->fetch_assoc()) {
-            $ville = $row['VilDepCont'];
-            $TypeV = $row['TypeV'];
+// Données à traiter en fonction de la requête
+switch ($userRequest) {
+    case 0:
+        $STATS = getStats($request = "SELECT TypeV, VilDepCont FROM contrat 
+        INNER JOIN vehicule ON contrat.MatV = vehicule.MatV;");
+        break;
+    case 1:
+        $STATS = getStats($request = "SELECT TypeV, periode FROM Tarifer 
+        INNER JOIN contrat ON contrat.NumCont = id_contrat
+        INNER JOIN vehicule ON contrat.MatV = vehicule.MatV;");
+        break;
+        /* 
+    case :
+        $STATS = getStats($request = "SELECT TypeV, periode, VilDepCont FROM Tarifer 
+        INNER JOIN contrat ON contrat.NumCont = id_contrat 
+        INNER JOIN vehicule ON contrat.MatV = vehicule.MatV;");
+        break;*/
 
-            // Check if the city exists in the array
-            if (!isset($STATS[$ville])) {
-                $STATS[$ville] = [];
-            }
+    default:
+        die("FAIL:Pas de statistique selectionnée");
+}
 
-            // Check if the vehicle type exists for the city
-            if (!isset($STATS[$ville][$TypeV])) {
-                $STATS[$ville][$TypeV] = ['cpt' => 1];
-            } else {
-                $STATS[$ville][$TypeV]['cpt']++;
-            }
+
+// Recupération du total des données
+$total = 0;
+foreach ($STATS as $arrays) {
+    foreach ($arrays as $ville => $data) {
+        $total += $data['cpt'];
+    }
+}
+
+
+// Récupération des nom de l'axe x
+foreach ($STATS as $TypeV => $arrays) {
+    foreach ($arrays as $ville => $data) {
+        if (!in_array($ville, $xLabels)) {
+            $xLabels[] = $ville;
         }
     }
+}
 
-    $total = 0;
+$nombreDeVille = count($xLabels);
 
-    // Calculate the total count
-    foreach ($STATS as $el => $array) {
-        foreach ($array as $typeV => $data) {
-            $total += $data['cpt'];
-        }
-    }
-    
-    // Calculate percentages
-    foreach ($STATS as $el => $val) {
-        foreach ($val as $typeV => $data) {
-            $STATS[$el][$typeV]['data'] = ($data['cpt'] / $total) * 100;
-        }
-    }
+// Evite la division par 0 
+if ($nombreDeVille == 0) {
+    $err = 1;
+}
 
 
-    $xLabels = array();
-    $dataLabels = array();
+if (!$err) {
 
-    // Extract xLabels (cities)
-    foreach ($STATS as $el => $ignore) {
-        $xLabels[] = $el;
-    }
-
-
-    // FONCTION QUI FOU LA MERDE
-    for ($i = 0; $i < sizeof($xLabels); $i++) {
+    // Traitement des données pour les adapter au format utilisable par apexchart
+    foreach ($STATS as $typeV => $arrays) {
         $set = array();
-        $ville = $xLabels[$i];
-
-        foreach ($STATS as $el => $array) {
-            print_r($array);
-            if (isset($array[$el])) {
-                $data = $array[$el]['data'];
-                $set[] = $data;
-            } else {
-                $set[] = 0;
+        foreach ($arrays as $ville => $data) {
+            for ($i = 0; $i < $nombreDeVille; $i++) {
+                // Si la ville actuel est à la position i, alors on ajoute les données à cette position
+                if ($xLabels[$i] == $ville) {
+                    $set[$i] = round(($data['cpt'] / $total) * 100);
+                } else if (!isset($set[$i])) {
+                    // Si la position i ne correspondant pas n'est pas définis, on l'initialise à 0
+                    $set[$i] = 0;
+                }
             }
         }
-
-        $percentLabels[$el] = $set;
+        $dataDisplays[] = ['name' => $typeV, 'data' => $set];
     }
-    ////  FIN FONCTION QUI FOU LA MERDE
-
-
-    foreach ($percentLabels as $typeV => $arraysOfData) {
-        
-        $set = array();
-        $len = max(array_map("count", $arraysOfData));
-        for ($i = 0; $i < $len; $i++) {
-            $sum = 0;
-
-            foreach ($arraysOfData as $array) {
-                $sum += isset($array[$i]) ? $array[$i] : 0;
-            }
-
-            $set[] = $sum;
-        }
-
-        $percentLabels[$typeV] = $set;
-    }
-
-    foreach ($percentLabels as $key => $valueArray) {
-        $name = $key;
-        $data = array_map('round', $valueArray);
-        $dataLabels[] = ["name" => $name, "data" => $data];
-    }
-
-    $return = [$xLabels, $dataLabels];
-
-    echo json_encode($return);
 }
-function UseByTypeCarByPeriode()
+
+
+// Données renvoyé à la page 
+$return = [$xLabels, $dataDisplays, $err];
+echo json_encode($return);
+
+
+
+/**
+ * Fonction de récupération en fonction de la requête utilisateur
+ */
+function getStats($request)
 {
+
     $STATS = array();
+
     include "connexion.php";
-    $request = "SELECT TypeV, periode FROM Tarifer 
-    INNER JOIN contrat ON contrat.NumCont = id_contrat
-    INNER JOIN vehicule ON contrat.MatV = vehicule.MatV;";
     $res = $connexion->query($request);
+
     if ($res->num_rows > 0) {
-        while ($row = $res->fetch_assoc()) {
-            $periode = $row['periode'];
-            $TypeV = $row['TypeV'];
-            $STATS[$periode]['name'] = $TypeV;
-            if (!isset($STATS[$periode]['cpt'])) {
-                $STATS[$periode]['cpt'] = 1;
+        while ($row = $res->fetch_row()) {
+            $TypeV = $row[0];
+            $ville = $row[1];
+
+            if (!isset($STATS[$TypeV][$ville])) {
+                $STATS[$TypeV][$ville]['cpt'] = 1;
             } else {
-                $STATS[$periode]['cpt']++;
+                $STATS[$TypeV][$ville]['cpt']++;
             }
         }
     }
-    $total = 0;
-    foreach ($STATS as $el => $val) {
-        $total += $STATS[$el]['cpt'];
-    }
 
-    foreach ($STATS as $el => $val) {
-        $STATS[$el]['data'] = ($STATS[$el]['cpt'] / $total) * 100;
-    }
 
-    print_r($STATS);
-}
-function UseByTypeCarByPeriodeByCity()
-{
-    include "connexion.php";
-    $request = "SELECT TypeV, periode, VilDepCont FROM Tarifer INNER JOIN contrat ON contrat.NumCont = id_contrat INNER JOIN vehicule ON contrat.MatV = vehicule.MatV;";
-    $res = $connexion->query($request);
-    if ($res->num_rows > 0) {
-        while ($row = $res->fetch_assoc()) {
-            print_r($row);
-            foreach ($row as $el => $val) {
-            }
-        }
-    }
-}
-function competitionByTypeCarByPeriode()
-{
-    $request = "";
-}
-function competitionByTypeCarByCity()
-{
-    $request = "";
+    return $STATS;
 }
