@@ -21,56 +21,101 @@ function UseByTypeCarByCity()
 {
     $STATS = array();
     include "connexion.php";
+
     $request = "SELECT TypeV, VilDepCont FROM contrat INNER JOIN vehicule ON contrat.MatV = vehicule.MatV;";
     $res = $connexion->query($request);
+
     if ($res->num_rows > 0) {
         while ($row = $res->fetch_assoc()) {
             $ville = $row['VilDepCont'];
             $TypeV = $row['TypeV'];
-            $STATS[$ville]['name'] = $TypeV;
-            if (!isset($STATS[$ville]['cpt'])) {
-                $STATS[$ville]['cpt'] = 1;
+
+            // Check if the city exists in the array
+            if (!isset($STATS[$ville])) {
+                $STATS[$ville] = [];
+            }
+
+            // Check if the vehicle type exists for the city
+            if (!isset($STATS[$ville][$TypeV])) {
+                $STATS[$ville][$TypeV] = ['cpt' => 1];
             } else {
-                $STATS[$ville]['cpt']++;
+                $STATS[$ville][$TypeV]['cpt']++;
             }
         }
     }
 
     $total = 0;
-    foreach ($STATS as $el => $val) {
-        $total += $STATS[$el]['cpt'];
-    }
 
-    foreach ($STATS as $el => $val) {
-        $STATS[$el]['data'] = ($STATS[$el]['cpt'] / $total) * 100;
+    // Calculate the total count
+    foreach ($STATS as $el => $array) {
+        foreach ($array as $typeV => $data) {
+            $total += $data['cpt'];
+        }
     }
-
+    
+    // Calculate percentages
+    foreach ($STATS as $el => $val) {
+        foreach ($val as $typeV => $data) {
+            $STATS[$el][$typeV]['data'] = ($data['cpt'] / $total) * 100;
+        }
+    }
 
 
     $xLabels = array();
-    $dataDisplay = array();
+    $dataLabels = array();
 
-    print_r($STATS);
-
+    // Extract xLabels (cities)
     foreach ($STATS as $el => $ignore) {
-        $xLabels = $el;
+        $xLabels[] = $el;
     }
 
-    $set = array();
-    while ($ville = $xLabels) {
-        foreach ($STATS as $el => $array) {
-            if (!in_array($el, $xLabels)) {
-                $xLabels = $el;
-            }
 
-            $set['data'][] = ($ville == $el) ? $array['data'] : 0;
+    // FONCTION QUI FOU LA MERDE
+    for ($i = 0; $i < sizeof($xLabels); $i++) {
+        $set = array();
+        $ville = $xLabels[$i];
+
+        foreach ($STATS as $el => $array) {
+            print_r($array);
+            if (isset($array[$el])) {
+                $data = $array[$el]['data'];
+                $set[] = $data;
+            } else {
+                $set[] = 0;
+            }
         }
 
-        $dataDisplay[] = $set;
+        $percentLabels[$el] = $set;
+    }
+    ////  FIN FONCTION QUI FOU LA MERDE
+
+
+    foreach ($percentLabels as $typeV => $arraysOfData) {
+        
+        $set = array();
+        $len = max(array_map("count", $arraysOfData));
+        for ($i = 0; $i < $len; $i++) {
+            $sum = 0;
+
+            foreach ($arraysOfData as $array) {
+                $sum += isset($array[$i]) ? $array[$i] : 0;
+            }
+
+            $set[] = $sum;
+        }
+
+        $percentLabels[$typeV] = $set;
     }
 
-    $return = [$xLabels, $dataDisplay];
-    //print_r(json_encode($return));
+    foreach ($percentLabels as $key => $valueArray) {
+        $name = $key;
+        $data = array_map('round', $valueArray);
+        $dataLabels[] = ["name" => $name, "data" => $data];
+    }
+
+    $return = [$xLabels, $dataLabels];
+
+    echo json_encode($return);
 }
 function UseByTypeCarByPeriode()
 {

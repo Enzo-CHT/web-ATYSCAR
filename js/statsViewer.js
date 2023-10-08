@@ -40,6 +40,7 @@ function displayGraphics(data = null) {
             res = JSON.parse(response);
             xLabels = res[0];
             dataDisplay = res[1];
+            console.log(dataDisplay);
         }
     })
 
