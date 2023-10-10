@@ -1047,7 +1047,7 @@ je veux que le bloc soit en bas et à droite de l'ecran :
   position: absolute;
   bottom: 0;
   right: 0;
-  margin: 0;
+  margin: 0 15px 0 0;
   padding: 0;
   z-index: 100;
 }
