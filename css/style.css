@@ -1042,8 +1042,8 @@ je veux que le bloc soit en bas et à droite de l'ecran :
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 100px;
   position: absolute;
   bottom: 0;
   right: 0;
