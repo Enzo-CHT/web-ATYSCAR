@@ -21,7 +21,7 @@ switch ($scope) {
         echo "entretien reseted.";
         break;
     case "all":
-        unset($_SESSION);
+        $_SESSION = array();
         echo "all reseted.";
         break;
     default:

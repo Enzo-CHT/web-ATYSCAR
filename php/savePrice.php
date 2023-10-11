@@ -23,7 +23,7 @@ if ($data != 'NONE') {
 
 
 
-    $query = "UPDATE TARIFER SET
+    $query = "UPDATE TARIFS SET
             tarif = ? 
             WHERE 
 

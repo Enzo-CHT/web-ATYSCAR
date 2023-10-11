@@ -50,6 +50,7 @@
       $.ajax({
         url: "../php/sessionUpdater.php",
         type: "POST",
+        async : false,
         data: {
           session: "all",
           data: document.getElementById("edition-facture-id").value,

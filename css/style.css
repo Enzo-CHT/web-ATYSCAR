@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap");
 
-
 * {
   font-family: "Open Sans";
   font-size: 14px;
@@ -30,11 +29,10 @@ table,
 th,
 td {
   text-align: left;
-
 }
 
 input[type="text"],
-select[type='text'] {
+select[type="text"] {
   margin: 2px;
   border: 1px solid rgba(0, 0, 0, 0);
   border-radius: 3px;
@@ -45,7 +43,7 @@ select[type='text'] {
 }
 
 input[type="text"]:focus,
-select[type='text']:focus {
+select[type="text"]:focus {
   box-shadow: inset 0px -2px 0px -1px rgb(219, 96, 96);
 }
 
@@ -67,13 +65,11 @@ input[type="number"] {
 
 input[type="number"]:focus {
   box-shadow: inset 0px -2px 0px -1px rgb(219, 96, 96);
-
 }
 
 datalist {
   display: none;
 }
-
 
 select {
   margin: 2px;
@@ -92,7 +88,6 @@ select {
   /* other styles */
 }
 
-
 .menu-settings {
   display: inline-flex;
   flex-direction: column;
@@ -108,11 +103,9 @@ h3 {
   color: rgb(54, 55, 55);
 }
 
-
 a {
   text-decoration: none;
 }
-
 
 .raise-error {
   background-color: rgba(245, 245, 220, 0.529);
@@ -143,7 +136,7 @@ a {
   transform: scale(1.05);
 }
 
-#main-menu>div {
+#main-menu > div {
   background-color: white;
   display: flex;
   justify-content: space-between;
@@ -189,7 +182,7 @@ a {
   justify-content: baseline;
 }
 
-#menu-location>div {
+#menu-location > div {
   position: relative;
   border-radius: 5px;
   display: flex;
@@ -214,7 +207,6 @@ a {
   display: inline-flex;
   flex-direction: column;
   position: relative;
-
 }
 
 #menu-location .container-main-button .menu-button {
@@ -313,7 +305,7 @@ a {
   min-width: 100px;
 }
 
-#contrat-location>div {
+#contrat-location > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -322,12 +314,28 @@ a {
   padding: 10px;
 }
 
+#contrat-location .type-facturation,
+#contrat-location .type-client,
+#contrat-location .type-periode {
+  position: relative;
+  left: -40px;
+  margin: 0;
+  padding: 0;
+  width: 170px;
+  max-width: 200px !important;
+}
+
+#contrat-location .type-facturation .container-element,
+#contrat-location .type-client .container-element,
+#contrat-location .type-periode .container-element {
+  width: 110px;
+}
+
 .success-operation {
   display: flex;
   width: 20px;
   height: 20px;
 }
-
 
 #contrat-location .head {
   position: relative;
@@ -363,7 +371,6 @@ a {
   align-items: center;
   max-width: 100%;
   margin-top: 2%;
-
 }
 
 .container-element label {
@@ -468,7 +475,7 @@ a {
   width: 115px;
 }
 
-#fichier-client>div {
+#fichier-client > div {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -516,7 +523,7 @@ a {
   justify-content: space-between;
 }
 
-#selectionner-vehicule>div {
+#selectionner-vehicule > div {
   display: flex;
   border-radius: 5px;
   background-color: white;
@@ -539,9 +546,9 @@ a {
   width: 200px;
 }
 
-#annulation-contrat>div,
-#edition-facture>div,
-#facture>div {
+#annulation-contrat > div,
+#edition-facture > div,
+#facture > div {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -551,7 +558,7 @@ a {
   padding: 15px;
 }
 
-#facture>div {
+#facture > div {
   width: 95%;
   max-width: 1000px;
 }
@@ -577,7 +584,7 @@ a {
   width: 400px;
 }
 
-#erreur-page>div {
+#erreur-page > div {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -606,7 +613,7 @@ a {
   margin: auto;
 }
 
-#enregistrer-entretien>div {
+#enregistrer-entretien > div {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -643,8 +650,7 @@ a {
   width: 100%;
 }
 
-
-#actualiser-fichiers>div {
+#actualiser-fichiers > div {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -699,7 +705,7 @@ a {
   padding: 5px;
 }
 
-#fichier-vehicule>div {
+#fichier-vehicule > div {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -707,7 +713,6 @@ a {
   padding: 15px;
   width: 750px;
   height: 85%;
-
 }
 
 #fichier-vehicule input[type="text"] {
@@ -720,28 +725,23 @@ a {
   margin-left: 5%;
   margin-right: 5%;
   width: 650px;
-
 }
 
 #fichier-vehicule .container .right-container {
   position: relative;
   width: 20%;
   bottom: 15px;
-
-
 }
 
 #fichier-vehicule .container .middle {
   position: relative;
   width: 250px;
   bottom: 55px;
-
 }
 
 #fichier-vehicule-addons {
   position: relative;
   top: -30px;
-
 }
 
 #fichier-vehicule .container .foot {
@@ -750,8 +750,7 @@ a {
   left: -25px;
 }
 
-
-#fichier-tarifs>div {
+#fichier-tarifs > div {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -760,20 +759,17 @@ a {
   min-width: 1000px;
   width: 53%;
   height: 87%;
-
 }
 
 #fichier-tarifs .container {
   max-width: 100%;
   margin-right: 15px;
-
 }
 
 #fichier-tarifs .container-element {
   margin-top: 0;
   align-items: center;
   margin-left: 15px;
-
 }
 
 #fichier-tarifs .left-container {
@@ -799,9 +795,7 @@ a {
   margin-right: 15px;
 }
 
-
-
-#historique>div {
+#historique > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -809,10 +803,9 @@ a {
   width: 800px;
   box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
   padding: 10px;
-
 }
 
-#historique div>img {
+#historique div > img {
   position: relative;
   bottom: 130px;
   height: 55px;
@@ -820,30 +813,22 @@ a {
   margin-left: 10px;
 }
 
-
 #historique .container {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-
 #historique .top {
   display: flex;
   flex-direction: row;
-
-
-
 }
-
 
 #historique .top .right-container {
   position: relative;
   left: -115px;
   top: 55px;
   width: 100px;
-
-
 }
 
 #historique .top .left-container {
@@ -856,7 +841,6 @@ a {
   justify-content: space-between;
   height: 250px;
   width: 550px;
-
 }
 
 #historique .btn-container .left-container .menu-button {
@@ -876,7 +860,7 @@ a {
 
 /* Page Statistiques */
 
-#statistiques>div {
+#statistiques > div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -886,7 +870,6 @@ a {
   min-height: 250px;
   box-shadow: 10px 10px 43px 1px rgba(0, 0, 0, 0.16);
   padding: 10px;
-
 }
 
 #statistiques select {
@@ -898,7 +881,6 @@ a {
   justify-content: space-between;
   width: 100%;
   height: 100%;
-
 }
 
 #statistiques .box-c {
@@ -906,7 +888,6 @@ a {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-
 }
 
 #statistiques .box-l {
@@ -914,7 +895,6 @@ a {
   left: 100px;
   width: 550px;
   justify-content: space-between;
-
 }
 
 /* Fin page statistiques*/
@@ -927,15 +907,12 @@ a {
   font-weight: 800;
 }
 
-
 #fichier-vehicule #span-stats {
   background-color: blanchedalmond;
   border-radius: 10px;
 }
 
-
-
-#construction>div {
+#construction > div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -953,7 +930,6 @@ a {
   justify-content: space-around;
   width: 200px;
   color: rgb(234, 231, 231);
-
 }
 
 #construction img {
@@ -961,13 +937,11 @@ a {
   border-radius: 10px;
   width: 250px;
   height: 250px;
-
 }
 
 /* CSS LOCALISER  VOITURE**/
 
-
-#localiser>div {
+#localiser > div {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -977,12 +951,10 @@ a {
   padding: 15px;
 }
 
-
 #localiser input {
   width: 75px;
   margin-right: 5%;
 }
-
 
 #localiser .box {
   margin-left: 10%;
@@ -990,81 +962,66 @@ a {
   width: 400px;
 }
 
-
-
 #localiser iframe {
-margin: auto;
-
+  margin: auto;
 }
 
 /* Entrée de texte **/
 
-
-
 .login-box {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   width: 400px;
-   padding: 40px;
-   transform: translate(-50%, -50%);
-   background: #4048b8;
-   box-shadow: 0 15px 25px rgba(143, 124, 236, 0.7);
-   border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: #4048b8;
+  box-shadow: 0 15px 25px rgba(143, 124, 236, 0.7);
+  border-radius: 10px;
 }
 
 .login-box h2 {
-   margin: 0 0 30px;
-   padding: 0;
-   color: #b42929;
-   text-align: center;
+  margin: 0 0 30px;
+  padding: 0;
+  color: #b42929;
+  text-align: center;
 }
 
 .user-box input {
-   position: relative;
-   width: 100%;
-   padding: 10px 0;
-   font-size: 15px;
-   color: #46070f;
-   margin-bottom: 30px;
-   border: none;
-   border-bottom: 1px solid #df7f11;
-   outline: none;
-   background: transparent;
+  position: relative;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 15px;
+  color: #46070f;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #df7f11;
+  outline: none;
+  background: transparent;
 }
 
 .user-box label {
-   position: relative;
-   left: 0;
-   top: -60px;
-   padding: 0px ;
-   font-size: 16px;
-   color: #339b52;
-   pointer-events: none;
-   transition: .5s;
+  position: relative;
+  left: 0;
+  top: -60px;
+  padding: 0px;
+  font-size: 16px;
+  color: #339b52;
+  pointer-events: none;
+  transition: 0.5s;
 }
 
-.user-box input:focus~label,
-.user-box input:valid~label {
-   top: -86px;
-   left: 0;
-   color: #000000;
-   font-size: 12px;
+.user-box input:focus ~ label,
+.user-box input:valid ~ label {
+  top: -86px;
+  left: 0;
+  color: #000000;
+  font-size: 12px;
 }
-
-
-
-
-
-
-
 
 /* FIN Entrée de texte **/
 
-
 /*FIN LOCALISER **/
-
-
 
 /* Style de base du paragraphe */
 .trigger-event {
@@ -1072,8 +1029,6 @@ margin: auto;
   display: inline-block;
   cursor: pointer;
 }
-
-
 
 /* Styles du menu contextuel */
 .sub {
@@ -1098,16 +1053,14 @@ margin: auto;
 }
 
 /* Afficher le menu lorsque le paragraphe est survolé */
-.trigger-event:hover+.sub {
+.trigger-event:hover + .sub {
   visibility: visible;
 }
-
 
 #raise-error {
   font-weight: bold;
   color: red;
 }
-
 
 /** POP UP Window **/
 .popup-overlay {
@@ -1120,9 +1073,7 @@ margin: auto;
   width: 100%;
   height: 100%;
 
-
   z-index: 0;
-
 }
 
 #autre-entretien {

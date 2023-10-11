@@ -228,7 +228,7 @@
     
 </script>
 <?php 
-$query = 'SELECT * FROM TARIFER';
+$query = 'SELECT * FROM TARIFS';
 
 $dbh = new PDO('mysql:host=localhost;dbname=wb-atyscar','root','');
 $stmt = $dbh->prepare($query);

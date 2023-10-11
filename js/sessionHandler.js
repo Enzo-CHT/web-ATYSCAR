@@ -1,5 +1,3 @@
-
-
 /**
  *
  * @param {Array} dataArray Données contenant les informatiosn à définir en session
