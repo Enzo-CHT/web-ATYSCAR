@@ -46,7 +46,7 @@ switch ($userRequest) {
 // Recupération du total des données
 $total = 0;
 foreach ($STATS as $arrays) {
-    foreach ($arrays as $ville => $data) {
+    foreach ($arrays as $xPosition => $data) {
         $total += $data['cpt'];
     }
 }
@@ -54,17 +54,17 @@ foreach ($STATS as $arrays) {
 
 // Récupération des nom de l'axe x
 foreach ($STATS as $TypeV => $arrays) {
-    foreach ($arrays as $ville => $data) {
-        if (!in_array($ville, $xLabels)) {
-            $xLabels[] = $ville;
+    foreach ($arrays as $xPosition => $data) {
+        if (!in_array($xPosition, $xLabels)) {
+            $xLabels[] = $xPosition;
         }
     }
 }
 
-$nombreDeVille = count($xLabels);
+$nombreElement = count($xLabels);
 
 // Evite la division par 0 
-if ($nombreDeVille == 0) {
+if ($nombreElement == 0) {
     $err = 1;
 }
 
@@ -74,11 +74,11 @@ if (!$err) {
     // Traitement des données pour les adapter au format utilisable par apexchart
     foreach ($STATS as $typeV => $arrays) {
         $set = array();
-        foreach ($arrays as $ville => $data) {
-            for ($i = 0; $i < $nombreDeVille; $i++) {
-                // Si la ville actuel est à la position i, alors on ajoute les données à cette position
-                if ($xLabels[$i] == $ville) {
-                    $set[$i] = round(($data['cpt'] / $total) * 100);
+        foreach ($arrays as $xPosition => $yData) {
+            for ($i = 0; $i < $nombreElement; $i++) {
+                // Si l'element actuel est à la position i, alors on ajoute les données à cette position
+                if ($xLabels[$i] == $xPosition) {
+                    $set[$i] = round(($yData['cpt'] / $total) * 100);
                 } else if (!isset($set[$i])) {
                     // Si la position i ne correspondant pas n'est pas définis, on l'initialise à 0
                     $set[$i] = 0;
@@ -110,12 +110,12 @@ function getStats($request)
     if ($res->num_rows > 0) {
         while ($row = $res->fetch_row()) {
             $TypeV = $row[0];
-            $ville = $row[1];
+            $xPosition = $row[1];
 
-            if (!isset($STATS[$TypeV][$ville])) {
-                $STATS[$TypeV][$ville]['cpt'] = 1;
+            if (!isset($STATS[$TypeV][$xPosition])) {
+                $STATS[$TypeV][$xPosition]['cpt'] = 1;
             } else {
-                $STATS[$TypeV][$ville]['cpt']++;
+                $STATS[$TypeV][$xPosition]['cpt']++;
             }
         }
     }

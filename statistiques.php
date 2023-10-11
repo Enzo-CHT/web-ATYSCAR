@@ -8,7 +8,7 @@
     <title>STATISTIQUES</title>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/statsViewer.js"></script>
+    <script src="js/statsBuilder.js"></script>
 
 </head>
 
@@ -26,8 +26,8 @@
                         <label for="statistiques-type-stat">Type de statistiques</label>
                         <select id="statistiques-type-stat" type="text" list="stat_list">
                             <!-- Enter Option here !-->
-                            <option id=0>Utilisation / Type de véhicule / Ville</option>
-                            <option id=1>Utilisation / Type de véhicule / Periode</option>
+                            <option id=0>% Utilisation / Type de véhicule / Ville</option>
+                            <option id=1>% Utilisation / Type de véhicule / Periode</option>
                         </select>
                     </div>
 

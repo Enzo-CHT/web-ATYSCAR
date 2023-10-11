@@ -62,7 +62,7 @@
             success: function (response) {
                 // Si aucun succès dans la réponse, appel du callback
                 if (response.indexOf('SUCCESS') > -1) {
-                    console.log("contract updated.");
+                    //console.log("contract updated.");
                     window.location.href = "edit-contrat";
 
                 } else {
@@ -90,7 +90,7 @@
                 client: data
             },
             success: function (response) {
-                console.log("searchClient has been executed.");
+                //console.log("searchClient has been executed.");
         
                 if (response.indexOf('SUCCESS') > -1) {
                     $('body').load('../fichiers/fichier-clients.php');
