@@ -257,7 +257,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
             dataArray[key] = value;
         });
 
-        console.log(dataArray);
+       
 
         // Récupération des élements non manuellement remplissable
         dataArray['MatV'] = "<?php echo isset($_SESSION['vehicule']['MatV']) ? $_SESSION['vehicule']['MatV'] : '' ?>";

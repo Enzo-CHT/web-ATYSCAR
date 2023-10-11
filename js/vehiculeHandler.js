@@ -28,7 +28,7 @@ function saveVehicule(formid) {
       data: JSON.stringify(dataArray),
     },
     success: function () {
-      console.log("saveVehicule has been executed.");
+      //console.log("saveVehicule has been executed.");
 
       // Refresh la page
       $("#fichier-vehicule").load(document.URL + "#fichier-vehicule");
@@ -53,7 +53,7 @@ function updateVehicule(formid) {
       function: "updateVehicule", // Action dans le model
     },
     success: async function () {
-      console.log("updateVehicule has been executed.");
+      //console.log("updateVehicule has been executed.");
       await updateSession("vehicule"); // Mis à jour de la SESSION avec les nouvelles infos
 
       // Refresh la page
@@ -79,14 +79,14 @@ function delVehicule(formid) {
       function: "deleteVehicule", // Action dans le model
     },
     success: async function () {
-      console.log("delVehicule has been executed.");
+      //console.log("delVehicule has been executed.");
       await resetSession("vehicule"); // Suppression de la SESSION vehicule existante
 
       //Refresh la page
       $("#fichier-vehicule").load(document.URL + "#fichier-vehicule");
     },
     error: function (xhr, status, error) {
-      console.error("Error page () : ", error, status);
+      console.error("Error page : ", error, status);
     },
   });
 }
@@ -106,7 +106,7 @@ function switchVehicule(way) {
       data: JSON.stringify(way),
     },
     success: async function () {
-      console.log("switchVehicule has been executed.");
+      //console.log("switchVehicule has been executed.");
 
       // Mis à jour de la session
       // Avec les nouvelles données

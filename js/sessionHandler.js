@@ -14,7 +14,7 @@ async function setSession(dataArray) {
       },
     });
 
-    console.log("setSession has been executed.");
+    //console.log("setSession has been executed.");
   } catch (error) {
     console.error("Session error (setSession):", error);
   }
@@ -31,7 +31,7 @@ async function updateSession(sessionName = "all") {
       session: sessionName,
     },
     success: function () {
-      console.log("updateSession has been executed.");
+      //console.log("updateSession has been executed.");
     },
     error: function (xhr, status, error) {
       console.error("Session error (updateSession):", error, status);
@@ -51,7 +51,7 @@ async function resetSession(session = "all") {
         scope: session,
       },
       success: function () {
-        console.log("resetSession has been executed.");
+        //console.log("resetSession has been executed.");
       },
     });
   } catch (error) {

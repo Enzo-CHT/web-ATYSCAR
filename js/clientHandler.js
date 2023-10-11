@@ -22,7 +22,7 @@ async function newClient(dataArray) {
         success: async function (response) {
 
             displayResponse(response = response.split(':'), redirect = true);
-            console.log('newClient has been executed.');
+            //console.log('newClient has been executed.');
             await updateSession('client');
 
 
@@ -54,7 +54,7 @@ async function delClient() {
             function: 'delClient',
         },
         success: async function (response) {
-            console.log("delClient has been executed.");
+            //console.log("delClient has been executed.");
 
             // Suppression des champs
             var textInputs = document.querySelectorAll('input[type="text"],input[type="date"],input[type="time"]');
@@ -88,7 +88,7 @@ async function updateClient(dataArray) {
             function: 'updateClient',
         },
         success: function (response) {
-            console.log('updateClient has been executed.');
+            //console.log('updateClient has been executed.');
             displayResponse(response.split(':'));
            
 
@@ -119,7 +119,7 @@ async function changeClient(way) {
                 data: way,
             },
             success: async function (response) {
-                console.log('changeClient has been executed.');
+                //console.log('changeClient has been executed.');
                 await updateSession('client');
                 $('body').load('../fichiers/fichier-clients.php');
             },

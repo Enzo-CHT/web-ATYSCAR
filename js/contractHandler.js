@@ -20,7 +20,7 @@ function updateContract(newData, delete_all = false) {
         },
 
         success: function (response) {
-            console.log('updateContract has been executed.');
+            //console.log('updateContract has been executed.');
 
             // En cas de faute de l'utilisateur
             if (response.indexOf('FAIL') > -1) {
@@ -67,7 +67,7 @@ function delContract() {
             action: 'delete',
         },
         success: function (response) {
-            console.log('delContract has been executed.');
+            //console.log('delContract has been executed.');
             if (response.indexOf('Success!') > -1) {
                 $('#span-stats').html('<img class="success-operation" src="../addons/img/check.png">');
 
@@ -99,7 +99,7 @@ function addContract(data, delete_all = false) {
 
         },
         success: function (response) {
-            console.log('addContract has been executed.');
+            //console.log('addContract has been executed.');
 
             // Si l'ajout à échoué par une faute utilisateur
             if (response.indexOf('FAIL') > -1) {
