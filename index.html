@@ -1,72 +1,83 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/style.css" type="text/css">
 
-    <title>ATYS CAR</title>
-</head>
+        <title>ATYS CAR</title>
+    </head>
 
-<body>
-    <main id="main-menu">
-        <div>
-            <div class="container">
-                <img class="logo" src="addons/img/Atys Car.jpg" alt="atyscar-logo" />
-                
-                <div class="left-container">
-                    <div>
-                        <a  href="louer/index.html">
-                            <input cid="main-btn-louer-vehicule" class="menu-button" type="button" value="LOUER UN VEHICULE">
+    <body>
+        <main id="main-menu">
+            <div>
+                <div class="container">
+                    <img class="logo" src="addons/img/Atys Car.jpg"
+                        alt="atyscar-logo" />
+
+                    <div class="left-container">
+                        <div>
+                            <a href="louer/index.html">
+                                <input cid="main-btn-louer-vehicule"
+                                    class="menu-button" type="button"
+                                    value="LOUER UN VEHICULE">
+                            </a>
+                            <a href="enregistrer/">
+                                <input id="main-btn-enregistrer-entretien"
+                                    class="menu-button" type="button"
+                                    value="ENREGISTRER ENTRETIEN">
+                            </a>
+                            <a href="build.html">
+                                <input id="main-btn-localiser-vehicule"
+                                    class="menu-button" type="button"
+                                    value="LOCALISER UN VEHICULE">
+                            </a>
+                        </div>
+                        <br>
+                        <a href="actualiser/index.html">
+                            <input id="main-btn-actualiser" class="menu-button"
+                                type="button" value="ACTUALISER LES FICHIERS">
                         </a>
-                        <a href="enregistrer/">
-                            <input id="main-btn-enregistrer-entretien" class="menu-button"  type="button" value="ENREGISTRER ENTRETIEN">
-                        </a>
+                        <div class="box-l">
+                            <a href="build.html">
+                                <input id="main-btn-stats" class="menu-button"
+                                    type="button" value="STATISTIQUES">
+                            </a>
+                            <a href="historique.php">
+                                <input id="main-btn-historique"
+                                    class="menu-button" type="button"
+                                    value="HISTORIQUE">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="right-container">
                         <a href="build.html">
-                            <input id="main-btn-localiser-vehicule" class="menu-button"  type="button" value="LOCALISER UN VEHICULE">
+                            <input id="main-btn-aide" class="menu-button"
+                                type="button" value="AIDE">
+                        </a>
+                        <a href>
+                            <input id="main-btn-quitter" class="menu-button"
+                                type="button" value="QUITTER ATYSCAR">
                         </a>
                     </div>
-                    <br>
-                    <a href="actualiser/index.html">
-                        <input id="main-btn-actualiser" class="menu-button"  type="button" value="ACTUALISER LES FICHIERS">
-                    </a>
-                    <div class="box-l">
-                        <a href="build.html"> 
-                            <input id="main-btn-stats" class="menu-button" type="button" value="STATISTIQUES" > 
-                        </a>
-                        <a href="historique.php"> 
-                            <input id="main-btn-historique" class="menu-button"  type="button" value="HISTORIQUE"> 
-                        </a>
-                        </div>
-                </div>
-                    
-                <div class="right-container">
-                    <a href="build.html"> 
-                        <input id="main-btn-aide" class="menu-button" type="button" value="AIDE">
-                    </a>
-                    <a href=""> 
-                        <input id="main-btn-quitter" class="menu-button" type="button" value="QUITTER ATYSCAR">
-                    </a>
-                </div>
-                    
-                
-            
-                <!-- <a id="button-actualiser-fichiers" type="button"></a> -->
-                
-            </div> 
 
+                    <!-- <a id="button-actualiser-fichiers" type="button"></a> -->
 
+                </div>
+
+            </div>
+
+        </main>
+
+        <div id="right-container-rgpd">
+            <a href="confidentiality-policy.html">
+                <input id="main-btn-aide" class="menu-button" type="button"
+                    value="Politique de Confidentialité">
+            </a>
         </div>
-        
-    </main>
 
-    <div id="right-container-rgpd">
-        <a href="rgpd.html"> 
-            <input id="main-btn-aide" class="menu-button" type="button" value="Politique de Confidentialité">
-        </a>
-    </div> 
-    
-</body>
+    </body>
 
 </html>
