@@ -164,7 +164,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                 <div class="radio-lists">
                     <div class="type-client">
                         <?php
-                        $CodTypeC = isset($_SESSION['client']['CodTypC']) ? $_SESSION['client']['CodTypC'] : 1;
+                        $CodTypeC = isset($_SESSION['client']['CodTypC']) ? $_SESSION['client']['CodTypC'] : 0;
                         ?>
                         <h2>Type de client</h2>
                         <ul class="list-type-client">

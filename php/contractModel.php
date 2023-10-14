@@ -246,7 +246,7 @@ function addContract($data)
         if (strtotime($data['DatDebCont']) > strtotime($data['DatRetCont'])) {
             die('FAIL:DATES NON VALIDES');
         }
-        if ($data['CodTypTarif'] < 0 || $data['CodTypTarif'] > 2) {
+        if ($data['CodTypTarif'] < 1 || $data['CodTypTarif'] > 3) {
             die('FAIL:VEUILLEZ ENTREZ UN TYPE DE FACTURATION VALIDE');
         }
 
