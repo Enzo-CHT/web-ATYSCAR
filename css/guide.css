@@ -1,21 +1,29 @@
-/** CSS pour la page de guide d'utilisation **/
-
+/** CSS for the usage guide page **/
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap");
 
 * {
-    font-family: "Open Sans";
+    font-family: "Open Sans", sans-serif;
     font-size: 14px;
     text-overflow: ellipsis;
 }
 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+}
+
 main {
-    position: absolute;
-    left: 230px;
+    position: relative;
+  
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 35px;
+    margin: 75px 0;
 }
 
 h2 {
@@ -29,42 +37,56 @@ h3 {
 }
 
 p {
-    justify-content: baseline;
+    text-align: justify;
+    margin-right: 50px;
     margin-left: 5px;
 }
 
 section {
     padding-bottom: 50px;
+    width: fit-content;
+    max-width: 800px;
 }
 
 .sidenav {
     height: 100%;
-    width: 150px;
+    width: 0;
     position: fixed;
     z-index: 111;
     top: 0;
     left: 0;
-    background-color: azure;
+    background-color: rgb(46, 46, 46);
     overflow-x: hidden;
-    padding-left: 60px;
+    padding-top: 80px;
+    transition: 0.5s;
+    padding-left: 50px;
 }
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 8px 0;
     text-decoration: none;
-    font-size: medium;
-    color: brown;
+    font-size: 17px;
+    color: rgb(255, 255, 255);
     display: block;
-
 }
 
-.sidenav a:hover {
-    color: burlywood;
+.sidenav .sidenavItem:hover {
+    color: rgb(74, 74, 74);
 }
 
-.sidenav .innerSection1 {}
+.sidenav .sidenavItem {
+    padding: 8px 0;
+    text-decoration: none;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    display: block;
+}
 
-
-.sidenav .innerSection2 {}
-
-.sidenav .innerSection3 {}
+.sidenav .triggerSidenav {
+    position: absolute;
+    top: 0;
+    right: 17px;
+    font-size: 36px;
+    margin-left: 50px;
+    transition: 0.5s;
+}

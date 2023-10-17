@@ -1,68 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/guide.css">
-        <title>Document</title>
-    </head>
-    <body>
-        <aside class="sidenav">
-            <a href="#test5" >Test</a>
-            <a href="#test5" class="innerSection1">Test</a>
-            <a href="#test5" class="innerSection2">Test</a>
-            <a href="#test5">Test</a>
-            <a href="#test5">Test</a>
 
-        </aside>
-        <main id="manuel">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/guide.css">
+    <title>Document</title>
+</head>
 
-            <h1>Guide d'utilisation de l'application ATYS CAR</h1>
+<body>
 
-            <section id="test">
-                <h2>Test</h2>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Ipsa voluptatibus, magni eius mollitia error fugiat, quia
-                    doloremque nostrum sunt quaerat nobis laudantium animi
-                    totam, illum hic numquam tenetur dignissimos esse?</p>
-            </section>
-            <section id="test">
-                <h2>Test</h2>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Ipsa voluptatibus, magni eius mollitia error fugiat, quia
-                    doloremque nostrum sunt quaerat nobis laudantium animi
-                    totam, illum hic numquam tenetur dignissimos esse?</p>
-            </section>
-            <section id="test2">
-                <h2>Test</h2>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Ipsa voluptatibus, magni eius mollitia error fugiat, quia
-                    doloremque nostrum sunt quaerat nobis laudantium animi
-                    totam, illum hic numquam tenetur dignissimos esse?</p>
-            </section>
-            <section id="test3">
-                <h2>Test</h2>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Ipsa voluptatibus, magni eius mollitia error fugiat, quia
-                    doloremque nostrum sunt quaerat nobis laudantium animi
-                    totam, illum hic numquam tenetur dignissimos esse?</p>
-            </section>
-            <section id="test4">
-                <h2>Test</h2>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Ipsa voluptatibus, magni eius mollitia error fugiat, quia
-                    doloremque nostrum sunt quaerat nobis laudantium animi
-                    totam, illum hic numquam tenetur dignissimos esse?</p>
-            </section>
-            <section id="test5">
-                <h2>Test</h2>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Ipsa voluptatibus, magni eius mollitia error fugiat, quia
-                    doloremque nostrum sunt quaerat nobis laudantium animi
-                    totam, illum hic numquam tenetur dignissimos esse?</p>
-            </section>
+    <aside class="sidenav" id="mySidenav">
+        <a id="myTriggerSidenavBtn" href="javascript:void(0)" class="triggerSidenav" onclick="switchNav()">&#43;</a>
+        <a class="sidenavItem" href="#test5">Test</a>
+        <a class="sidenavItem" href="#test5">Test</a>
+        <a class="sidenavItem" href="#test5">Test</a>
+        <a class="sidenavItem" href="#test5">Test</a>
 
-        </main>
+    </aside>
 
-    </body>
+    <main id="manuel">
+
+        <h1>Guide d'utilisation de l'application ATYS CAR</h1>
+
+        <section id="test">
+            <h2>Test</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Impedit cupiditate aliquid repellat, ut nesciunt fuga autem
+                vitae corporis vero. Hic recusandae enim itaque optio ipsam
+                atque iusto placeat, perspiciatis sapiente architecto dolore
+                beatae vel dignissimos. Quia tenetur aliquam dolor quo
+                quibusdam quod reprehenderit sunt nobis non, fugit sed nemo
+                laboriosam.</p>
+        </section>
+        <section id="test">
+            <h2>Test</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Ipsa voluptatibus, magni eius mollitia error fugiat, quia
+                doloremque nostrum sunt quaerat nobis laudantium animi
+                totam, illum hic numquam tenetur dignissimos esse?</p>
+        </section>
+        <section id="test2">
+            <h2>Test</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Ipsa voluptatibus, magni eius mollitia error fugiat, quia
+                doloremque nostrum sunt quaerat nobis laudantium animi
+                totam, illum hic numquam tenetur dignissimos esse?</p>
+        </section>
+        <section id="test3">
+            <h2>Test</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Ipsa voluptatibus, magni eius mollitia error fugiat, quia
+                doloremque nostrum sunt quaerat nobis laudantium animi
+                totam, illum hic numquam tenetur dignissimos esse?</p>
+        </section>
+        <section id="test4">
+            <h2>Test</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Ipsa voluptatibus, magni eius mollitia error fugiat, quia
+                doloremque nostrum sunt quaerat nobis laudantium animi
+                totam, illum hic numquam tenetur dignissimos esse?</p>
+        </section>
+        <section id="test5">
+            <h2>Test</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Ipsa voluptatibus, magni eius mollitia error fugiat, quia
+                doloremque nostrum sunt quaerat nobis laudantium animi
+                totam, illum hic numquam tenetur dignissimos esse?</p>
+        </section>
+
+    </main>
+
+</body>
+<script>
+    function switchNav() {
+        mySidenav = document.getElementById("mySidenav")
+        if (mySidenav.style.width != "150px") {
+            // OUVERT
+
+            // Side bar
+            document.getElementById("mySidenav").style.width = "150px";
+            document.getElementById("mySidenav").style.background = "rgb(255,255,255)";
+            // Bouton d'ouverture/fermeture 
+            document.getElementById("myTriggerSidenavBtn").innerHTML = "&#45;";
+            document.getElementById("myTriggerSidenavBtn").style.color = "black";
+
+
+            var sidenavItems = document.getElementsByClassName("sidenavItem");
+
+            for (var i = 0; i < sidenavItems.length; i++) {
+                sidenavItems[i].style.fontSize = "17px";
+            }
+
+        } else {
+            // FERMER
+
+            
+            // Side bar
+            document.getElementById("mySidenav").style.width = 0;
+            document.getElementById("mySidenav").style.background = "rgb(46,46,46)";
+
+
+            // Bouton d'ouverture/fermeture 
+            document.getElementById("myTriggerSidenavBtn").innerHTML = "&#43;";
+            document.getElementById("myTriggerSidenavBtn").style.color = "white";
+            var sidenavItems = document.getElementsByClassName("sidenavItem");
+
+            for (var i = 0; i < sidenavItems.length; i++) {
+                sidenavItems[i].style.fontSize = "0px";
+            }
+        }
+
+    }
+
+
+</script>
+
 </html>
