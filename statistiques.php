@@ -38,7 +38,7 @@
             <div class="box-l">
               
                 <div class="container-element">
-                    <input type="button" class="menu-button" id="statistiques-btn-aide" value="AIDE">
+                    <a href="guide/guide.html#statistiques"><input type="button" class="menu-button" id="statistiques-btn-aide" value="AIDE"></a>
                     <a href="index.html"><input type="button" class="menu-button" id="statistiques-btn-fermer" value="FERMER"></a>
                 </div>
             </div>
