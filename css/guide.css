@@ -3,125 +3,142 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap");
 
 * {
-    font-family: "Open Sans", sans-serif;
-    font-size: 14px;
-    text-overflow: ellipsis;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  text-overflow: ellipsis;
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
 }
 
 main {
-    background-image: none;
-    position: relative;
-    margin-left: 10%;
-
+  background-image: none;
+  position: relative;
+  margin-left: 10%;
 }
 
 h1 {
-    font-size: 35px;
-    margin: 75px 0;
+  font-size: 35px;
+  margin: 75px 0;
 }
 
 h2 {
-    font-size: 25px;
-    margin-left: 10px;
+  font-size: 30px;
+  margin-left: 10px;
+  color: #d32c20;
 }
 
 h3 {
-    font-size: 15px;
-    margin-left: 15px;
+  font-size: 20px;
+  margin-left: 15px;
+  text-decoration: underline;
 }
 
 p {
-    text-align: justify;
-    margin-right: 50px;
-    margin-left: 5px;
+  text-align: justify;
+  margin-right: 50px;
+  margin-left: 5px;
 }
 
 section {
-    padding-bottom: 50px;
-    width: fit-content;
-    max-width: 900px;
-
+  padding: 100px 0;
+  width: fit-content;
+  max-width: 850px;
 }
 
 img {
-    margin: 10px 0;
-    max-width: 900px;
-    max-height: 650px;
-    /**box-shadow: 10px 7px 69px -64px rgba(0, 0, 0, 0.75);**/
+  margin: 10px 0;
+  max-width: 800px;
+  max-height: 650px;
+  /**box-shadow: 10px 7px 69px -64px rgba(0, 0, 0, 0.75);**/
 }
 
 .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 111;
-    top: 0;
-    left: 0;
-    background-color: #880a01;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 111;
+  top: 0;
+  left: 0;
+  background-color: #880a01;
 
-
-    overflow-x: hidden;
-    padding-top: 80px;
-    transition: 0.5s;
-    padding-left: 20px;
-    padding-right: 27px;
+  overflow-x: hidden;
+  padding-top: 80px;
+  transition: 0.5s;
+  padding-left: 20px;
+  padding-right: 27px;
 }
 
 .sidenav a {
-    padding: 8px 0;
-    text-decoration: none;
+  padding: 8px 0;
+  text-decoration: none;
 
-    color: rgb(255, 255, 255);
-    display: block;
+  color: rgb(255, 255, 255);
+  display: block;
 }
 
-
 .sidenav .sidenavItem {
-    padding: 8px 0;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 700;
-    color: rgb(0, 0, 0);
-
-    display: block;
+  padding: 8px 0;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0);
+  transition: 0.2s;
+  display: block;
 }
 
 .sidenav .sidenavItem:hover {
-    color: rgb(74, 74, 74);
+  color: rgb(74, 74, 74);
 }
 
 .sidenav .triggerSidenav {
-    position: absolute;
-    top: 0;
-    right: 12px;
-    font-size: 36px;
-    margin-left: 50px;
-    transition: 0.2s;
+  position: absolute;
+  top: 0;
+  right: 12px;
+  font-size: 36px;
+  margin-left: 50px;
+  transition: 0.2s;
 }
 
-
 .retour-btn {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    background-color: #880a0100;
-    color: #880a01;
-    font-weight: 800;
-    font-size: 17px;
-    border: none;
-    margin: 15px;
-    text-decoration: none;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background-color: #880a0100;
+  color: #880a01;
+  font-weight: 800;
+  font-size: 17px;
+  border: none;
+  margin: 15px;
+  text-decoration: none;
 }
 
 .retour-btn:hover {
-    background-color: none;
-    color: #880a01ac;
+  background-color: none;
+  color: #880a01ac;
+}
+
+.note {
+  background-color: rgba(230, 230, 230, 0.479);
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.note::before {
+  content: "\1F4DD"; /* Note the backslash */
+}
+
+.warn {
+  background-color: rgba(255, 242, 169, 0.479);
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.warn::before {
+  content: "\1F6A8";
 }

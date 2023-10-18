@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <div class="right-container">
-                            <a href="manuel/guide.html#historique"><input type="button" class="menu-button" id="his-btn-aide" value="AIDE"></a>
+                            <a href="guide/guide.html#historique"><input type="button" class="menu-button" id="his-btn-aide" value="AIDE"></a>
                             <a href="index.html"><input type="button" class="menu-button" id="his-btn-fermer" value="FERMER"></a>
                         </div>
                     </div>
