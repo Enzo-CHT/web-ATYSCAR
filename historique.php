@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <div class="right-container">
-                            <input type="button" class="menu-button" id="his-btn-aide" value="AIDE">
+                            <a href="manuel/guide.html#historique"><input type="button" class="menu-button" id="his-btn-aide" value="AIDE"></a>
                             <a href="index.html"><input type="button" class="menu-button" id="his-btn-fermer" value="FERMER"></a>
                         </div>
                     </div>
@@ -160,7 +160,9 @@
                     url: 'php/sessionSetter.php',
                     type: 'POST',
                     data: {
-                        data : JSON.stringify({'REF2PRINT': dataToPrint}),
+                        data: JSON.stringify({
+                            'REF2PRINT': dataToPrint
+                        }),
                     },
                     success: function() {
                         console.log('session setted.')
