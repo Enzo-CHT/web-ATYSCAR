@@ -226,7 +226,7 @@ session_start();
 
         dataArray['numero-client'] = document.getElementById('datalist-client').value;
 
-        console.log(dataArray);
+       
 
 
         updateContract(dataArray);

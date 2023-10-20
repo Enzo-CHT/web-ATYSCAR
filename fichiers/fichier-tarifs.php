@@ -196,7 +196,7 @@
                 // Recupère les données des cibles ayant déclancher l'évenement
                 var inputName = event.target.name;
                 var inputValue = event.target.value;
-                console.log("Input " + inputName + " has changed to " + inputValue);
+                
                 $.ajax({
                     url: "../php/savePrice.php",
                     type: 'POST',
@@ -210,7 +210,7 @@
                         }
                     },
                     success: function() {
-                        console.log('Prices have been saved.');
+                        //console.log('Prices have been saved.');
                     },
                     error: function(xhr, status, error) {
                         console.error('Error page in (fichier-tarifs.php)', status, error);
@@ -228,7 +228,7 @@
     
 </script>
 <?php 
-$query = 'SELECT * FROM TARIFER';
+$query = 'SELECT * FROM TARIFS';
 
 $dbh = new PDO('mysql:host=localhost;dbname=wb-atyscar','root','');
 $stmt = $dbh->prepare($query);

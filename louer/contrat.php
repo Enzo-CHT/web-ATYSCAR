@@ -164,7 +164,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                 <div class="radio-lists">
                     <div class="type-client">
                         <?php
-                        $CodTypeC = isset($_SESSION['client']['CodTypC']) ? $_SESSION['client']['CodTypC'] : 1;
+                        $CodTypeC = isset($_SESSION['client']['CodTypC']) ? $_SESSION['client']['CodTypC'] : 0;
                         ?>
                         <h2>Type de client</h2>
                         <ul class="list-type-client">
@@ -217,6 +217,31 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                             </li>
                         </ul>
                     </div>
+                    <div class="type-periode">
+                        <h2>Périodes<b><span style="color:red">*</span></b> </h2>
+                        <ul>
+                            <li>
+                                <div class="container-element">
+                                    <label for="contrat-hiver">Hiver</label>
+                                    <input type="radio" name="Periode" id="contrat-hiver" value="1" />
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="container-element">
+                                    <label for="contrat-ete">Ete</label>
+                                    <input type="radio" name="Periode" id="contrat-ete" value="2" />
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="container-element">
+                                    <label for="contrat-vacances">Vacances</label>
+                                    <input type="radio" name="Periode" id="contrat-vacances" value="3" />
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
 
                 </div>
             </div>
@@ -257,18 +282,21 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
             dataArray[key] = value;
         });
 
-        console.log(dataArray);
+
 
         // Récupération des élements non manuellement remplissable
         dataArray['MatV'] = "<?php echo isset($_SESSION['vehicule']['MatV']) ? $_SESSION['vehicule']['MatV'] : '' ?>";
         dataArray['NumC'] = "<?php echo isset($_SESSION['client']['NumC']) ? $_SESSION['client']['NumC'] : '' ?>";
         dataArray['NumCont'] = "<?php echo isset($_SESSION['contrat']['NumCont']) ? $_SESSION['contrat']['NumCont'] : '' ?>";
+        dataArray['CodTypC'] = "<?php echo isset($_SESSION['client']['CodTypC']) ? $_SESSION['client']['CodTypC'] : '' ?>";
 
-        //Ajout manuel de CodTypTarif (cause idk why but it don't work)
+        //Ajout manuel de CodTypTarif + Periode (cause idk why but it don't work)
         const selectedCodTypTarif = document.querySelector('input[name="CodTypTarif"]:checked');
+        const selectedPeriode = document.querySelector('input[name="Periode"]:checked');
         dataArray['CodTypTarif'] = selectedCodTypTarif ? selectedCodTypTarif.value : '';
+        dataArray['Periode'] = selectedPeriode ? selectedPeriode.value : '';
 
-
+       
         return dataArray;
     }
 

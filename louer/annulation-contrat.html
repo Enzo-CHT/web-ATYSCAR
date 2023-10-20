@@ -11,63 +11,60 @@
   <body>
     <main id="annulation-contrat">
       <div>
-
         <div class="container">
-          <img class="logo" src="../addons/img/Atys Car.jpg" alt="atyscar-logo" />
+          <img
+            class="logo"
+            src="../addons/img/Atys Car.jpg"
+            alt="atyscar-logo"
+          />
           <div class="box">
-            <b><span id="span-stats" style="color: green;"></span></b>
+            <b><span id="span-stats" style="color: green"></span></b>
             <div class="container-element">
-              <label for="annulation-contrat-id">Numéro du contrat à annuler</label>
+              <label for="annulation-contrat-id"
+                >Numéro du contrat à annuler</label
+              >
               <input
                 type="text"
                 name="num-contrat"
-                id="annulation-contrat-id" />
+                id="annulation-contrat-id"
+              />
             </div>
 
             <div class="container-element">
               <a href="index.html">
-
                 <input
                   class="menu-button"
                   type="button"
                   value="Annuler"
-                  id="btn-annuler" />
+                  id="btn-annuler"
+                />
               </a>
               <input class="menu-button" type="button" value="Ok" id="btn-ok" />
-
             </div>
           </div>
         </div>
-
       </div>
     </main>
   </body>
   <script>
-    
-    document.getElementById("btn-ok").onclick = async function() {
-      
-
+    document.getElementById("btn-ok").onclick = function () {
       let NumCont = document.getElementById("annulation-contrat-id").value;
       $.ajax({
-        url : '../php/delContract.php',
-        type : 'GET',
-        data : {
-          'data' : JSON.stringify(NumCont),
+        url: "../php/contractModel.php",
+        type: "GET",
+        data: {
+          action: "delete",
+          data: NumCont,
         },
-        success : function() {
-          console.log("delContrat has been executed.");
-          document.getElementById("span-stats").textContent = "SUPPRESSION REUSSIE"
-
+        success: function () {
+          //console.log("delContrat has been executed.");
+          document.getElementById("span-stats").textContent =
+            "SUPPRESSION REUSSIE";
         },
-        error: function(xhr, status, error){
+        error: function (xhr, status, error) {
           console.error("Error page (delContrat.php)", error, status);
-        }
-
-      })
-      
-
-
-
-    }
+        },
+      });
+    };
   </script>
 </html>

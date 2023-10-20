@@ -3,6 +3,9 @@ session_start();
 $_SESSION['stats'] = "";
 
 $action = isset($_POST['action']) ? $_POST['action'] : null;
+if ($action == null) {
+    $action = isset($_GET['action']) ? $_GET['action'] : null;
+}
 $embedded = isset($_POST['data'])  ? json_decode($_POST['data']) : null;
 
 if ($action != null) {
@@ -25,10 +28,17 @@ if ($action != null) {
  */
 function deleteContract()
 {
-    require "connexion.php";
 
-    $id = isset($_SESSION['contrat']['NumCont']) ? $_SESSION['contrat']['NumCont'] : null;
+    include "connexion.php";
 
+    // Récupération par paramètre
+    $id = isset($_GET['data']) ? $_GET['data'] : null;
+
+    // Si pas de paramètre, récupération par SESSION
+    if ($id == null) {
+        $id = isset($_SESSION['contrat']['NumCont']) ? $_SESSION['contrat']['NumCont'] : null;
+    }
+    
     // Vérifie qu'il existe un id
     if ($id !== null) {
         $sql = "DELETE FROM Contrat WHERE NumCont = ?";
@@ -37,6 +47,8 @@ function deleteContract()
             $stmt->bind_param('s', $id);
             if ($stmt->execute()) {
                 echo "Delete : Success!";
+            } else {
+                die($connexion->error);
             }
 
             $stmt->close();
@@ -61,15 +73,17 @@ function updateContract($newData)
 
         $requir = [
             'NumCont',
-            'date-depart',
-            'heure-depart',
-            'date-depart',
-            'heure-retour',
-            'station-depart',
-            'station-retour',
-            'numero-client',
+            'DatDebCont',
+            'HeurDepCont',
+            'DatRetCont',
+            'HeurRetCont',
+            'VilDepCont',
+            'VilRetCont',
+            'NumC',
             'MatV',
-            'tarif'
+            'CodTypTarif',
+            'Periode',
+            'CodTypC'
         ];
 
 
@@ -81,7 +95,19 @@ function updateContract($newData)
 
 
         // Vérification des données
-
+        switch ($newData['Periode']) {
+            case 1:
+                $newData['Periode'] = "HIV";
+                break;
+            case 2:
+                $newData['Periode'] = "ETE";
+                break;
+            case 3:
+                $newData['Periode'] = "VAC";
+                break;
+            default:
+                $newdata['Periode'] = "";
+        }
         // S'il manque un element de la liste des champs obligatoire
         foreach ($requir as $element) {
             if (!isset($newData[$element])) {
@@ -98,6 +124,8 @@ function updateContract($newData)
             }
         }
 
+
+
         ////// Vérification de validité
         /*
         DateDebut < DateFin
@@ -112,6 +140,8 @@ function updateContract($newData)
 
         /////
 
+
+        // Communication avec Base de données 
         $sql = "UPDATE Contrat SET
             DatDebCont = ? ,
             HeurDepCont = ? ,
@@ -175,9 +205,24 @@ function addContract($data)
             'VilRetCont',
             'NumC',
             'MatV',
-            'CodTypTarif'
+            'CodTypTarif',
+            'Periode',
+            'CodTypC'
         ];
 
+        switch ($data['Periode']) {
+            case '1':
+                $data['Periode'] = "HIV";
+                break;
+            case '2':
+                $data['Periode'] = "ETE";
+                break;
+            case '3':
+                $data['Periode'] = "VAC";
+                break;
+            default:
+                $data['Periode'] = "";
+        }
 
         foreach ($requirement as $element) {
             if (!isset($data[$element])) {
@@ -191,6 +236,8 @@ function addContract($data)
         }
 
 
+
+
         ////// Vérification de validité
         /*
         DateDebut < DateFin
@@ -199,7 +246,7 @@ function addContract($data)
         if (strtotime($data['DatDebCont']) > strtotime($data['DatRetCont'])) {
             die('FAIL:DATES NON VALIDES');
         }
-        if ($data['CodTypTarif'] < 0 || $data['CodTypTarif'] > 2) {
+        if ($data['CodTypTarif'] < 1 || $data['CodTypTarif'] > 3) {
             die('FAIL:VEUILLEZ ENTREZ UN TYPE DE FACTURATION VALIDE');
         }
 
@@ -207,7 +254,7 @@ function addContract($data)
 
 
 
-
+        // Communication avec Base de données 
         $q = "SELECT count(*) AS row_count FROM CONTRAT WHERE NumCont = ?";
         $stmt = $connexion->prepare($q);
 
@@ -226,6 +273,7 @@ function addContract($data)
 
 
         if (!$count) {
+
 
             $sql = "INSERT INTO CONTRAT (
                     NumCont,
@@ -246,6 +294,7 @@ function addContract($data)
                 die("\nQuery error : " .  $connexion->error);
             }
 
+
             $NumCont = $data['NumCont'];
             $DatDebCont = $data['DatDebCont'];
             $HeurDepCont = $data['HeurDepCont'];
@@ -256,6 +305,8 @@ function addContract($data)
             $NumC = $data['NumC'];
             $MatV = $data['MatV'];
             $CodTypTarif = $data['CodTypTarif'];
+            $Periode = $data['Periode'];
+            $CodTypC = $data['CodTypC'];
 
 
 
@@ -275,14 +326,25 @@ function addContract($data)
             );
 
             if (!$stmt->execute()) {
-                die("Erreur lors de l'exécution de la requête ");
+                die("Une erreur s'est produite, réessayer plus tard");
             }
-
-            echo "AddContrat Success! : CONTRAT ENREGISTRE AVEC SUCCES !";
             $stmt->close();
 
+            $ajoutTarif = "INSERT INTO Tarifer VALUES (?,?,?,?)";
+            $tariferStmt = $connexion->prepare($ajoutTarif);
+            $tariferStmt->bind_param(
+                "ssii",
+                $NumCont,
+                $Periode,
+                $CodTypTarif,
+                $CodTypC,
+            );
+            if (!$tariferStmt->execute()) {
+                die("Une erreur s'est produite, réessayer plus tard");
+            }
 
 
+            echo "AddContrat Success! : CONTRAT ENREGISTRE AVEC SUCCES !";
             mysqli_close($connexion);
         } else {
             die("FAIL : CONTRAT EXISTANT");

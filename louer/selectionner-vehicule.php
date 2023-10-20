@@ -125,12 +125,12 @@ unset($_SESSION['vehicule']);
                 }
             });
 
-            console.log(dataArray);
+            
             await setSession({
                 vehicule: dataArray
             });
 
-            console.log(dataArray);
+           
             await $.ajax({
                 url: '../php/vehiculeGet.php', // Récupère la voiture
                 type: 'GET',
@@ -138,7 +138,7 @@ unset($_SESSION['vehicule']);
                     data: JSON.stringify(dataArray),
                 },
                 success: function(response) {
-                    console.log('carGet has been executed!');
+                    //console.log('carGet has been executed!');
 
                 },
                 error: function(xhr, status, error) {
@@ -188,7 +188,7 @@ unset($_SESSION['vehicule']);
                     dataEncaps[el] = document.querySelector('#' + input[el]).value;
                 }
 
-                //console.log(JSON.stringify(dataEncaps));
+                
 
                 $.ajax({
                     url: '../php/vehiculeSelector', // 
@@ -200,7 +200,7 @@ unset($_SESSION['vehicule']);
                     success: function(response) {
                         // Update the HTML with the received options
                         var dataDecaps = response;
-                        //console.log(dataDecaps);
+                        
                         for (var key in dataDecaps) {
 
                             if (dataDecaps.hasOwnProperty(key)) { // Si key appartient au array
