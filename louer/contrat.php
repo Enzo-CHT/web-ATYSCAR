@@ -10,7 +10,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
     $_SESSION['contrat']['NumCont'] = "CTR" . $date;
 } else {
     // S'assure que le contrat ne soit pas générer sans les éléments obligatoires
-    unset($_SESSION['contrat']);
+    $_SESSION['contrat'] = array();
 }
 
 ?>
@@ -114,7 +114,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                         <h1>Contrat</h1>
                         <div class="container-element">
                             <label for="contrat-contrat-id">Numéro contrat<b><span style="color:red">*</span></b> :</label>
-                            <input type="text" name="NumCont" id="contrat-num-id" readonly value="<?php echo isset($_SESSION['contrat']['NumCont']) ? $_SESSION['contrat']['NumCont'] : ''; ?>" />
+                            <input class="readonly" type="text" name="NumCont" id="contrat-num-id" readonly value="<?php echo isset($_SESSION['contrat']['NumCont']) ? $_SESSION['contrat']['NumCont'] : ''; ?>" />
                         </div>
                         <div class="container-element">
                             <label for="contrat-contrat-depart-date">Date départ <b><span style="color:red">*</span></b> :</label>
@@ -145,7 +145,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                             <input id="contrat-btn-select-vehicule" class="menu-button" type="button" value="SELECTIONNER VEHICULE" onclick="$('body').load('../louer/selectionner-vehicule.php');">
                             <span id="span-img-check"></span>
                             <?php
-                            if (isset($_SESSION['vehicule'])) {
+                            if (isset($_SESSION['vehicule']['MatV'])) {
                                 echo '<img class="success-operation" src="../addons/img/check.png" alt="valid-png">';
                             } else {
                                 echo '<img class="success-operation" src="../addons/img/notcheck.png" alt="notvalid-png">';
@@ -296,7 +296,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
         dataArray['CodTypTarif'] = selectedCodTypTarif ? selectedCodTypTarif.value : '';
         dataArray['Periode'] = selectedPeriode ? selectedPeriode.value : '';
 
-       
+
         return dataArray;
     }
 
