@@ -40,7 +40,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                     <br>
                     <div>
 
-                        <input class="menu-button" type="button" value="RECHERCHER CLIENT" onclick="$('body').load('recherche_element.html')">
+                        <input class="menu-button" type="button" value="RECHERCHER CLIENT" onclick="loadSearchPage()">
 
                         <input id="btn-nouveauClient" class="menu-button" type="button" value="NOUVEAU CLIENT" onclick="resetSession('client');$('body').load('../fichiers/fichier-clients.php')">
 
@@ -142,7 +142,7 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
                         </div>
 
                         <div class="utilities-btn">
-                            <input id="contrat-btn-select-vehicule" class="menu-button" type="button" value="SELECTIONNER VEHICULE" onclick="$('body').load('../louer/selectionner-vehicule.php');">
+                            <input id="contrat-btn-select-vehicule" class="menu-button" type="button" value="SELECTIONNER VEHICULE" onclick="$('body').load('selectionner-vehicule.php')">
                             <span id="span-img-check"></span>
                             <?php
                             if (isset($_SESSION['vehicule']['MatV'])) {
@@ -305,6 +305,20 @@ if (isset($_SESSION['client']) && isset($_SESSION['vehicule']['MatV'])) {
     async function enregistrerContrat() {
         var dataArray = encapsulateData(formId);
         addContract(dataArray, delete_all = true);
+    }
+
+    function loadSearchPage() {
+        var callerPage = "contrat.php";
+        $.ajax({
+            url: "recherche_element.php",
+            type: 'GET',
+            data: {
+                callerPage: callerPage
+            },
+            success: function(response) {
+                $('body').html(response);
+            }
+        })
     }
 </script>
 

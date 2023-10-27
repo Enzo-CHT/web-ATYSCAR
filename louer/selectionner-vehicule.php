@@ -200,7 +200,6 @@ unset($_SESSION['vehicule']);
                     success: function(response) {
                         // Update the HTML with the received options
                         var dataDecaps = response;
-                        
                         for (var key in dataDecaps) {
 
                             if (dataDecaps.hasOwnProperty(key)) { // Si key appartient au array

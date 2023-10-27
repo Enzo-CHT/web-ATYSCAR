@@ -63,6 +63,7 @@ if (!empty($options)) { // Vérification de l'existence des options
                 }
             }
 
+
             $sql .= implode(" AND ", $placeholders); 
 
             $stmt = $connexion->prepare($sql);
