@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 
 
@@ -183,6 +184,34 @@ session_start();
                                 </li>
                             </ul>
                         </div>
+                        <div class="type-facturation">
+                        <h2>Périodes<b><span style="color:red">*</span></b> </h2>
+                        <?php
+                                $codePeriode = isset($_SESSION['contrat']['periode']) ? $_SESSION['contrat']['periode'] : null;
+                            ?>
+                        <ul class="list-type-facturation">
+                            <li>
+                                <div class="container-element">
+                                    <label for="contrat-hiver">Hiver</label>
+                                    <input type="radio" name="periode" id="contrat-hiver" value="1" <?php echo  ($codePeriode == '1') ? 'checked' : ''; ?>/>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="container-element">
+                                    <label for="contrat-ete">Ete</label>
+                                    <input type="radio" name="periode" id="contrat-ete" value="2" <?php echo  ($codePeriode == '2') ? 'checked' : ''; ?>/>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="container-element">
+                                    <label for="contrat-vacances">Vacances</label>
+                                    <input type="radio" name="periode" id="contrat-vacances" value="3" <?php echo  ($codePeriode == '3') ? 'checked' : ''; ?>/>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
 
 
                         <div class="box-c">

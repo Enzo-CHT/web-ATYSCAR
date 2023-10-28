@@ -150,6 +150,11 @@
                 prochain entretien</label>
               <input style="width: 55%" type="number" name="KilProE" id="fichier-vehicule-entretien-pro-kilometrage" value="<?php echo isset($_SESSION['vehicule']['KilProE']) ? $_SESSION['vehicule']['KilProE'] : ''; ?>" />
             </div>
+            <div class="container-element">
+              <label for="fichier-vehicule-entretien-kilometrage">Kilométrage
+                prochain entretien</label>
+              <input style="width: 55%" type="number" name="KilomAV" id="fichier-vehicule-entretien-pro-kilometrage" value="<?php echo isset($_SESSION['vehicule']['KilomAV']) ? $_SESSION['vehicule']['KilomAV'] : ''; ?>" />
+            </div>
             <span id='span-stats'><?php echo isset($_SESSION['stats']) ? $_SESSION['stats'] : ''; ?></span>
 
           </div>

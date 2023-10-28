@@ -115,7 +115,7 @@ function updateContract($data)
     require 'connexion.php';
 
     if (!empty($data) && $data != 'NONE') {
-        $sql = "SELECT * FROM CONTRAT WHERE NumCont=?";
+        $sql = "SELECT Contrat.NumCont, Contrat.DatDebCont,Contrat.HeurDepCont, Contrat.DatRetCont,Contrat.HeurRetCont,Contrat.VilDepCont,Contrat.VilRetCont,Contrat.NumC,Contrat.MatV,Contrat.CodTypTarif,tarifer.periode FROM CONTRAT INNER JOIN Tarifer ON Contrat.NumCont = Tarifer.id_contrat WHERE NumCont=?";
         $stmt = $connexion->prepare($sql);
 
 
@@ -136,6 +136,19 @@ function updateContract($data)
 
 
                 foreach ($row as $key => $value) {
+                    if ($key == 'periode') {
+                        switch ($value) {
+                            case 'HIV':
+                                $value = 1;
+                                break;
+                            case 'ETE':
+                                $value = 2;
+                                break;
+                            case 'VAC':
+                                $value = 3;
+                                break;
+                        }
+                    }
 
                     $_SESSION['contrat'][$key] = $value;
 
@@ -154,7 +167,7 @@ function updateContract($data)
             die("No result");
         }
 
-    
+
 
 
 

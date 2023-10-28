@@ -36,18 +36,18 @@ $callerPage = isset($_GET["callerPage"]) ? $_GET["callerPage"] : null;
                             $res = $stmt->get_result();
                             if ($res->num_rows > 0) {
                                 while ($row = $res->fetch_assoc()) {
-                                    echo '<option>' . $row['PrenomC'] . ' ' . $row['NomC'] . ' : ' . $row['NumC'] . '</option>';
+                                    echo '<option value="' . $row['NumC'] . '">' . $row['PrenomC'] . ' ' . $row['NomC'] . '</option>';
                                 }
                             }
                         }
                     } else if ($callerPage === 'index.html') {
-                        $sql = 'SELECT Contrat.NumCont FROM  Contrat';
+                        $sql = 'SELECT Contrat.NumCont,Client.NomC, Client.PrenomC  FROM  Contrat INNER JOIN Client ON Client.NumC = Contrat.NumC';
                         $stmt = $connexion->prepare($sql);
                         if ($stmt->execute()) {
                             $res = $stmt->get_result();
                             if ($res->num_rows > 0) {
                                 while ($row = $res->fetch_assoc()) {
-                                    echo '<option>' . $row['NumCont'] . '</option>';
+                                    echo '<option value="'. $row['NumCont'] .'">' . $row['NomC'] . ' ' . $row['PrenomC'] . '</option>';
                                 }
                             }
                         }

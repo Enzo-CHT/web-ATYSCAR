@@ -17,6 +17,7 @@ $_SESSION['stats'] = "";
     AnnV	
     KilDernE	
     KilProE	
+    KilomAV
     */
 
 
@@ -26,7 +27,6 @@ $data = isset($_GET['data']) ? json_decode($_GET['data'], true) : '';
 
 
 
-print_r($data);
 
 
 switch ($function) {
@@ -91,8 +91,9 @@ function saveVehicule($data)
             NbPlV,	
             AnnV,	
             KilDernE,	
-            KilProE	
-            ) VALUES ( ?,?,?,?,?,?,?,?,?,?,?,?,? )";
+            KilProE,
+            KilomAV
+            ) VALUES ( ?,?,?,?,?,?,?,?,?,?,?,?,?,? )";
 
 
             $stmt = $connexion->prepare($sql);
@@ -100,8 +101,10 @@ function saveVehicule($data)
                 die("\nQuery error : " .  $connexion->error);
             }
 
+            $data['vehicule']['CarbV'] = strtolower($data['vehicule']['CarbV']);
+
             $stmt->bind_param(
-                'sssssssssssss',
+                'ssssssssssssss',
                 $data['vehicule']['MatV'],
                 $data['vehicule']['ImmatV'],
                 $data['vehicule']['TypeV'],
@@ -109,12 +112,13 @@ function saveVehicule($data)
                 $data['vehicule']['ModV'],
                 $data['vehicule']['CatV'],
                 $data['vehicule']['PuisV'],
-                strtolower($data['vehicule']['CarbV']),
+                $data['vehicule']['CarbV'],
                 $data['vehicule']['CoulV'],
                 $data['vehicule']['NbPlV'],
                 $data['vehicule']['AnnV'],
                 $data['vehicule']['KilDernE'],
                 $data['vehicule']['KilProE'],
+                $data['vehicule']['KilomAV'],
 
             );
 
@@ -178,7 +182,8 @@ function updateVehicule($newData)
             NbPlV = ?,	
             AnnV = ?,	
             KilDernE = ?,	
-            KilProE = ?
+            KilProE = ?,
+            KilomAV = ?
 
             WHERE MatV = ?";
 
@@ -189,7 +194,7 @@ function updateVehicule($newData)
             }
 
             $stmt->bind_param(
-                'sssssssssssss',
+                'ssssssssssssss',
                 $newData['vehicule']['ImmatV'],
                 $newData['vehicule']['TypeV'],
                 $newData['vehicule']['MarV'],
@@ -202,6 +207,7 @@ function updateVehicule($newData)
                 $newData['vehicule']['AnnV'],
                 $newData['vehicule']['KilDernE'],
                 $newData['vehicule']['KilProE'],
+                $newData['vehicule']['KilomAV'],
                 $newData['vehicule']['MatV'],
 
             );

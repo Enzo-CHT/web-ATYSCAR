@@ -2,6 +2,7 @@
 session_start();
 $_SESSION['stats'] = "";
 
+
 $action = isset($_POST['action']) ? $_POST['action'] : null;
 if ($action == null) {
     $action = isset($_GET['action']) ? $_GET['action'] : null;
@@ -73,17 +74,16 @@ function updateContract($newData)
 
         $requir = [
             'NumCont',
-            'DatDebCont',
-            'HeurDepCont',
-            'DatRetCont',
-            'HeurRetCont',
-            'VilDepCont',
-            'VilRetCont',
-            'NumC',
+            'date-depart',
+            'heure-depart',
+            'date-retour',
+            'heure-retour',
+            'station-depart',
+            'station-retour',
+            'numero-client',
             'MatV',
-            'CodTypTarif',
-            'Periode',
-            'CodTypC'
+            'tarif',
+            'periode',
         ];
 
 
@@ -95,24 +95,26 @@ function updateContract($newData)
 
 
         // Vérification des données
-        switch ($newData['Periode']) {
+        switch ($newData['periode']) {
             case 1:
-                $newData['Periode'] = "HIV";
+                $newData['periode'] = "HIV";
                 break;
             case 2:
-                $newData['Periode'] = "ETE";
+                $newData['periode'] = "ETE";
                 break;
             case 3:
-                $newData['Periode'] = "VAC";
+                $newData['periode'] = "VAC";
                 break;
             default:
-                $newdata['Periode'] = "";
+                $newdata['periode'] = "";
         }
+
+        print_r($newData);
         // S'il manque un element de la liste des champs obligatoire
         foreach ($requir as $element) {
             if (!isset($newData[$element])) {
 
-                die('FAIL:CHAMP(S) OBLIGATOIRE(S) MANQUANT(S)');
+                die('FAIL:CHAMP(S) OBLIGATOIRE(S) MANQUANT(S)' . $element);
             }
         }
 

@@ -25,7 +25,7 @@
                             <div class="container-element">
                                 <label for="historique-nom-client">Nom
                                     Client</label>
-                                <input type="text" id="historique-nom-client" name="nom-client" list="client-list" value="CHETAH" onchange="selectField(this)">
+                                <input type="text" id="historique-nom-client" name="nom-client" list="client-list"  onchange="selectField(this)">
                                 <datalist id="client-list">
 
                                     <?php
@@ -79,7 +79,7 @@
                     <div class="right-container">
                         <div class="container-element">
                             <label for="historique-date">Date</label>
-                            <input type="date" id="historique-date" name="date" value="2023-01-01">
+                            <input type="date" id="historique-date" name="date" >
 
                         </div>
 
