@@ -52,7 +52,7 @@ session_start();
                         </datalist>
 
                         <div class="container-element">
-                            <label for="facture-adresse"> Véhicuel<b><span style="color:red">*</span></b> </label>
+                            <label for="facture-adresse"> Véhicule<b><span style="color:red">*</span></b> </label>
                             <input class="readonly" type="text" name="adresse" id="facture-adresse" value="<?php echo isset($_SESSION['vehicule']['MarV']) ? $_SESSION['vehicule']['MarV'] : ''; ?> <?php echo isset($_SESSION['vehicule']['ModV']) ? $_SESSION['vehicule']['ModV'] : ''; ?>" readonly />
                         </div>
                         <div class="container-element">

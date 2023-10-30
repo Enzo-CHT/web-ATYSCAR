@@ -109,7 +109,7 @@ function updateContract($newData)
                 $newdata['periode'] = "";
         }
 
-        print_r($newData);
+        
         // S'il manque un element de la liste des champs obligatoire
         foreach ($requir as $element) {
             if (!isset($newData[$element])) {

@@ -1,6 +1,6 @@
 <?php session_start();
 
-unset($_SESSION['vehicule']);
+//unset($_SESSION['vehicule']);
 ?>
 
 <!DOCTYPE html>
