@@ -5,7 +5,7 @@
 - le temps d'affichage du statu ne reste pas le temps escompté
 - Séréializer les données avant de les enregistrées dans la BDD
 
-- **Definir les aides**
+O **Definir les aides**
 
 
 ## FICHIER CLIENT
@@ -17,7 +17,7 @@ O Fichier-Client accessible par demande ajax depuis Fichiers et Contrats
 
 ## STATISTIQUE
 
-- Affichage du tableau sous PDF
+O Affichage du tableau sous PDF
 
 ## ENTRETIEN
 X Pas d'affichage quand aucun matricule choisit
@@ -30,8 +30,8 @@ O Message d'erreur (en cas d'erreur lol)
 
 ## FICHIER VOITURE
 
-- Réparer les boutons
-- Vérifier que les années soient valides
+O Réparer les boutons
+O Vérifier que les années soient valides
 O Retour en arrière en fonction de la page précédente
 
 ## Selectionner vehicule
@@ -52,18 +52,18 @@ O Permettre de changer de véhicule
 O Ajouter une pastille pour s'assurer qu'un matricule à été choisie
 O Vérifier la validitité des documents avant création du contrat(Contrat.php)
 O Corriger l'entré des heures
-- Vérifier que la date de départ soit supérieur ou égale à la date d'aujourdhui
-- Récupération du typeV en cas de changement de vehicule (edit-contrat)
-- Type de client non affiché lorsque privilégié choisit
+O Vérifier que la date de départ soit supérieur ou égale à la date d'aujourdhui
+O Récupération du typeV en cas de changement de vehicule (edit-contrat)
+O Type de client non affiché lorsque privilégié choisit
 - Tranche d'ages 
-? Récupération de la remise en fonction du type de client (Contrat.php)
+O Récupération de la remise en fonction du type de client (Contrat.php)
 
 ## Recherche element 
-- Ajout de recherche pas nom/contrat
+O Ajout de recherche pas nom/contrat
 
 ## AIDE
-- Titre : "Manuel d'utilisation de l'application web AtysCar"
-- Retour des boutons "Aides" aux sections correpondantes
+O Titre : "Manuel d'utilisation de l'application web AtysCar"
+O Retour des boutons "Aides" aux sections correpondantes
 
 ## RETRAVAILLER (FIN)
 - Affichage (Louer)
@@ -76,18 +76,8 @@ O Corriger l'entré des heures
 - CSS (Modification de contrat) x2
 
 
-## BASE DE DONNEES
-- Ajouter le kilometrage véhicule actuel dans la base de données 
-
 ## TARIFS
-- Gerer l'implementation des tarifs
-
-
-
-### COMPRENDRE
-
-- carSelector /// TESTER
-- selection_vehicule -> JS 
+O Gerer l'implementation des tarifs
 
 
 # SECURITE 
